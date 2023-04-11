@@ -1,0 +1,235 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://InteractivePiece/_Master/InteractivePiece.tscn" type="PackedScene" id=1]
+[ext_resource path="res://InteractivePiece/OtherPieces/Resource/Button.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Disabled"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Design:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.2, 0.2, 0.2, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Design:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( -16, 0, -15.6432, 4.51434, 15.6505, 4.50244, 16, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Outline:points")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ PoolVector2Array( -18, -10, -18, -2, 18, -2, 18, -10 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Outline:default_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.333333, 0.333333, 0.333333, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Collision:polygon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 16, 4, 16, 0, -16, 0, -16, 4 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "TurnOff"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Design:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.588235, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Design:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( -16, 0, -15.6432, 4.51434, -15.2126, 6.49996, -14.6295, 8.31048, -13.9055, 9.95036, -13.0524, 11.424, -12.082, 12.736, -11.0059, 13.8907, -9.83585, 14.8925, -8.5836, 15.7459, -7.26086, 16.4555, -5.87935, 17.0255, -4.45079, 17.4605, -2.9869, 17.765, 0, 18, 2.98793, 17.7553, 4.45295, 17.4467, 5.8829, 17.0082, 7.26595, 16.4353, 8.59026, 15.7235, 9.844, 14.8686, 11.0153, 13.8659, 12.0925, 12.7113, 13.0635, 11.4001, 13.9167, 9.92805, 14.6401, 8.2907, 15.222, 6.48363, 15.6505, 4.50244, 16, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Outline:points")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 0, -2, 0, -2, 0, -2, 0, -2 ), PoolVector2Array( -18, -2, -18, -2, 18, -2, 18, -2 ), PoolVector2Array( -18, -10, -18, -2, 18, -2, 18, -10 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Outline:default_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 1, 0, 1 ), Color( 0.733333, 0, 0, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Collision:polygon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 0, 18, 8, 16, 15, 8, 16, 0, -16, 0, -15, 8, -8, 16 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "TurnOn"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Design:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0.670588, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Design:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( -16, 0, -15.6432, 4.51434, 15.6505, 4.50244, 16, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Outline:points")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 0, -2, 0, -2, 0, -2, 0, -2 ), PoolVector2Array( -18, -2, -18, -2, 18, -2, 18, -2 ), PoolVector2Array( -18, -10, -18, -2, 18, -2, 18, -10 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Outline:default_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.733333, 0, 0, 1 ), Color( 0, 1, 0, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Collision:polygon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 16, 4, 16, 0, -16, 0, -16, 4 ) ]
+}
+
+[node name="Button" instance=ExtResource( 1 )]
+physics_interpolation_mode = 2
+light_mask = 2
+collision_layer = 0
+mass = 65535.0
+gravity_scale = 0.0
+continuous_cd = 2
+contacts_reported = 3
+can_sleep = false
+script = ExtResource( 2 )
+codePos = 1
+
+[node name="Collision" parent="." index="0"]
+polygon = PoolVector2Array( 16, 4, 16, 0, -16, 0, -16, 4 )
+
+[node name="Bezier" parent="." index="1"]
+self_modulate = Color( 0.5, 0.6, 1, 0 )
+PathVisible = false
+accuracy = 5
+
+[node name="Shape" parent="Sprite" index="0"]
+polygon = PoolVector2Array( -20, -12, -20, 0, 20, 0, 20, -12 )
+
+[node name="Design" parent="Sprite" index="1"]
+light_mask = 2
+polygon = PoolVector2Array( -16, 0, -15.6432, 4.51434, 15.6505, 4.50244, 16, 0 )
+
+[node name="Outline" parent="Sprite" index="2"]
+light_mask = 2
+points = PoolVector2Array( -18, -10, -18, -2, 18, -2, 18, -10 )
+width = 3.0
+
+[node name="AnimationPlayer" parent="." index="3"]
+anims/Disabled = SubResource( 1 )
+anims/TurnOff = SubResource( 2 )
+anims/TurnOn = SubResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_Button_body_entered"]

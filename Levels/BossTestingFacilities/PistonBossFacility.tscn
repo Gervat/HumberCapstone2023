@@ -1,0 +1,1230 @@
+[gd_scene load_steps=50 format=2]
+
+[ext_resource path="res://default_env.tres" type="Environment" id=1]
+[ext_resource path="res://InteractivePiece/_Master/Resource/BrickSmallDark0012_1_download600.jpg" type="Texture" id=2]
+[ext_resource path="res://Administration/CameraMan.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Levels/_master/Board.gd" type="Script" id=4]
+[ext_resource path="res://Administration/Menus.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Administration/CompanionManager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Administration/Scripts/EventManager.gd" type="Script" id=7]
+[ext_resource path="res://Resources/Effects/PauseEffect.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Administration/Scripts/GameManager.gd" type="Script" id=9]
+[ext_resource path="res://Administration/SkillsManager.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Administration/BallHandler.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Administration/LevelUtilities.tscn" type="PackedScene" id=12]
+[ext_resource path="res://UI/HUD/HUD.tscn" type="PackedScene" id=13]
+[ext_resource path="res://InteractivePiece/Balls/PlayerBall.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Levels/_master/BossArena.gd" type="Script" id=15]
+[ext_resource path="res://Bosses/_master/Boss.gd" type="Script" id=16]
+[ext_resource path="res://Bosses/Resource/BossPanel.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Bosses/PistonBoss/Battery.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Levels/_master/DeathTrigger.gd" type="Script" id=19]
+[ext_resource path="res://InteractivePiece/_Master/BoardSolid.tscn" type="PackedScene" id=20]
+[ext_resource path="res://InteractivePiece/OtherPieces/Launcher.tscn" type="PackedScene" id=21]
+[ext_resource path="res://DefaultPieces/OneWayGate.tscn" type="PackedScene" id=22]
+[ext_resource path="res://InteractivePiece/OtherPieces/Flipper.tscn" type="PackedScene" id=23]
+[ext_resource path="res://InteractivePiece/OtherPieces/Slingshot.tscn" type="PackedScene" id=24]
+[ext_resource path="res://DefaultPieces/RaisedPieces/RaisedFloor.tscn" type="PackedScene" id=25]
+[ext_resource path="res://DefaultPieces/CustomLight.tscn" type="PackedScene" id=26]
+[ext_resource path="res://InteractivePiece/OtherPieces/Popper.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Levels/BossTestingFacilities/PistonSet.gd" type="Script" id=28]
+[ext_resource path="res://Administration/LightsMeta.tscn" type="PackedScene" id=32]
+[ext_resource path="res://Resources/Fonts/MovieTheaterFont.ttf" type="DynamicFontData" id=34]
+[ext_resource path="res://UI/StoryCutscene.tscn" type="PackedScene" id=35]
+[ext_resource path="res://Resources/Fonts/ClassicArcadeFont.ttf" type="DynamicFontData" id=36]
+
+[sub_resource type="Animation" id=21]
+resource_name = "IntroCutscene"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameManager/LightsMeta:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 9, 9.5, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CameraMan:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -2500 ), Vector2( 0, -3000 ), Vector2( 0, 2500 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GameManager/HUD:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 7, 7.5, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("IntroCutscene/SkipTextPanning:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2, 4, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("IntroCutscene/BoardName:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ false, true, false ]
+}
+
+[sub_resource type="Animation" id=22]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameManager/LightsMeta:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CameraMan:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2500 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GameManager/HUD:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("IntroCutscene/SkipTextPanning:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="DynamicFont" id=24]
+extra_spacing_char = -1
+font_data = ExtResource( 36 )
+
+[sub_resource type="DynamicFont" id=23]
+size = 200
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 34 )
+
+[sub_resource type="Curve2D" id=14]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1920, 2880, 0, 0, 0, 0, -1920, 832, 0, 0, 0, 0, 0, 832, 0, 0, 0, 0, 0, 1056, 0, 0, 0, 0, -408, 1152, 0, 0, 0, 0, -192, 1920, 0, 0, 0, 0, -207, 1937, 0, 0, 0, 0, -220, 1904, 0, 0, 0, 0, -303, 1981, 0, 0, 0, 0, -287, 2033, 0, 0, 0, 0, -313, 2064, 0, 0, 0, 0, -328, 2056, 0, 0, 0, 0, -401, 2130, 0, 0, 0, 0, -384, 2144, 0, 0, 0, 0, -448, 2216, 0, 0, 0, 0, -488, 2048, 0, 0, 0, 0, -344, 1896, 0, 0, 0, 0, -576, 1120, 0, 0, 0, 0, -620, 1137, 0, 0, 0, 0, -696, 1064, 0, 0, 0, 0, -832, 1120, 0, 0, 0, 0, -832, 1220, 0, 0, 0, 0, -880, 1240, 0, 0, 0, 0, -664, 2000, 0, 0, 0, 0, -560, 2048, 0, 0, 0, 0, -512, 2240, 0, 0, 0, 0, -512, 2392, 0, 0, -20.9598, -14.2332, -133, 2663, -21.0475, -11.4703, 0, 0, -149, 2691, 0, 0, 0, 0, -32, 2752, 0, 0, 0, 0, -32, 2816, 0, 0, 0, 0, 0, 2816, 0, 0, 0, 0, 0, 2880, 0, 0, 0, 0, -1920, 2880 )
+}
+
+[sub_resource type="Curve2D" id=25]
+_data = {
+"points": PoolVector2Array( 0.479205, 447.417, -0.479205, -447.417, -32, 24, 123.358, -39.0918, 0, 0, -568, -112, 0, 0, 0, 0, -128, -176, 0, 0, 0, 0, -72, -112, 0, 0, 0, 0, -40, 24, 0, 0, 0, 0, -32, 24 )
+}
+
+[sub_resource type="Curve2D" id=36]
+_data = {
+"points": PoolVector2Array( 0, 0, 334.041, -145.494, -640, -184, 0.606746, -448.237, 0, 0, 56, 24, 0, 0, 0, 0, 72, 24, 0, 0, 0, 0, 64, -288, 0, 0, 0, 0, -152, -368, 0, 0, 0, 0, -568, -320, 0, 0, 0, 0, -640, -184 )
+}
+
+[sub_resource type="Curve2D" id=29]
+_data = {
+"points": PoolVector2Array( 0, 0, 184.139, -604.8, 352, 776, 263.509, 85.7197, 0, 0, 296, -112, 0, 0, 0, 0, 426, -163, 0, 0, 0, 0, 572, 223, 0, 0, 0, 0, 366, 797, 0, 0, 0, 0, 352, 776 )
+}
+
+[sub_resource type="Curve2D" id=30]
+_data = {
+"points": PoolVector2Array( 0, 0, 249.222, 82.5449, 272, -40, 153.622, -398.358, 0, 0, 272, 680, 0, 0, 0, 0, 256, 664, 0, 0, 0, 0, 272, -40 )
+}
+
+[sub_resource type="Curve2D" id=33]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 383, 744, 0, 0, 0, 0, 480, 704, 0, 0, 0, 0, 376, 808, 0, 0, 0, 0, 383, 744 )
+}
+
+[sub_resource type="Curve2D" id=34]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 448, 888, 0, 0, 0, 0, 536, 752, 0, 0, 0, 0, 565, 805, 0, 0, 0, 0, 480, 920, 0, 0, 0, 0, 448, 888 )
+}
+
+[sub_resource type="Curve2D" id=27]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1920, 2880, 0, 0, 0, 0, -1920, 832, 0, 0, 0, 0, 0, 832, 0, 0, 0, 0, 0, 1056, 0, 0, 0, 0, -408, 1152, 0, 0, 0, 0, -192, 1920, 0, 0, 0, 0, -207, 1939, 0, 0, 0, 0, -220, 1905, 0, 0, 0, 0, -303, 1981, 0, 0, 0, 0, -288, 2032, 0, 0, 0, 0, -314, 2063, 0, 0, 0, 0, -329, 2055, 0, 0, 0, 0, -400, 2131, 0, 0, 0, 0, -386, 2144, 0, 0, 0, 0, -448, 2216, 0, 0, 0, 0, -488, 2048, 0, 0, 0, 0, -344, 1896, 0, 0, 0, 0, -576, 1120, 0, 0, 0, 0, -620, 1137, 0, 0, 0, 0, -696, 1064, 0, 0, 0, 0, -832, 1120, 0, 0, 0, 0, -832, 1220, 0, 0, 0, 0, -880, 1240, 0, 0, 0, 0, -664, 2000, 0, 0, 0, 0, -560, 2048, 0, 0, 0, 0, -512, 2240, 0, 0, 0, 0, -512, 2392, 0, 0, 0, 0, -212, 2608, 0, 0, 0, 0, -266, 2685, 0, 0, 0, 0, -214, 2724, 0, 0, 0, 0, -163, 2644, 0, 0, -20.9598, -14.2332, -133, 2663, -21.0475, -11.4703, 0, 0, -149, 2691, 0, 0, 0, 0, -32, 2752, 0, 0, 0, 0, -32, 2816, 0, 0, 0, 0, 0, 2816, 0, 0, 0, 0, 0, 2880, 0, 0, 0, 0, -1920, 2880 )
+}
+
+[sub_resource type="Curve2D" id=31]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 112, 1280, 111.963, -0.0207722, -111.963, 0.0207722, 0, 1184, 0, 0, 0, 0, -112, 1280, 0, 0, 0, 0, -96, 1280, 0, 0, 0, 0, -96, 1256, 0, 0, 0, 0, -8, 1256, 0, 0, 0, 0, -8, 1280, 0, 0, 0, 0, 8, 1280, 0, 0, 0, 0, 8, 1256, 0, 0, 0, 0, 96, 1256, 0, 0, 0, 0, 96, 1280, 0, 0, 0, 0, 112, 1280 )
+}
+
+[sub_resource type="Curve2D" id=35]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 72, 1600, 0, 0, 0, 0, -72, 1600, 0, 0, 0, 0, -88, 1536, 0, 0, 0, 0, -72, 1536, 0, 0, 0, 0, -72, 1576, 0, 0, 0, 0, -8, 1576, 0, 0, 0, 0, -8, 1536, 0, 0, 0, 0, 8, 1536, 0, 0, 0, 0, 8, 1576, 0, 0, 0, 0, 72, 1576, 0, 0, 0, 0, 72, 1536, 0, 0, 0, 0, 88, 1536, 0, 0, 0, 0, 72, 1600, 0, 0, 0, 0, 64, 1600 )
+}
+
+[sub_resource type="PhysicsMaterial" id=16]
+friction = 0.0
+rough = true
+absorbent = true
+
+[sub_resource type="Curve2D" id=28]
+_data = {
+"points": PoolVector2Array( 63.496, -79.37, 0, 0, 272, 680, 0, 0, 184.139, -604.8, 352, 776, 263.509, 85.7197, 0, 0, 296, -112, 0, 0, 249.222, 82.5449, 272, -40, 153.622, -398.358, -153.622, 398.358, 272, 680 )
+}
+
+[sub_resource type="Curve2D" id=32]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 376, 808, 0, 0, 0, 0, 448, 888, 0, 0, 0, 0, 536, 752, 0, 0, 0, 0, 480, 704, 0, 0, 0, 0, 376, 808 )
+}
+
+[node name="Board" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 4 )
+
+[node name="StoryCutscene" parent="." instance=ExtResource( 35 )]
+visible = false
+StoryDialogue = PoolStringArray( "It was the year 2093, and the panda crisis nearly drove mankind to the brink of extinction. \n Society is now but a shell of its former glory, yet its inhabitants live on. \n Corporations have taken over, inducing terror among  the populace as they strive for more power.", "" )
+
+[node name="IntroCutscene" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 128
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IntroCutscene"]
+pause_mode = 2
+root_node = NodePath("../..")
+anims/IntroCutscene = SubResource( 21 )
+anims/RESET = SubResource( 22 )
+
+[node name="SkipTextPanning" type="Label" parent="IntroCutscene"]
+pause_mode = 2
+visible = false
+margin_left = 1657.0
+margin_top = 7.0
+margin_right = 1913.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 24 )
+text = "Press Escape to skip cutscene..."
+align = 1
+valign = 1
+
+[node name="BoardName" type="Label" parent="IntroCutscene"]
+visible = false
+margin_left = 430.0
+margin_top = 334.0
+margin_right = 1480.0
+margin_bottom = 518.0
+custom_fonts/font = SubResource( 23 )
+text = "BOARD_TEMPLATE"
+align = 1
+valign = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
+bus = "Music"
+
+[node name="Coolness" type="WorldEnvironment" parent="."]
+environment = ExtResource( 1 )
+
+[node name="BoardBackground" type="Polygon2D" parent="."]
+z_index = -50
+color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+texture = ExtResource( 2 )
+texture_scale = Vector2( 2, 2 )
+polygon = PoolVector2Array( -7680, 3066, -7680, -3068, 7680, -3068, 7680, 3066 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Menus" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="CompMan" parent="." instance=ExtResource( 6 )]
+
+[node name="EventManager" type="Node" parent="."]
+pause_mode = 2
+process_priority = 1
+script = ExtResource( 7 )
+numOfTiers = 1
+
+[node name="CameraMan" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 2500 )
+
+[node name="PauseEffect" parent="." instance=ExtResource( 8 )]
+layer = 128
+
+[node name="GameManager" type="Node" parent="."]
+pause_mode = 1
+script = ExtResource( 9 )
+Tier = [ NodePath("BossArena") ]
+
+[node name="BossArena" type="Node" parent="GameManager"]
+script = ExtResource( 15 )
+tierNum = 1
+
+[node name="Objectives" type="Node" parent="GameManager/BossArena"]
+
+[node name="Boss" type="Node2D" parent="GameManager/BossArena"]
+position = Vector2( 0, -2209 )
+script = ExtResource( 16 )
+
+[node name="DetectionAreas" type="Node2D" parent="GameManager/BossArena/Boss"]
+
+[node name="Idler" type="Timer" parent="GameManager/BossArena/Boss"]
+wait_time = 30.0
+
+[node name="PistonsWest" type="Node2D" parent="GameManager/BossArena/Boss"]
+position = Vector2( -632, -79 )
+script = ExtResource( 28 )
+
+[node name="BatteryModule" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( 128, -264 )
+rotation = 2.84489
+
+[node name="BatteryModule18" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( 104, -344 )
+rotation = 2.84489
+
+[node name="BatteryModule2" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( 152, -184 )
+rotation = 2.84489
+
+[node name="BatteryModule3" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( 176, -104 )
+rotation = 2.84489
+
+[node name="BatteryModule4" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( 200, -24 )
+rotation = 2.84489
+
+[node name="BatteryModule5" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( 224, 56 )
+rotation = 2.84489
+
+[node name="BatteryModule6" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( 248, 136 )
+rotation = 2.84489
+
+[node name="BatteryModule7" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( 272, 216 )
+rotation = 2.84489
+
+[node name="BatteryModule8" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( 296, 296 )
+rotation = 2.84489
+
+[node name="BatteryModule9" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( -232, -152 )
+rotation = -0.279253
+
+[node name="BatteryModule17" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( -256, -232 )
+rotation = -0.279253
+
+[node name="BatteryModule10" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( -208, -72.0002 )
+rotation = -0.279253
+
+[node name="BatteryModule11" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( -184, 7.99976 )
+rotation = -0.279253
+
+[node name="BatteryModule12" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( -160, 87.9998 )
+rotation = -0.279253
+
+[node name="BatteryModule13" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( -136, 168 )
+rotation = -0.279253
+
+[node name="BatteryModule14" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( -112, 248 )
+rotation = -0.279253
+
+[node name="BatteryModule15" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( -88, 328 )
+rotation = -0.279253
+
+[node name="BatteryModule16" parent="GameManager/BossArena/Boss/PistonsWest" instance=ExtResource( 18 )]
+position = Vector2( -64, 408 )
+rotation = -0.279253
+
+[node name="PistonsMid" type="Node2D" parent="GameManager/BossArena/Boss"]
+position = Vector2( -184, -175 )
+script = ExtResource( 28 )
+openOnStart = true
+
+[node name="BatteryModule9" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( -232, -152 )
+rotation = -0.279253
+
+[node name="BatteryModule17" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( -256, -232 )
+rotation = -0.279253
+
+[node name="BatteryModule10" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( -208, -72.0002 )
+rotation = -0.279253
+
+[node name="BatteryModule11" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( -184, 7.99976 )
+rotation = -0.279253
+
+[node name="BatteryModule12" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( -160, 87.9998 )
+rotation = -0.279253
+
+[node name="BatteryModule13" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( -136, 168 )
+rotation = -0.279253
+
+[node name="BatteryModule14" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( -112, 248 )
+rotation = -0.279253
+
+[node name="BatteryModule15" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( -88, 328 )
+rotation = -0.279253
+
+[node name="BatteryModule16" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( -64, 408 )
+rotation = -0.279253
+
+[node name="BatteryModule18" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( 600, -152 )
+rotation = -2.86234
+scale = Vector2( 1, -1 )
+
+[node name="BatteryModule19" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( 624, -232 )
+rotation = -2.86234
+scale = Vector2( 1, -1 )
+
+[node name="BatteryModule20" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( 576, -72.0002 )
+rotation = -2.86234
+scale = Vector2( 1, -1 )
+
+[node name="BatteryModule21" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( 552, 7.99976 )
+rotation = -2.86234
+scale = Vector2( 1, -1 )
+
+[node name="BatteryModule22" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( 528, 87.9998 )
+rotation = -2.86234
+scale = Vector2( 1, -1 )
+
+[node name="BatteryModule23" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( 504, 168 )
+rotation = -2.86234
+scale = Vector2( 1, -1 )
+
+[node name="BatteryModule24" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( 480, 248 )
+rotation = -2.86234
+scale = Vector2( 1, -1 )
+
+[node name="BatteryModule25" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( 456, 328 )
+rotation = -2.86234
+scale = Vector2( 1, -1 )
+
+[node name="BatteryModule26" parent="GameManager/BossArena/Boss/PistonsMid" instance=ExtResource( 18 )]
+position = Vector2( 432, 408 )
+rotation = -2.86234
+scale = Vector2( 1, -1 )
+
+[node name="PistonsEast" type="Node2D" parent="GameManager/BossArena/Boss"]
+position = Vector2( 632, -79 )
+scale = Vector2( -1, 1 )
+script = ExtResource( 28 )
+
+[node name="BatteryModule" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( 128, -264 )
+rotation = 2.84489
+
+[node name="BatteryModule18" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( 104, -344 )
+rotation = 2.84489
+
+[node name="BatteryModule2" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( 152, -184 )
+rotation = 2.84489
+
+[node name="BatteryModule3" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( 176, -104 )
+rotation = 2.84489
+
+[node name="BatteryModule4" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( 200, -24 )
+rotation = 2.84489
+
+[node name="BatteryModule5" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( 224, 56 )
+rotation = 2.84489
+
+[node name="BatteryModule6" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( 248, 136 )
+rotation = 2.84489
+
+[node name="BatteryModule7" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( 272, 216 )
+rotation = 2.84489
+
+[node name="BatteryModule8" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( 296, 296 )
+rotation = 2.84489
+
+[node name="BatteryModule9" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( -232, -152 )
+rotation = -0.279253
+
+[node name="BatteryModule17" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( -256, -232 )
+rotation = -0.279253
+
+[node name="BatteryModule10" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( -208, -72.0002 )
+rotation = -0.279253
+
+[node name="BatteryModule11" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( -184, 7.99976 )
+rotation = -0.279253
+
+[node name="BatteryModule12" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( -160, 87.9998 )
+rotation = -0.279253
+
+[node name="BatteryModule13" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( -136, 168 )
+rotation = -0.279253
+
+[node name="BatteryModule14" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( -112, 248 )
+rotation = -0.279253
+
+[node name="BatteryModule15" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( -88, 328 )
+rotation = -0.279253
+
+[node name="BatteryModule16" parent="GameManager/BossArena/Boss/PistonsEast" instance=ExtResource( 18 )]
+position = Vector2( -64, 408 )
+rotation = -0.279253
+
+[node name="ConquestPanel" parent="GameManager/BossArena" instance=ExtResource( 17 )]
+position = Vector2( 0, -1464 )
+HP = 200.0
+StartHP = 1.0
+
+[node name="SpawnPoints" type="Node" parent="GameManager/BossArena"]
+
+[node name="LauncherSpawn" type="Position2D" parent="GameManager/BossArena/SpawnPoints"]
+position = Vector2( 224, -1184 )
+
+[node name="RightFlipperSpawn" type="Position2D" parent="GameManager/BossArena/SpawnPoints"]
+position = Vector2( 128, -1344 )
+
+[node name="LeftFlipperSpawn" type="Position2D" parent="GameManager/BossArena/SpawnPoints"]
+position = Vector2( -128, -1344 )
+
+[node name="AreaTriggers" type="Node" parent="GameManager/BossArena"]
+
+[node name="BossTrigger" type="Area2D" parent="GameManager/BossArena/AreaTriggers"]
+position = Vector2( -16, -2016 )
+z_index = -10
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="Area" type="CollisionPolygon2D" parent="GameManager/BossArena/AreaTriggers/BossTrigger"]
+visible = false
+position = Vector2( 0, 2856 )
+polygon = PoolVector2Array( -1891, -1804, -1909, -3860, 1997, -3860, 1966, -1804 )
+
+[node name="LaunchTube" type="Area2D" parent="GameManager/BossArena/AreaTriggers"]
+collision_layer = 0
+
+[node name="Area" type="CollisionPolygon2D" parent="GameManager/BossArena/AreaTriggers/LaunchTube"]
+position = Vector2( 0, -3000 )
+polygon = PoolVector2Array( 160, 1816, 224, 1768, 272, 1840, 208, 1888 )
+
+[node name="DeathTrigger" type="Area2D" parent="GameManager/BossArena/AreaTriggers"]
+position = Vector2( 0, -1093 )
+z_index = -10
+collision_layer = 0
+monitorable = false
+script = ExtResource( 19 )
+
+[node name="Collision" type="CollisionPolygon2D" parent="GameManager/BossArena/AreaTriggers/DeathTrigger"]
+polygon = PoolVector2Array( -32, 13, 32, 13, 32, 69, -32, 69 )
+
+[node name="Solids" type="Node" parent="GameManager/BossArena"]
+
+[node name="Left" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+position = Vector2( 0, -3840 )
+curve = SubResource( 14 )
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Solid" parent="GameManager/BossArena/Solids/Left" index="0"]
+continuous_cd = 1
+
+[node name="Collision" parent="GameManager/BossArena/Solids/Left/Solid" index="0"]
+polygon = PoolVector2Array( -1920, 2880, -1920, 832, 0, 832, 0, 1056, -408, 1152, -192, 1920, -207, 1937, -220, 1904, -303, 1981, -287, 2033, -313, 2064, -328, 2056, -401, 2130, -384, 2144, -448, 2216, -488, 2048, -344, 1896, -576, 1120, -620, 1137, -696, 1064, -832, 1120, -832, 1220, -880, 1240, -664, 2000, -560, 2048, -512, 2240, -512, 2392, -133, 2663, -134.95, 2661.8, -136.865, 2660.84, -138.74, 2660.13, -139.66, 2659.86, -140.569, 2659.65, -141.464, 2659.49, -142.345, 2659.38, -143.212, 2659.32, -144.063, 2659.32, -144.899, 2659.36, -145.718, 2659.45, -146.519, 2659.58, -147.302, 2659.76, -148.066, 2659.98, -148.811, 2660.24, -149.535, 2660.54, -150.238, 2660.88, -150.919, 2661.25, -151.577, 2661.66, -152.823, 2662.58, -153.969, 2663.62, -155.01, 2664.77, -155.94, 2666.02, -156.753, 2667.36, -157.442, 2668.77, -158.003, 2670.25, -158.428, 2671.78, -158.713, 2673.35, -158.852, 2674.94, -158.837, 2676.56, -158.664, 2678.17, -158.327, 2679.78, -157.819, 2681.38, -157.5, 2682.16, -157.135, 2682.94, -156.725, 2683.7, -156.269, 2684.46, -155.766, 2685.2, -155.215, 2685.92, -153.967, 2687.32, -152.519, 2688.64, -150.865, 2689.87, -149, 2691, -32, 2752, -32, 2816, 0, 2816, 0, 2880 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/Left" index="1"]
+polygon = PoolVector2Array( -1920, 2880, -1920, 832, 0, 832, 0, 1056, -408, 1152, -192, 1920, -207, 1937, -220, 1904, -303, 1981, -287, 2033, -313, 2064, -328, 2056, -401, 2130, -384, 2144, -448, 2216, -488, 2048, -344, 1896, -576, 1120, -620, 1137, -696, 1064, -832, 1120, -832, 1220, -880, 1240, -664, 2000, -560, 2048, -512, 2240, -512, 2392, -133, 2663, -134.95, 2661.8, -136.865, 2660.84, -138.74, 2660.13, -139.66, 2659.86, -140.569, 2659.65, -141.464, 2659.49, -142.345, 2659.38, -143.212, 2659.32, -144.063, 2659.32, -144.899, 2659.36, -145.718, 2659.45, -146.519, 2659.58, -147.302, 2659.76, -148.066, 2659.98, -148.811, 2660.24, -149.535, 2660.54, -150.238, 2660.88, -150.919, 2661.25, -151.577, 2661.66, -152.823, 2662.58, -153.969, 2663.62, -155.01, 2664.77, -155.94, 2666.02, -156.753, 2667.36, -157.442, 2668.77, -158.003, 2670.25, -158.428, 2671.78, -158.713, 2673.35, -158.852, 2674.94, -158.837, 2676.56, -158.664, 2678.17, -158.327, 2679.78, -157.819, 2681.38, -157.5, 2682.16, -157.135, 2682.94, -156.725, 2683.7, -156.269, 2684.46, -155.766, 2685.2, -155.215, 2685.92, -153.967, 2687.32, -152.519, 2688.64, -150.865, 2689.87, -149, 2691, -32, 2752, -32, 2816, 0, 2816, 0, 2880 )
+
+[node name="Line" parent="GameManager/BossArena/Solids/Left" index="2"]
+points = PoolVector2Array( -1920, 2880, -1920, 832, 0, 832, 0, 1056, -408, 1152, -192, 1920, -207, 1937, -220, 1904, -303, 1981, -287, 2033, -313, 2064, -334, 2053, -403, 2128, -384, 2144, -448, 2216, -488, 2048, -469.568, 2028.54, -468, 2035, -414, 1975, -414.382, 1970.29, -344, 1896, -576, 1120, -620, 1137, -696, 1064, -832, 1120, -832, 1220, -880, 1240, -664, 2000, -560, 2048, -512, 2240, -512, 2392, -133, 2663, -134.95, 2661.8, -136.865, 2660.84, -138.74, 2660.13, -139.66, 2659.86, -140.569, 2659.65, -141.464, 2659.49, -142.345, 2659.38, -143.212, 2659.32, -144.063, 2659.32, -144.899, 2659.36, -145.718, 2659.45, -146.519, 2659.58, -147.302, 2659.76, -148.066, 2659.98, -148.811, 2660.24, -149.535, 2660.54, -150.238, 2660.88, -150.919, 2661.25, -151.577, 2661.66, -152.823, 2662.58, -153.969, 2663.62, -155.01, 2664.77, -155.94, 2666.02, -156.753, 2667.36, -157.442, 2668.77, -158.003, 2670.25, -158.428, 2671.78, -158.713, 2673.35, -158.852, 2674.94, -158.837, 2676.56, -158.664, 2678.17, -158.327, 2679.78, -157.819, 2681.38, -157.5, 2682.16, -157.135, 2682.94, -156.725, 2683.7, -156.269, 2684.46, -155.766, 2685.2, -155.215, 2685.92, -153.967, 2687.32, -152.519, 2688.64, -150.865, 2689.87, -149, 2691, -32, 2752, -32, 2816, 0, 2816, 0, 2880, -1920, 2880 )
+
+[node name="LeftTubeL" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+position = Vector2( -64, -2584 )
+z_index = 18
+curve = SubResource( 25 )
+CollisionLayer = 0
+CollisionMask = 2
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Solid" parent="GameManager/BossArena/Solids/LeftTubeL" index="0"]
+continuous_cd = 2
+can_sleep = false
+
+[node name="Collision" parent="GameManager/BossArena/Solids/LeftTubeL/Solid" index="0"]
+visible = false
+polygon = PoolVector2Array( -32, 24, -33.2297, -15.8658, -36.7432, -51.6889, -42.4125, -83.6438, -50.1092, -111.905, -54.6778, -124.705, -59.7051, -136.647, -65.1751, -147.752, -71.0718, -158.044, -77.3792, -167.542, -84.0812, -176.27, -91.1618, -184.25, -98.6049, -191.501, -106.395, -198.048, -114.515, -203.911, -122.949, -209.113, -131.682, -213.674, -140.698, -217.618, -149.98, -220.965, -159.512, -223.738, -169.278, -225.958, -189.45, -228.827, -210.366, -229.748, -231.899, -228.894, -253.92, -226.441, -298.914, -217.433, -344.322, -204.119, -432.276, -170.16, -568, -112, -128, -176, -72, -112, -40, 24 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/LeftTubeL" index="1"]
+polygon = PoolVector2Array(  )
+
+[node name="Line" parent="GameManager/BossArena/Solids/LeftTubeL" index="2"]
+points = PoolVector2Array( -32, 24, -33.2297, -15.8658, -36.7432, -51.6889, -42.4125, -83.6438, -50.1092, -111.905, -54.6778, -124.705, -59.7051, -136.647, -65.1751, -147.752, -71.0718, -158.044, -77.3792, -167.542, -84.0812, -176.27, -91.1618, -184.25, -98.6049, -191.501, -106.395, -198.048, -114.515, -203.911, -122.949, -209.113, -131.682, -213.674, -140.698, -217.618, -149.98, -220.965, -159.512, -223.738, -169.278, -225.958, -189.45, -228.827, -210.366, -229.748, -231.899, -228.894, -253.92, -226.441, -298.914, -217.433, -344.322, -204.119, -432.276, -170.16, -568, -112 )
+
+[node name="LeftTubeR" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+position = Vector2( -64, -2584 )
+z_index = 18
+curve = SubResource( 36 )
+CollisionLayer = 0
+CollisionMask = 2
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Solid" parent="GameManager/BossArena/Solids/LeftTubeR" index="0"]
+continuous_cd = 2
+can_sleep = false
+
+[node name="Collision" parent="GameManager/BossArena/Solids/LeftTubeR/Solid" index="0"]
+visible = false
+polygon = PoolVector2Array( -640, -184, -514.163, -235.22, -390.241, -275.914, -330.433, -290.511, -272.826, -300.313, -217.993, -304.599, -191.796, -304.449, -166.507, -302.649, -142.199, -299.11, -118.943, -293.741, -96.8113, -286.453, -75.8749, -277.154, -65.8775, -271.723, -56.2058, -265.756, -46.8689, -259.241, -37.8757, -252.168, -29.2352, -244.524, -20.9564, -236.299, -13.0482, -227.481, -5.51953, -218.06, 1.62057, -208.023, 8.36315, -197.361, 20.6199, -174.11, 31.1791, -148.22, 39.9688, -119.598, 46.9176, -88.1553, 51.9535, -53.8015, 55.0049, -16.4464, 56, 24, 72, 24, 64, -288, -152, -368, -568, -320 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/LeftTubeR" index="1"]
+polygon = PoolVector2Array(  )
+
+[node name="Line" parent="GameManager/BossArena/Solids/LeftTubeR" index="2"]
+points = PoolVector2Array( -640, -184, -514.163, -235.22, -390.241, -275.914, -330.433, -290.511, -272.826, -300.313, -217.993, -304.599, -191.796, -304.449, -166.507, -302.649, -142.199, -299.11, -118.943, -293.741, -96.8113, -286.453, -75.8749, -277.154, -65.8775, -271.723, -56.2058, -265.756, -46.8689, -259.241, -37.8757, -252.168, -29.2352, -244.524, -20.9564, -236.299, -13.0482, -227.481, -5.51953, -218.06, 1.62057, -208.023, 8.36315, -197.361, 20.6199, -174.11, 31.1791, -148.22, 39.9688, -119.598, 46.9176, -88.1553, 51.9535, -53.8015, 55.0049, -16.4464, 56, 24 )
+
+[node name="RightTubeR" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+physics_interpolation_mode = 2
+unique_name_in_owner = true
+position = Vector2( 64, -2584 )
+scale = Vector2( -1, 1 )
+z_index = 18
+curve = SubResource( 25 )
+CollisionLayer = 0
+CollisionMask = 2
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Solid" parent="GameManager/BossArena/Solids/RightTubeR" index="0"]
+continuous_cd = 2
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+
+[node name="Collision" parent="GameManager/BossArena/Solids/RightTubeR/Solid" index="0"]
+visible = false
+polygon = PoolVector2Array( -32, 24, -33.2297, -15.8658, -36.7432, -51.6889, -42.4125, -83.6438, -50.1092, -111.905, -54.6778, -124.705, -59.7051, -136.647, -65.1751, -147.752, -71.0718, -158.044, -77.3792, -167.542, -84.0812, -176.27, -91.1618, -184.25, -98.6049, -191.501, -106.395, -198.048, -114.515, -203.911, -122.949, -209.113, -131.682, -213.674, -140.698, -217.618, -149.98, -220.965, -159.512, -223.738, -169.278, -225.958, -189.45, -228.827, -210.366, -229.748, -231.899, -228.894, -253.92, -226.441, -298.914, -217.433, -344.322, -204.119, -432.276, -170.16, -568, -112, -128, -176, -72, -112, -40, 24 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/RightTubeR" index="1"]
+polygon = PoolVector2Array(  )
+
+[node name="Line" parent="GameManager/BossArena/Solids/RightTubeR" index="2"]
+points = PoolVector2Array( -32, 24, -33.2297, -15.8658, -36.7432, -51.6889, -42.4125, -83.6438, -50.1092, -111.905, -54.6778, -124.705, -59.7051, -136.647, -65.1751, -147.752, -71.0718, -158.044, -77.3792, -167.542, -84.0812, -176.27, -91.1618, -184.25, -98.6049, -191.501, -106.395, -198.048, -114.515, -203.911, -122.949, -209.113, -131.682, -213.674, -140.698, -217.618, -149.98, -220.965, -159.512, -223.738, -169.278, -225.958, -189.45, -228.827, -210.366, -229.748, -231.899, -228.894, -253.92, -226.441, -298.914, -217.433, -344.322, -204.119, -432.276, -170.16, -568, -112 )
+
+[node name="RightTubeL" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+position = Vector2( 64, -2584 )
+scale = Vector2( -1, 1 )
+z_index = 18
+curve = SubResource( 36 )
+CollisionLayer = 0
+CollisionMask = 2
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Solid" parent="GameManager/BossArena/Solids/RightTubeL" index="0"]
+continuous_cd = 2
+can_sleep = false
+
+[node name="Collision" parent="GameManager/BossArena/Solids/RightTubeL/Solid" index="0"]
+visible = false
+polygon = PoolVector2Array( -640, -184, -514.163, -235.22, -390.241, -275.914, -330.433, -290.511, -272.826, -300.313, -217.993, -304.599, -191.796, -304.449, -166.507, -302.649, -142.199, -299.11, -118.943, -293.741, -96.8113, -286.453, -75.8749, -277.154, -65.8775, -271.723, -56.2058, -265.756, -46.8689, -259.241, -37.8757, -252.168, -29.2352, -244.524, -20.9564, -236.299, -13.0482, -227.481, -5.51953, -218.06, 1.62057, -208.023, 8.36315, -197.361, 20.6199, -174.11, 31.1791, -148.22, 39.9688, -119.598, 46.9176, -88.1553, 51.9535, -53.8015, 55.0049, -16.4464, 56, 24, 72, 24, 64, -288, -152, -368, -568, -320 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/RightTubeL" index="1"]
+polygon = PoolVector2Array(  )
+
+[node name="Line" parent="GameManager/BossArena/Solids/RightTubeL" index="2"]
+points = PoolVector2Array( -640, -184, -514.163, -235.22, -390.241, -275.914, -330.433, -290.511, -272.826, -300.313, -217.993, -304.599, -191.796, -304.449, -166.507, -302.649, -142.199, -299.11, -118.943, -293.741, -96.8113, -286.453, -75.8749, -277.154, -65.8775, -271.723, -56.2058, -265.756, -46.8689, -259.241, -37.8757, -252.168, -29.2352, -244.524, -20.9564, -236.299, -13.0482, -227.481, -5.51953, -218.06, 1.62057, -208.023, 8.36315, -197.361, 20.6199, -174.11, 31.1791, -148.22, 39.9688, -119.598, 46.9176, -88.1553, 51.9535, -53.8015, 55.0049, -16.4464, 56, 24 )
+
+[node name="LeftToMidL" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+position = Vector2( 64, -2584 )
+scale = Vector2( -1, 1 )
+z_index = 18
+curve = SubResource( 29 )
+CollisionLayer = 0
+CollisionMask = 2
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/BossArena/Solids/LeftToMidL/Solid" index="0"]
+visible = false
+polygon = PoolVector2Array( 352, 776, 457.989, 394.154, 484.681, 251.852, 490.805, 191.341, 491.868, 137.345, 490.443, 112.655, 487.684, 89.4324, 483.568, 67.6219, 478.071, 47.1698, 471.169, 28.022, 462.841, 10.1244, 453.063, -6.57727, 441.812, -22.137, 429.065, -36.6089, 414.798, -50.0471, 398.989, -62.5058, 381.615, -74.0391, 362.651, -84.701, 342.077, -94.5457, 296, -112, 426, -163, 572, 223, 449, 580, 366, 797 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/LeftToMidL" index="1"]
+polygon = PoolVector2Array(  )
+
+[node name="Line" parent="GameManager/BossArena/Solids/LeftToMidL" index="2"]
+points = PoolVector2Array( 352, 776, 457.989, 394.154, 484.681, 251.852, 490.805, 191.341, 491.868, 137.345, 490.443, 112.655, 487.684, 89.4324, 483.568, 67.6219, 478.071, 47.1698, 471.169, 28.022, 462.841, 10.1244, 453.063, -6.57727, 441.812, -22.137, 429.065, -36.6089, 414.798, -50.0471, 398.989, -62.5058, 381.615, -74.0391, 362.651, -84.701, 342.077, -94.5457, 296, -112 )
+
+[node name="LeftToMidR" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+self_modulate = Color( 0.5, 0.6, 1, 1 )
+position = Vector2( 64, -2584 )
+scale = Vector2( -1, 1 )
+z_index = 18
+curve = SubResource( 30 )
+CollisionLayer = 0
+CollisionMask = 2
+PathVisible = true
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/BossArena/Solids/LeftToMidR/Solid" index="0"]
+visible = false
+polygon = PoolVector2Array( 272, -40, 294.363, -31.8027, 314.758, -22.6876, 333.238, -12.6542, 349.855, -1.702, 364.661, 10.1695, 377.71, 22.9607, 383.591, 29.7014, 389.053, 36.6722, 394.102, 43.8732, 398.744, 51.3045, 406.834, 66.8581, 413.376, 83.3334, 418.423, 100.731, 422.027, 119.051, 424.241, 138.295, 425.117, 158.462, 424.708, 179.554, 423.067, 201.57, 416.295, 248.379, 405.223, 298.893, 371.856, 411.051, 272, 680, 256, 664 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/LeftToMidR" index="1"]
+polygon = PoolVector2Array(  )
+
+[node name="Line" parent="GameManager/BossArena/Solids/LeftToMidR" index="2"]
+points = PoolVector2Array( 272, -40, 294.363, -31.8027, 314.758, -22.6876, 333.238, -12.6542, 349.855, -1.702, 364.661, 10.1695, 377.71, 22.9607, 383.591, 29.7014, 389.053, 36.6722, 394.102, 43.8732, 398.744, 51.3045, 406.834, 66.8581, 413.376, 83.3334, 418.423, 100.731, 422.027, 119.051, 424.241, 138.295, 425.117, 158.462, 424.708, 179.554, 423.067, 201.57, 416.295, 248.379, 405.223, 298.893, 371.856, 411.051, 272, 680 )
+
+[node name="RightToMidL" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+position = Vector2( -64, -2584 )
+z_index = 18
+curve = SubResource( 30 )
+CollisionLayer = 0
+CollisionMask = 2
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/BossArena/Solids/RightToMidL/Solid" index="0"]
+visible = false
+polygon = PoolVector2Array( 272, -40, 294.363, -31.8027, 314.758, -22.6876, 333.238, -12.6542, 349.855, -1.702, 364.661, 10.1695, 377.71, 22.9607, 383.591, 29.7014, 389.053, 36.6722, 394.102, 43.8732, 398.744, 51.3045, 406.834, 66.8581, 413.376, 83.3334, 418.423, 100.731, 422.027, 119.051, 424.241, 138.295, 425.117, 158.462, 424.708, 179.554, 423.067, 201.57, 416.295, 248.379, 405.223, 298.893, 371.856, 411.051, 272, 680, 256, 664 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/RightToMidL" index="1"]
+polygon = PoolVector2Array(  )
+
+[node name="Line" parent="GameManager/BossArena/Solids/RightToMidL" index="2"]
+points = PoolVector2Array( 272, -40, 294.363, -31.8027, 314.758, -22.6876, 333.238, -12.6542, 349.855, -1.702, 364.661, 10.1695, 377.71, 22.9607, 383.591, 29.7014, 389.053, 36.6722, 394.102, 43.8732, 398.744, 51.3045, 406.834, 66.8581, 413.376, 83.3334, 418.423, 100.731, 422.027, 119.051, 424.241, 138.295, 425.117, 158.462, 424.708, 179.554, 423.067, 201.57, 416.295, 248.379, 405.223, 298.893, 371.856, 411.051, 272, 680 )
+
+[node name="RightToMidR" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+position = Vector2( -64, -2584 )
+z_index = 18
+curve = SubResource( 29 )
+CollisionLayer = 0
+CollisionMask = 2
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/BossArena/Solids/RightToMidR/Solid" index="0"]
+visible = false
+polygon = PoolVector2Array( 352, 776, 457.989, 394.154, 484.681, 251.852, 490.805, 191.341, 491.868, 137.345, 490.443, 112.655, 487.684, 89.4324, 483.568, 67.6219, 478.071, 47.1698, 471.169, 28.022, 462.841, 10.1244, 453.063, -6.57727, 441.812, -22.137, 429.065, -36.6089, 414.798, -50.0471, 398.989, -62.5058, 381.615, -74.0391, 362.651, -84.701, 342.077, -94.5457, 296, -112, 426, -163, 572, 223, 449, 580, 366, 797 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/RightToMidR" index="1"]
+polygon = PoolVector2Array(  )
+
+[node name="Line" parent="GameManager/BossArena/Solids/RightToMidR" index="2"]
+points = PoolVector2Array( 352, 776, 457.989, 394.154, 484.681, 251.852, 490.805, 191.341, 491.868, 137.345, 490.443, 112.655, 487.684, 89.4324, 483.568, 67.6219, 478.071, 47.1698, 471.169, 28.022, 462.841, 10.1244, 453.063, -6.57727, 441.812, -22.137, 429.065, -36.6089, 414.798, -50.0471, 398.989, -62.5058, 381.615, -74.0391, 362.651, -84.701, 342.077, -94.5457, 296, -112 )
+
+[node name="RightTunnelL" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+position = Vector2( -64, -2584 )
+z_index = 18
+curve = SubResource( 33 )
+CollisionLayer = 0
+CollisionMask = 2
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Solid" parent="GameManager/BossArena/Solids/RightTunnelL" index="0"]
+continuous_cd = 1
+
+[node name="Collision" parent="GameManager/BossArena/Solids/RightTunnelL/Solid" index="0"]
+visible = false
+polygon = PoolVector2Array( 383, 744, 480, 704, 376, 808 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/RightTunnelL" index="1"]
+polygon = PoolVector2Array(  )
+
+[node name="Line" parent="GameManager/BossArena/Solids/RightTunnelL" index="2"]
+points = PoolVector2Array( 352, 776, 457.989, 394.154, 484.681, 251.852, 490.805, 191.341, 491.868, 137.345, 490.443, 112.655, 487.684, 89.4324, 483.568, 67.6219, 478.071, 47.1698, 471.169, 28.022, 462.841, 10.1244, 453.063, -6.57727, 441.812, -22.137, 429.065, -36.6089, 414.798, -50.0471, 398.989, -62.5058, 381.615, -74.0391, 362.651, -84.701, 342.077, -94.5457, 296, -112 )
+
+[node name="RightTunnelR" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+position = Vector2( -64, -2584 )
+z_index = 18
+curve = SubResource( 34 )
+CollisionLayer = 0
+CollisionMask = 2
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Solid" parent="GameManager/BossArena/Solids/RightTunnelR" index="0"]
+continuous_cd = 1
+
+[node name="Collision" parent="GameManager/BossArena/Solids/RightTunnelR/Solid" index="0"]
+visible = false
+polygon = PoolVector2Array( 448, 888, 536, 752, 565, 805, 480, 920 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/RightTunnelR" index="1"]
+polygon = PoolVector2Array(  )
+
+[node name="Line" parent="GameManager/BossArena/Solids/RightTunnelR" index="2"]
+points = PoolVector2Array( 352, 776, 457.989, 394.154, 484.681, 251.852, 490.805, 191.341, 491.868, 137.345, 490.443, 112.655, 487.684, 89.4324, 483.568, 67.6219, 478.071, 47.1698, 471.169, 28.022, 462.841, 10.1244, 453.063, -6.57727, 441.812, -22.137, 429.065, -36.6089, 414.798, -50.0471, 398.989, -62.5058, 381.615, -74.0391, 362.651, -84.701, 342.077, -94.5457, 296, -112 )
+
+[node name="LeftTunnelR" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+position = Vector2( 64, -2584 )
+scale = Vector2( -1, 1 )
+z_index = 18
+curve = SubResource( 33 )
+CollisionLayer = 0
+CollisionMask = 2
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Solid" parent="GameManager/BossArena/Solids/LeftTunnelR" index="0"]
+continuous_cd = 1
+
+[node name="Collision" parent="GameManager/BossArena/Solids/LeftTunnelR/Solid" index="0"]
+visible = false
+polygon = PoolVector2Array( 383, 744, 480, 704, 376, 808 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/LeftTunnelR" index="1"]
+polygon = PoolVector2Array(  )
+
+[node name="Line" parent="GameManager/BossArena/Solids/LeftTunnelR" index="2"]
+points = PoolVector2Array( 352, 776, 457.989, 394.154, 484.681, 251.852, 490.805, 191.341, 491.868, 137.345, 490.443, 112.655, 487.684, 89.4324, 483.568, 67.6219, 478.071, 47.1698, 471.169, 28.022, 462.841, 10.1244, 453.063, -6.57727, 441.812, -22.137, 429.065, -36.6089, 414.798, -50.0471, 398.989, -62.5058, 381.615, -74.0391, 362.651, -84.701, 342.077, -94.5457, 296, -112 )
+
+[node name="LeftTunnelL" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+position = Vector2( 64, -2584 )
+scale = Vector2( -1, 1 )
+z_index = 18
+curve = SubResource( 34 )
+CollisionLayer = 0
+CollisionMask = 2
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Solid" parent="GameManager/BossArena/Solids/LeftTunnelL" index="0"]
+continuous_cd = 1
+
+[node name="Collision" parent="GameManager/BossArena/Solids/LeftTunnelL/Solid" index="0"]
+visible = false
+polygon = PoolVector2Array( 448, 888, 536, 752, 565, 805, 480, 920 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/LeftTunnelL" index="1"]
+polygon = PoolVector2Array(  )
+
+[node name="Line" parent="GameManager/BossArena/Solids/LeftTunnelL" index="2"]
+points = PoolVector2Array( 352, 776, 457.989, 394.154, 484.681, 251.852, 490.805, 191.341, 491.868, 137.345, 490.443, 112.655, 487.684, 89.4324, 483.568, 67.6219, 478.071, 47.1698, 471.169, 28.022, 462.841, 10.1244, 453.063, -6.57727, 441.812, -22.137, 429.065, -36.6089, 414.798, -50.0471, 398.989, -62.5058, 381.615, -74.0391, 362.651, -84.701, 342.077, -94.5457, 296, -112 )
+
+[node name="Right" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+self_modulate = Color( 0.5, 0.6, 1, 1 )
+position = Vector2( 0, -3840 )
+scale = Vector2( -1, 1 )
+curve = SubResource( 27 )
+PathVisible = true
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/BossArena/Solids/Right/Solid" index="0"]
+polygon = PoolVector2Array( -1920, 2880, -1920, 832, 0, 832, 0, 1056, -408, 1152, -192, 1920, -207, 1939, -220, 1905, -303, 1981, -288, 2032, -314, 2063, -329, 2055, -400, 2131, -386, 2144, -448, 2216, -488, 2048, -344, 1896, -576, 1120, -620, 1137, -696, 1064, -832, 1120, -832, 1220, -880, 1240, -664, 2000, -560, 2048, -512, 2240, -512, 2392, -212, 2608, -266, 2685, -214, 2724, -163, 2644, -133, 2663, -134.95, 2661.8, -136.865, 2660.84, -138.74, 2660.13, -139.66, 2659.86, -140.569, 2659.65, -141.464, 2659.49, -142.345, 2659.38, -143.212, 2659.32, -144.063, 2659.32, -144.899, 2659.36, -145.718, 2659.45, -146.519, 2659.58, -147.302, 2659.76, -148.066, 2659.98, -148.811, 2660.24, -149.535, 2660.54, -150.238, 2660.88, -150.919, 2661.25, -151.577, 2661.66, -152.823, 2662.58, -153.969, 2663.62, -155.01, 2664.77, -155.94, 2666.02, -156.753, 2667.36, -157.442, 2668.77, -158.003, 2670.25, -158.428, 2671.78, -158.713, 2673.35, -158.852, 2674.94, -158.837, 2676.56, -158.664, 2678.17, -158.327, 2679.78, -157.819, 2681.38, -157.5, 2682.16, -157.135, 2682.94, -156.725, 2683.7, -156.269, 2684.46, -155.766, 2685.2, -155.215, 2685.92, -153.967, 2687.32, -152.519, 2688.64, -150.865, 2689.87, -149, 2691, -32, 2752, -32, 2816, 0, 2816, 0, 2880 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/Right" index="1"]
+polygon = PoolVector2Array( -1920, 2880, -1920, 832, 0, 832, 0, 1056, -408, 1152, -192, 1920, -207, 1939, -220, 1905, -303, 1981, -288, 2032, -314, 2063, -329, 2055, -400, 2131, -386, 2144, -448, 2216, -488, 2048, -344, 1896, -576, 1120, -620, 1137, -696, 1064, -832, 1120, -832, 1220, -880, 1240, -664, 2000, -560, 2048, -512, 2240, -512, 2392, -212, 2608, -266, 2685, -214, 2724, -163, 2644, -133, 2663, -134.95, 2661.8, -136.865, 2660.84, -138.74, 2660.13, -139.66, 2659.86, -140.569, 2659.65, -141.464, 2659.49, -142.345, 2659.38, -143.212, 2659.32, -144.063, 2659.32, -144.899, 2659.36, -145.718, 2659.45, -146.519, 2659.58, -147.302, 2659.76, -148.066, 2659.98, -148.811, 2660.24, -149.535, 2660.54, -150.238, 2660.88, -150.919, 2661.25, -151.577, 2661.66, -152.823, 2662.58, -153.969, 2663.62, -155.01, 2664.77, -155.94, 2666.02, -156.753, 2667.36, -157.442, 2668.77, -158.003, 2670.25, -158.428, 2671.78, -158.713, 2673.35, -158.852, 2674.94, -158.837, 2676.56, -158.664, 2678.17, -158.327, 2679.78, -157.819, 2681.38, -157.5, 2682.16, -157.135, 2682.94, -156.725, 2683.7, -156.269, 2684.46, -155.766, 2685.2, -155.215, 2685.92, -153.967, 2687.32, -152.519, 2688.64, -150.865, 2689.87, -149, 2691, -32, 2752, -32, 2816, 0, 2816, 0, 2880 )
+
+[node name="Line" parent="GameManager/BossArena/Solids/Right" index="2"]
+points = PoolVector2Array( -1920, 2880, -1920, 832, 0, 832, 0, 1056, -408, 1152, -192, 1920, -207, 1939, -220, 1905, -303, 1981, -288, 2032, -314, 2063, -335, 2052, -407, 2124, -386, 2144, -448, 2216, -488, 2048, -468.761, 2027.69, -467, 2036, -412, 1981, -413.86, 1969.74, -344, 1896, -576, 1120, -620, 1137, -696, 1064, -832, 1120, -832, 1220, -880, 1240, -664, 2000, -560, 2048, -512, 2240, -512, 2392, -212, 2608, -266, 2685, -214, 2724, -163, 2644, -133, 2663, -134.95, 2661.8, -136.865, 2660.84, -138.74, 2660.13, -139.66, 2659.86, -140.569, 2659.65, -141.464, 2659.49, -142.345, 2659.38, -143.212, 2659.32, -144.063, 2659.32, -144.899, 2659.36, -145.718, 2659.45, -146.519, 2659.58, -147.302, 2659.76, -148.066, 2659.98, -148.811, 2660.24, -149.535, 2660.54, -150.238, 2660.88, -150.919, 2661.25, -151.577, 2661.66, -152.823, 2662.58, -153.969, 2663.62, -155.01, 2664.77, -155.94, 2666.02, -156.753, 2667.36, -157.442, 2668.77, -158.003, 2670.25, -158.428, 2671.78, -158.713, 2673.35, -158.852, 2674.94, -158.837, 2676.56, -158.664, 2678.17, -158.327, 2679.78, -157.819, 2681.38, -157.5, 2682.16, -157.135, 2682.94, -156.725, 2683.7, -156.269, 2684.46, -155.766, 2685.2, -155.215, 2685.92, -153.967, 2687.32, -152.519, 2688.64, -150.865, 2689.87, -149, 2691, -32, 2752, -32, 2816, 0, 2816, 0, 2880, -1920, 2880 )
+
+[node name="RampPlatform" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+position = Vector2( 0, -3840 )
+scale = Vector2( -1, 1 )
+curve = SubResource( 31 )
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/BossArena/Solids/RampPlatform/Solid" index="0"]
+polygon = PoolVector2Array( 112, 1280, 111.78, 1275.87, 111.259, 1271.14, 110.245, 1265, 108.575, 1257.73, 106.084, 1249.62, 102.609, 1240.95, 97.9863, 1231.99, 95.193, 1227.5, 92.0512, 1223.04, 88.5404, 1218.65, 84.6401, 1214.37, 80.3299, 1210.22, 75.5892, 1206.26, 70.3976, 1202.5, 64.7345, 1198.99, 58.5796, 1195.76, 51.9122, 1192.85, 44.7119, 1190.29, 36.9582, 1188.12, 28.6307, 1186.37, 19.7088, 1185.07, 10.1721, 1184.27, 0, 1184, -10.1721, 1184.28, -19.7088, 1185.08, -28.6307, 1186.38, -36.9582, 1188.13, -44.7119, 1190.31, -51.9122, 1192.87, -58.5796, 1195.78, -64.7345, 1199.01, -70.3976, 1202.52, -75.5892, 1206.27, -80.3299, 1210.24, -84.6401, 1214.38, -88.5404, 1218.67, -92.0512, 1223.06, -95.193, 1227.51, -97.9863, 1232.01, -102.609, 1240.96, -106.084, 1249.63, -108.575, 1257.74, -110.245, 1265, -111.259, 1271.14, -111.78, 1275.88, -112, 1280, -96, 1280, -96, 1256, -8, 1256, -8, 1280, 8, 1280, 8, 1256, 96, 1256, 96, 1280 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/RampPlatform" index="1"]
+polygon = PoolVector2Array( 112, 1280, 111.78, 1275.87, 111.259, 1271.14, 110.245, 1265, 108.575, 1257.73, 106.084, 1249.62, 102.609, 1240.95, 97.9863, 1231.99, 95.193, 1227.5, 92.0512, 1223.04, 88.5404, 1218.65, 84.6401, 1214.37, 80.3299, 1210.22, 75.5892, 1206.26, 70.3976, 1202.5, 64.7345, 1198.99, 58.5796, 1195.76, 51.9122, 1192.85, 44.7119, 1190.29, 36.9582, 1188.12, 28.6307, 1186.37, 19.7088, 1185.07, 10.1721, 1184.27, 0, 1184, -10.1721, 1184.28, -19.7088, 1185.08, -28.6307, 1186.38, -36.9582, 1188.13, -44.7119, 1190.31, -51.9122, 1192.87, -58.5796, 1195.78, -64.7345, 1199.01, -70.3976, 1202.52, -75.5892, 1206.27, -80.3299, 1210.24, -84.6401, 1214.38, -88.5404, 1218.67, -92.0512, 1223.06, -95.193, 1227.51, -97.9863, 1232.01, -102.609, 1240.96, -106.084, 1249.63, -108.575, 1257.74, -110.245, 1265, -111.259, 1271.14, -111.78, 1275.88, -112, 1280, -96, 1280, -96, 1256, -8, 1256, -8, 1280, 8, 1280, 8, 1256, 96, 1256, 96, 1280 )
+
+[node name="Line" parent="GameManager/BossArena/Solids/RampPlatform" index="2"]
+points = PoolVector2Array( 112, 1280, 111.78, 1275.87, 111.259, 1271.14, 110.245, 1265, 108.575, 1257.73, 106.084, 1249.62, 102.609, 1240.95, 97.9863, 1231.99, 95.193, 1227.5, 92.0512, 1223.04, 88.5404, 1218.65, 84.6401, 1214.37, 80.3299, 1210.22, 75.5892, 1206.26, 70.3976, 1202.5, 64.7345, 1198.99, 58.5796, 1195.76, 51.9122, 1192.85, 44.7119, 1190.29, 36.9582, 1188.12, 28.6307, 1186.37, 19.7088, 1185.07, 10.1721, 1184.27, 0, 1184, -10.1721, 1184.28, -19.7088, 1185.08, -28.6307, 1186.38, -36.9582, 1188.13, -44.7119, 1190.31, -51.9122, 1192.87, -58.5796, 1195.78, -64.7345, 1199.01, -70.3976, 1202.52, -75.5892, 1206.27, -80.3299, 1210.24, -84.6401, 1214.38, -88.5404, 1218.67, -92.0512, 1223.06, -95.193, 1227.51, -97.9863, 1232.01, -102.609, 1240.96, -106.084, 1249.63, -108.575, 1257.74, -110.245, 1265, -111.259, 1271.14, -111.78, 1275.88, -112, 1280, -96, 1280, -96, 1256, -8, 1256, -8, 1280, 8, 1280, 8, 1256, 96, 1256, 96, 1280, 112, 1280 )
+
+[node name="MidPopperWall" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+unique_name_in_owner = true
+self_modulate = Color( 0.5, 0.6, 1, 1 )
+position = Vector2( 0, -3840 )
+scale = Vector2( -1, 1 )
+curve = SubResource( 35 )
+PathVisible = true
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/BossArena/Solids/MidPopperWall/Solid" index="0"]
+polygon = PoolVector2Array( 72, 1600, -72, 1600, -88, 1536, -72, 1536, -72, 1576, -8, 1576, -8, 1536, 8, 1536, 8, 1576, 72, 1576, 72, 1536, 88, 1536, 72, 1600 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/MidPopperWall" index="1"]
+polygon = PoolVector2Array( 72, 1600, -72, 1600, -88, 1536, -72, 1536, -72, 1576, -8, 1576, -8, 1536, 8, 1536, 8, 1576, 72, 1576, 72, 1536, 88, 1536, 72, 1600 )
+
+[node name="Line" parent="GameManager/BossArena/Solids/MidPopperWall" index="2"]
+points = PoolVector2Array( 72, 1600, -72, 1600, -88, 1536, -72, 1536, -72, 1576, -8, 1576, -8, 1536, 8, 1536, 8, 1576, 72, 1576, 72, 1536, 88, 1536, 72, 1600, 64, 1600 )
+
+[node name="DefaultPieces" type="Node" parent="GameManager/BossArena"]
+
+[node name="FlipperR" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 23 )]
+position = Vector2( 136, -1160 )
+rotation = -0.610865
+restAngle = -35
+
+[node name="FlipperL" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 23 )]
+position = Vector2( -136, -1160 )
+rotation = 0.610865
+scale = Vector2( -1, 1 )
+LeftFlipper = true
+restAngle = -35
+
+[node name="Launcher" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 21 )]
+position = Vector2( 259, -1109 )
+rotation = -0.610865
+z_index = 2
+Force = 150
+
+[node name="LaunchGate" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 22 )]
+position = Vector2( 194, -1209 )
+rotation = -0.627856
+physics_material_override = SubResource( 16 )
+
+[node name="TopLeftTube" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 25 )]
+position = Vector2( -64, -2584 )
+z_index = 15
+
+[node name="Collision" parent="GameManager/BossArena/DefaultPieces/TopLeftTube/Floor" index="0"]
+polygon = PoolVector2Array( -32, 24, -32.3213, 3.55083, -33.2297, -15.8658, -34.709, -34.2718, -36.7432, -51.6889, -39.3164, -68.139, -42.4125, -83.6438, -46.0155, -98.2251, -50.1092, -111.905, -54.6778, -124.705, -59.7051, -136.647, -65.1751, -147.752, -71.0718, -158.044, -77.3792, -167.542, -84.0812, -176.27, -91.1618, -184.25, -98.6049, -191.501, -106.395, -198.048, -114.515, -203.911, -122.949, -209.113, -131.682, -213.674, -140.698, -217.618, -149.98, -220.965, -159.512, -223.738, -169.278, -225.958, -179.263, -227.647, -189.45, -228.827, -199.823, -229.52, -210.366, -229.748, -221.064, -229.532, -231.899, -228.894, -242.857, -227.857, -253.92, -226.441, -265.074, -224.669, -276.302, -222.562, -287.587, -220.143, -298.914, -217.433, -310.268, -214.453, -321.631, -211.227, -344.322, -204.119, -366.861, -196.284, -389.118, -187.896, -432.276, -170.16, -509.571, -135.731, -541.657, -121.83, -555.61, -116.319, -562.009, -114, -568, -112, -640, -184, -577.129, -210.565, -514.163, -235.22, -482.823, -246.606, -451.676, -257.243, -420.791, -267.043, -390.241, -275.914, -360.098, -283.766, -330.433, -290.511, -315.803, -293.439, -301.319, -296.056, -286.99, -298.351, -272.826, -300.313, -258.835, -301.93, -245.027, -303.191, -231.41, -304.084, -217.993, -304.599, -204.785, -304.725, -191.796, -304.449, -179.033, -303.761, -166.507, -302.649, -154.226, -301.103, -142.199, -299.11, -130.435, -296.66, -118.943, -293.741, -107.732, -290.342, -96.8113, -286.453, -86.1892, -282.06, -75.8749, -277.154, -65.8775, -271.723, -56.2058, -265.756, -46.8689, -259.241, -37.8757, -252.168, -29.2352, -244.524, -20.9564, -236.299, -13.0482, -227.481, -5.51953, -218.06, 1.62057, -208.023, 8.36315, -197.361, 14.6993, -186.06, 20.6199, -174.11, 26.1162, -161.501, 31.1791, -148.22, 35.7996, -134.256, 39.9688, -119.598, 43.6778, -104.235, 46.9176, -88.1553, 49.6791, -71.3479, 51.9535, -53.8015, 53.7317, -35.5048, 55.0049, -16.4464, 55.7639, 3.38472, 56, 24 )
+
+[node name="Bezier" parent="GameManager/BossArena/DefaultPieces/TopLeftTube/Floor" index="1"]
+self_modulate = Color( 0.5, 0.6, 1, 0 )
+PathVisible = false
+
+[node name="Shape" parent="GameManager/BossArena/DefaultPieces/TopLeftTube/Floor/Sprite" index="0"]
+polygon = PoolVector2Array( -32, 24, -32.3213, 3.55083, -33.2297, -15.8658, -34.709, -34.2718, -36.7432, -51.6889, -39.3164, -68.139, -42.4125, -83.6438, -46.0155, -98.2251, -50.1092, -111.905, -54.6778, -124.705, -59.7051, -136.647, -65.1751, -147.752, -71.0718, -158.044, -77.3792, -167.542, -84.0812, -176.27, -91.1618, -184.25, -98.6049, -191.501, -106.395, -198.048, -114.515, -203.911, -122.949, -209.113, -131.682, -213.674, -140.698, -217.618, -149.98, -220.965, -159.512, -223.738, -169.278, -225.958, -179.263, -227.647, -189.45, -228.827, -199.823, -229.52, -210.366, -229.748, -221.064, -229.532, -231.899, -228.894, -242.857, -227.857, -253.92, -226.441, -265.074, -224.669, -276.302, -222.562, -287.587, -220.143, -298.914, -217.433, -310.268, -214.453, -321.631, -211.227, -344.322, -204.119, -366.861, -196.284, -389.118, -187.896, -432.276, -170.16, -509.571, -135.731, -541.657, -121.83, -555.61, -116.319, -562.009, -114, -568, -112, -640, -184, -577.129, -210.565, -514.163, -235.22, -482.823, -246.606, -451.676, -257.243, -420.791, -267.043, -390.241, -275.914, -360.098, -283.766, -330.433, -290.511, -315.803, -293.439, -301.319, -296.056, -286.99, -298.351, -272.826, -300.313, -258.835, -301.93, -245.027, -303.191, -231.41, -304.084, -217.993, -304.599, -204.785, -304.725, -191.796, -304.449, -179.033, -303.761, -166.507, -302.649, -154.226, -301.103, -142.199, -299.11, -130.435, -296.66, -118.943, -293.741, -107.732, -290.342, -96.8113, -286.453, -86.1892, -282.06, -75.8749, -277.154, -65.8775, -271.723, -56.2058, -265.756, -46.8689, -259.241, -37.8757, -252.168, -29.2352, -244.524, -20.9564, -236.299, -13.0482, -227.481, -5.51953, -218.06, 1.62057, -208.023, 8.36315, -197.361, 14.6993, -186.06, 20.6199, -174.11, 26.1162, -161.501, 31.1791, -148.22, 35.7996, -134.256, 39.9688, -119.598, 43.6778, -104.235, 46.9176, -88.1553, 49.6791, -71.3479, 51.9535, -53.8015, 53.7317, -35.5048, 55.0049, -16.4464, 55.7639, 3.38472, 56, 24 )
+
+[node name="Entrance1" parent="GameManager/BossArena/DefaultPieces/TopLeftTube/Doors" index="0"]
+position = Vector2( 0, -64 )
+polygon = PoolVector2Array( -32, 80, -32, 72, 56, 72, 56, 80 )
+
+[node name="TopRightTube" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 25 )]
+position = Vector2( 64, -2584 )
+scale = Vector2( -1, 1 )
+z_index = 15
+
+[node name="Collision" parent="GameManager/BossArena/DefaultPieces/TopRightTube/Floor" index="0"]
+polygon = PoolVector2Array( -32, 24, -32.3213, 3.55083, -33.2297, -15.8658, -34.709, -34.2718, -36.7432, -51.6889, -39.3164, -68.139, -42.4125, -83.6438, -46.0155, -98.2251, -50.1092, -111.905, -54.6778, -124.705, -59.7051, -136.647, -65.1751, -147.752, -71.0718, -158.044, -77.3792, -167.542, -84.0812, -176.27, -91.1618, -184.25, -98.6049, -191.501, -106.395, -198.048, -114.515, -203.911, -122.949, -209.113, -131.682, -213.674, -140.698, -217.618, -149.98, -220.965, -159.512, -223.738, -169.278, -225.958, -179.263, -227.647, -189.45, -228.827, -199.823, -229.52, -210.366, -229.748, -221.064, -229.532, -231.899, -228.894, -242.857, -227.857, -253.92, -226.441, -265.074, -224.669, -276.302, -222.562, -287.587, -220.143, -298.914, -217.433, -310.268, -214.453, -321.631, -211.227, -344.322, -204.119, -366.861, -196.284, -389.118, -187.896, -432.276, -170.16, -509.571, -135.731, -541.657, -121.83, -555.61, -116.319, -562.009, -114, -568, -112, -640, -184, -577.129, -210.565, -514.163, -235.22, -482.823, -246.606, -451.676, -257.243, -420.791, -267.043, -390.241, -275.914, -360.098, -283.766, -330.433, -290.511, -315.803, -293.439, -301.319, -296.056, -286.99, -298.351, -272.826, -300.313, -258.835, -301.93, -245.027, -303.191, -231.41, -304.084, -217.993, -304.599, -204.785, -304.725, -191.796, -304.449, -179.033, -303.761, -166.507, -302.649, -154.226, -301.103, -142.199, -299.11, -130.435, -296.66, -118.943, -293.741, -107.732, -290.342, -96.8113, -286.453, -86.1892, -282.06, -75.8749, -277.154, -65.8775, -271.723, -56.2058, -265.756, -46.8689, -259.241, -37.8757, -252.168, -29.2352, -244.524, -20.9564, -236.299, -13.0482, -227.481, -5.51953, -218.06, 1.62057, -208.023, 8.36315, -197.361, 14.6993, -186.06, 20.6199, -174.11, 26.1162, -161.501, 31.1791, -148.22, 35.7996, -134.256, 39.9688, -119.598, 43.6778, -104.235, 46.9176, -88.1553, 49.6791, -71.3479, 51.9535, -53.8015, 53.7317, -35.5048, 55.0049, -16.4464, 55.7639, 3.38472, 56, 24 )
+
+[node name="Bezier" parent="GameManager/BossArena/DefaultPieces/TopRightTube/Floor" index="1"]
+self_modulate = Color( 0.5, 0.6, 1, 0 )
+PathVisible = false
+
+[node name="Shape" parent="GameManager/BossArena/DefaultPieces/TopRightTube/Floor/Sprite" index="0"]
+polygon = PoolVector2Array( -32, 24, -32.3213, 3.55083, -33.2297, -15.8658, -34.709, -34.2718, -36.7432, -51.6889, -39.3164, -68.139, -42.4125, -83.6438, -46.0155, -98.2251, -50.1092, -111.905, -54.6778, -124.705, -59.7051, -136.647, -65.1751, -147.752, -71.0718, -158.044, -77.3792, -167.542, -84.0812, -176.27, -91.1618, -184.25, -98.6049, -191.501, -106.395, -198.048, -114.515, -203.911, -122.949, -209.113, -131.682, -213.674, -140.698, -217.618, -149.98, -220.965, -159.512, -223.738, -169.278, -225.958, -179.263, -227.647, -189.45, -228.827, -199.823, -229.52, -210.366, -229.748, -221.064, -229.532, -231.899, -228.894, -242.857, -227.857, -253.92, -226.441, -265.074, -224.669, -276.302, -222.562, -287.587, -220.143, -298.914, -217.433, -310.268, -214.453, -321.631, -211.227, -344.322, -204.119, -366.861, -196.284, -389.118, -187.896, -432.276, -170.16, -509.571, -135.731, -541.657, -121.83, -555.61, -116.319, -562.009, -114, -568, -112, -640, -184, -577.129, -210.565, -514.163, -235.22, -482.823, -246.606, -451.676, -257.243, -420.791, -267.043, -390.241, -275.914, -360.098, -283.766, -330.433, -290.511, -315.803, -293.439, -301.319, -296.056, -286.99, -298.351, -272.826, -300.313, -258.835, -301.93, -245.027, -303.191, -231.41, -304.084, -217.993, -304.599, -204.785, -304.725, -191.796, -304.449, -179.033, -303.761, -166.507, -302.649, -154.226, -301.103, -142.199, -299.11, -130.435, -296.66, -118.943, -293.741, -107.732, -290.342, -96.8113, -286.453, -86.1892, -282.06, -75.8749, -277.154, -65.8775, -271.723, -56.2058, -265.756, -46.8689, -259.241, -37.8757, -252.168, -29.2352, -244.524, -20.9564, -236.299, -13.0482, -227.481, -5.51953, -218.06, 1.62057, -208.023, 8.36315, -197.361, 14.6993, -186.06, 20.6199, -174.11, 26.1162, -161.501, 31.1791, -148.22, 35.7996, -134.256, 39.9688, -119.598, 43.6778, -104.235, 46.9176, -88.1553, 49.6791, -71.3479, 51.9535, -53.8015, 53.7317, -35.5048, 55.0049, -16.4464, 55.7639, 3.38472, 56, 24 )
+
+[node name="Entrance1" parent="GameManager/BossArena/DefaultPieces/TopRightTube/Doors" index="0"]
+position = Vector2( 0, -64 )
+polygon = PoolVector2Array( -32, 80, -32, 72, 56, 72, 56, 80 )
+
+[node name="LeftToMid" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 25 )]
+position = Vector2( 64, -2584 )
+scale = Vector2( -1, 1 )
+z_index = 15
+
+[node name="Collision" parent="GameManager/BossArena/DefaultPieces/LeftToMid/Floor" index="0"]
+polygon = PoolVector2Array( 272, 680, 352, 776, 413.27, 567.716, 437.791, 476.811, 457.989, 394.154, 466.41, 355.784, 473.681, 319.312, 479.779, 284.686, 484.681, 251.852, 488.364, 220.755, 489.741, 205.841, 490.805, 191.341, 491.552, 177.248, 491.981, 163.555, 492.087, 150.257, 491.868, 137.345, 491.321, 124.813, 490.443, 112.655, 489.232, 100.864, 487.684, 89.4324, 485.797, 78.354, 483.568, 67.6219, 480.993, 57.2295, 478.071, 47.1698, 474.797, 37.4363, 471.169, 28.022, 467.185, 18.9203, 462.841, 10.1244, 458.135, 1.62743, 453.063, -6.57727, 447.623, -14.4965, 441.812, -22.137, 435.627, -29.5055, 429.065, -36.6089, 422.123, -43.4539, 414.798, -50.0471, 407.088, -56.3956, 398.989, -62.5058, 390.499, -68.3848, 381.615, -74.0391, 372.333, -79.4756, 362.651, -84.701, 352.567, -89.7221, 342.077, -94.5457, 331.178, -99.1785, 319.867, -103.627, 308.142, -107.899, 296, -112, 302, -67, 272, -40, 283.431, -36.016, 294.363, -31.8027, 304.803, -27.3599, 314.758, -22.6876, 324.234, -17.7857, 333.238, -12.6542, 341.776, -7.29297, 349.855, -1.702, 357.481, 4.11879, 364.661, 10.1695, 371.402, 16.4501, 377.71, 22.9607, 383.591, 29.7014, 389.053, 36.6722, 394.102, 43.8732, 398.744, 51.3045, 402.985, 58.9661, 406.834, 66.8581, 410.295, 74.9805, 413.376, 83.3334, 416.083, 91.9168, 418.423, 100.731, 420.402, 109.776, 422.027, 119.051, 423.305, 128.558, 424.241, 138.295, 424.843, 148.263, 425.117, 158.462, 425.07, 168.892, 424.708, 179.554, 424.038, 190.446, 423.067, 201.57, 421.8, 212.925, 420.245, 224.512, 418.407, 236.329, 416.295, 248.379, 411.27, 273.172, 405.223, 298.893, 398.205, 325.54, 390.27, 353.115, 371.856, 411.051, 350.402, 472.703, 326.328, 538.076 )
+
+[node name="Bezier" parent="GameManager/BossArena/DefaultPieces/LeftToMid/Floor" index="1"]
+self_modulate = Color( 0.5, 0.6, 1, 0 )
+curve = SubResource( 28 )
+PathVisible = false
+
+[node name="Shape" parent="GameManager/BossArena/DefaultPieces/LeftToMid/Floor/Sprite" index="0"]
+polygon = PoolVector2Array( 272, 680, 352, 776, 413.27, 567.716, 437.791, 476.811, 457.989, 394.154, 466.41, 355.784, 473.681, 319.312, 479.779, 284.686, 484.681, 251.852, 488.364, 220.755, 489.741, 205.841, 490.805, 191.341, 491.552, 177.248, 491.981, 163.555, 492.087, 150.257, 491.868, 137.345, 491.321, 124.813, 490.443, 112.655, 489.232, 100.864, 487.684, 89.4324, 485.797, 78.354, 483.568, 67.6219, 480.993, 57.2295, 478.071, 47.1698, 474.797, 37.4363, 471.169, 28.022, 467.185, 18.9203, 462.841, 10.1244, 458.135, 1.62743, 453.063, -6.57727, 447.623, -14.4965, 441.812, -22.137, 435.627, -29.5055, 429.065, -36.6089, 422.123, -43.4539, 414.798, -50.0471, 407.088, -56.3956, 398.989, -62.5058, 390.499, -68.3848, 381.615, -74.0391, 372.333, -79.4756, 362.651, -84.701, 352.567, -89.7221, 342.077, -94.5457, 331.178, -99.1785, 319.867, -103.627, 308.142, -107.899, 296, -112, 272, -40, 283.431, -36.016, 294.363, -31.8027, 304.803, -27.3599, 314.758, -22.6876, 324.234, -17.7857, 333.238, -12.6542, 341.776, -7.29297, 349.855, -1.702, 357.481, 4.11879, 364.661, 10.1695, 371.402, 16.4501, 377.71, 22.9607, 383.591, 29.7014, 389.053, 36.6722, 394.102, 43.8732, 398.744, 51.3045, 402.985, 58.9661, 406.834, 66.8581, 410.295, 74.9805, 413.376, 83.3334, 416.083, 91.9168, 418.423, 100.731, 420.402, 109.776, 422.027, 119.051, 423.305, 128.558, 424.241, 138.295, 424.843, 148.263, 425.117, 158.462, 425.07, 168.892, 424.708, 179.554, 424.038, 190.446, 423.067, 201.57, 421.8, 212.925, 420.245, 224.512, 418.407, 236.329, 416.295, 248.379, 411.27, 273.172, 405.223, 298.893, 398.205, 325.54, 390.27, 353.115, 371.856, 411.051, 350.402, 472.703, 326.328, 538.076 )
+
+[node name="Entrance1" parent="GameManager/BossArena/DefaultPieces/LeftToMid/Doors" index="0"]
+visible = false
+position = Vector2( 22.526, -61.8943 )
+rotation = 0.0341016
+polygon = PoolVector2Array( 358.315, 781.132, 353.976, 771.274, 327.037, 744.177, 298.371, 725.143, 289.445, 727.449, 286.787, 737.545, 308.798, 766.812, 340.837, 796.737, 352.728, 793.329 )
+
+[node name="LeftTunnel" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 25 )]
+position = Vector2( 64, -2584 )
+scale = Vector2( -1, 1 )
+z_index = 15
+
+[node name="Collision" parent="GameManager/BossArena/DefaultPieces/LeftTunnel/Floor" index="0"]
+polygon = PoolVector2Array( 376, 808, 448, 888, 536, 752, 480, 704 )
+
+[node name="Bezier" parent="GameManager/BossArena/DefaultPieces/LeftTunnel/Floor" index="1"]
+self_modulate = Color( 0.5, 0.6, 1, 1 )
+z_index = -5
+curve = SubResource( 32 )
+
+[node name="Shape" parent="GameManager/BossArena/DefaultPieces/LeftTunnel/Floor/Sprite" index="0"]
+polygon = PoolVector2Array(  )
+
+[node name="Entrance1" parent="GameManager/BossArena/DefaultPieces/LeftTunnel/Doors" index="0"]
+visible = false
+position = Vector2( -8, -56 )
+polygon = PoolVector2Array( 463, 931, 464, 925, 399, 858, 397, 867, 400, 880, 440, 920, 453, 929 )
+
+[node name="RightTunnel" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 25 )]
+position = Vector2( -64, -2584 )
+z_index = 15
+
+[node name="Floor" parent="GameManager/BossArena/DefaultPieces/RightTunnel" index="0"]
+physics_interpolation_mode = 2
+process_priority = 1
+
+[node name="Collision" parent="GameManager/BossArena/DefaultPieces/RightTunnel/Floor" index="0"]
+polygon = PoolVector2Array( 376, 808, 448, 888, 536, 752, 480, 704 )
+
+[node name="Bezier" parent="GameManager/BossArena/DefaultPieces/RightTunnel/Floor" index="1"]
+self_modulate = Color( 0.5, 0.6, 1, 1 )
+z_index = -5
+curve = SubResource( 32 )
+
+[node name="Shape" parent="GameManager/BossArena/DefaultPieces/RightTunnel/Floor/Sprite" index="0"]
+polygon = PoolVector2Array(  )
+
+[node name="Entrance1" parent="GameManager/BossArena/DefaultPieces/RightTunnel/Doors" index="0"]
+physics_interpolation_mode = 2
+visible = false
+position = Vector2( 0, -64 )
+polygon = PoolVector2Array( 453, 938, 455, 933, 397, 874, 391, 870, 387, 873, 388, 879, 395, 888, 438, 936, 448, 940 )
+
+[node name="RightToMid" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 25 )]
+position = Vector2( -64, -2584 )
+z_index = 15
+
+[node name="Collision" parent="GameManager/BossArena/DefaultPieces/RightToMid/Floor" index="0"]
+polygon = PoolVector2Array( 272, 680, 352, 776, 413.27, 567.716, 437.791, 476.811, 457.989, 394.154, 466.41, 355.784, 473.681, 319.312, 479.779, 284.686, 484.681, 251.852, 488.364, 220.755, 489.741, 205.841, 490.805, 191.341, 491.552, 177.248, 491.981, 163.555, 492.087, 150.257, 491.868, 137.345, 491.321, 124.813, 490.443, 112.655, 489.232, 100.864, 487.684, 89.4324, 485.797, 78.354, 483.568, 67.6219, 480.993, 57.2295, 478.071, 47.1698, 474.797, 37.4363, 471.169, 28.022, 467.185, 18.9203, 462.841, 10.1244, 458.135, 1.62743, 453.063, -6.57727, 447.623, -14.4965, 441.812, -22.137, 435.627, -29.5055, 429.065, -36.6089, 422.123, -43.4539, 414.798, -50.0471, 407.088, -56.3956, 398.989, -62.5058, 390.499, -68.3848, 381.615, -74.0391, 372.333, -79.4756, 362.651, -84.701, 352.567, -89.7221, 342.077, -94.5457, 331.178, -99.1785, 319.867, -103.627, 308.142, -107.899, 296, -112, 301, -69, 272, -40, 283.431, -36.016, 294.363, -31.8027, 304.803, -27.3599, 314.758, -22.6876, 324.234, -17.7857, 333.238, -12.6542, 341.776, -7.29297, 349.855, -1.702, 357.481, 4.11879, 364.661, 10.1695, 371.402, 16.4501, 377.71, 22.9607, 383.591, 29.7014, 389.053, 36.6722, 394.102, 43.8732, 398.744, 51.3045, 402.985, 58.9661, 406.834, 66.8581, 410.295, 74.9805, 413.376, 83.3334, 416.083, 91.9168, 418.423, 100.731, 420.402, 109.776, 422.027, 119.051, 423.305, 128.558, 424.241, 138.295, 424.843, 148.263, 425.117, 158.462, 425.07, 168.892, 424.708, 179.554, 424.038, 190.446, 423.067, 201.57, 421.8, 212.925, 420.245, 224.512, 418.407, 236.329, 416.295, 248.379, 411.27, 273.172, 405.223, 298.893, 398.205, 325.54, 390.27, 353.115, 371.856, 411.051, 350.402, 472.703, 326.328, 538.076 )
+
+[node name="Bezier" parent="GameManager/BossArena/DefaultPieces/RightToMid/Floor" index="1"]
+self_modulate = Color( 0.5, 0.6, 1, 0 )
+curve = SubResource( 28 )
+PathVisible = false
+
+[node name="Shape" parent="GameManager/BossArena/DefaultPieces/RightToMid/Floor/Sprite" index="0"]
+polygon = PoolVector2Array( 272, 680, 352, 776, 413.27, 567.716, 437.791, 476.811, 457.989, 394.154, 466.41, 355.784, 473.681, 319.312, 479.779, 284.686, 484.681, 251.852, 488.364, 220.755, 489.741, 205.841, 490.805, 191.341, 491.552, 177.248, 491.981, 163.555, 492.087, 150.257, 491.868, 137.345, 491.321, 124.813, 490.443, 112.655, 489.232, 100.864, 487.684, 89.4324, 485.797, 78.354, 483.568, 67.6219, 480.993, 57.2295, 478.071, 47.1698, 474.797, 37.4363, 471.169, 28.022, 467.185, 18.9203, 462.841, 10.1244, 458.135, 1.62743, 453.063, -6.57727, 447.623, -14.4965, 441.812, -22.137, 435.627, -29.5055, 429.065, -36.6089, 422.123, -43.4539, 414.798, -50.0471, 407.088, -56.3956, 398.989, -62.5058, 390.499, -68.3848, 381.615, -74.0391, 372.333, -79.4756, 362.651, -84.701, 352.567, -89.7221, 342.077, -94.5457, 331.178, -99.1785, 319.867, -103.627, 308.142, -107.899, 296, -112, 272, -40, 283.431, -36.016, 294.363, -31.8027, 304.803, -27.3599, 314.758, -22.6876, 324.234, -17.7857, 333.238, -12.6542, 341.776, -7.29297, 349.855, -1.702, 357.481, 4.11879, 364.661, 10.1695, 371.402, 16.4501, 377.71, 22.9607, 383.591, 29.7014, 389.053, 36.6722, 394.102, 43.8732, 398.744, 51.3045, 402.985, 58.9661, 406.834, 66.8581, 410.295, 74.9805, 413.376, 83.3334, 416.083, 91.9168, 418.423, 100.731, 420.402, 109.776, 422.027, 119.051, 423.305, 128.558, 424.241, 138.295, 424.843, 148.263, 425.117, 158.462, 425.07, 168.892, 424.708, 179.554, 424.038, 190.446, 423.067, 201.57, 421.8, 212.925, 420.245, 224.512, 418.407, 236.329, 416.295, 248.379, 411.27, 273.172, 405.223, 298.893, 398.205, 325.54, 390.27, 353.115, 371.856, 411.051, 350.402, 472.703, 326.328, 538.076 )
+
+[node name="Entrance1" parent="GameManager/BossArena/DefaultPieces/RightToMid/Doors" index="0"]
+physics_interpolation_mode = 2
+visible = false
+position = Vector2( 0, -64 )
+polygon = PoolVector2Array( 355, 792, 340, 771, 301, 738, 286, 735, 283, 749, 304, 779, 336, 806, 353, 806 )
+
+[node name="InteractivePieces" type="Node" parent="GameManager/BossArena"]
+
+[node name="Slingshot" parent="GameManager/BossArena/InteractivePieces" instance=ExtResource( 24 )]
+position = Vector2( -400, -1536 )
+scale = Vector2( -1, 1 )
+BaseScoring = 0
+
+[node name="Slingshot2" parent="GameManager/BossArena/InteractivePieces" instance=ExtResource( 24 )]
+position = Vector2( 400, -1536 )
+BaseScoring = 0
+
+[node name="Popper" parent="GameManager/BossArena/InteractivePieces" instance=ExtResource( 27 )]
+position = Vector2( 40, -2296 )
+BaseScoring = 20
+launchForce = 7777
+
+[node name="Popper2" parent="GameManager/BossArena/InteractivePieces" instance=ExtResource( 27 )]
+position = Vector2( -40, -2296 )
+BaseScoring = 20
+launchForce = 7777
+
+[node name="Decals" type="Node" parent="GameManager/BossArena"]
+
+[node name="LightSpeed" parent="GameManager/BossArena/Decals" instance=ExtResource( 26 )]
+Colour = Color( 0.0196078, 0.627451, 0.301961, 1 )
+
+[node name="Arrow1" type="Polygon2D" parent="GameManager/BossArena/Decals/LightSpeed"]
+position = Vector2( -377, -1759 )
+rotation = -1.0472
+z_index = 5
+polygon = PoolVector2Array( 13, 10, 5, -22, -3, 10 )
+
+[node name="Arrow2" type="Polygon2D" parent="GameManager/BossArena/Decals/LightSpeed"]
+position = Vector2( -411, -1782 )
+rotation = -0.785397
+z_index = 5
+polygon = PoolVector2Array( 13, 10, 5, -22, -3, 10 )
+
+[node name="Arrow3" type="Polygon2D" parent="GameManager/BossArena/Decals/LightSpeed"]
+position = Vector2( -438, -1814 )
+rotation = -0.523598
+z_index = 5
+polygon = PoolVector2Array( 13, 10, 5, -22, -3, 10 )
+
+[node name="LevelUtilities" parent="GameManager" instance=ExtResource( 12 )]
+
+[node name="LightsMeta" parent="GameManager" instance=ExtResource( 32 )]
+
+[node name="HUD" parent="GameManager" instance=ExtResource( 13 )]
+layer = 113
+visible = true
+
+[node name="SkillsMan" parent="GameManager" instance=ExtResource( 10 )]
+
+[node name="BallHandler" parent="GameManager" instance=ExtResource( 11 )]
+
+[node name="PlayerBall" parent="GameManager/BallHandler" instance=ExtResource( 14 )]
+physics_interpolation_mode = 2
+position = Vector2( 224, -1184 )
+
+[connection signal="cheatDamage" from="." to="EventManager" method="addDamage"]
+[connection signal="LevelEvent" from="EventManager" to="." method="_on_LevelEvent"]
+[connection signal="LevelEvent" from="EventManager" to="CompMan" method="event"]
+[connection signal="LevelEvent" from="EventManager" to="GameManager" method="_on_LevelEvent"]
+[connection signal="LevelEvent" from="EventManager" to="GameManager/BossArena" method="event"]
+[connection signal="MetaEvent" from="EventManager" to="." method="_on_MetaEvent"]
+[connection signal="MetaEvent" from="EventManager" to="Menus" method="event"]
+[connection signal="EndGame" from="GameManager" to="EventManager" method="endGame"]
+[connection signal="timeout" from="GameManager/BossArena/Boss/Idler" to="GameManager/BossArena/Boss" method="_on_Idler_timeout"]
+[connection signal="body_entered" from="GameManager/BossArena/AreaTriggers/BossTrigger" to="EventManager" method="tierTrigger" binds= [ 1, true ]]
+[connection signal="body_entered" from="GameManager/BossArena/AreaTriggers/BossTrigger" to="GameManager/BossArena" method="setSleep" binds= [ false ]]
+[connection signal="body_exited" from="GameManager/BossArena/AreaTriggers/BossTrigger" to="EventManager" method="tierTrigger" binds= [ 1, false ]]
+[connection signal="body_exited" from="GameManager/BossArena/AreaTriggers/BossTrigger" to="GameManager/BossArena" method="setSleep" binds= [ true ]]
+[connection signal="body_exited" from="GameManager/BossArena/AreaTriggers/LaunchTube" to="EventManager" method="ballLaunched" binds= [ 1 ]]
+[connection signal="ballDied" from="GameManager/BossArena/AreaTriggers/DeathTrigger" to="EventManager" method="ballDeath"]
+[connection signal="body_entered" from="GameManager/BossArena/AreaTriggers/DeathTrigger" to="GameManager/BossArena/AreaTriggers/DeathTrigger" method="_on_DeathTrigger_body_entered"]
+[connection signal="ballsGone" from="GameManager/HUD" to="EventManager" method="_on_HUD_ballsGone"]
+[connection signal="skillEvent" from="GameManager/SkillsMan" to="EventManager" method="skill"]
+
+[editable path="StoryCutscene"]
+[editable path="GameManager/BossArena/Solids/Left"]
+[editable path="GameManager/BossArena/Solids/LeftTubeL"]
+[editable path="GameManager/BossArena/Solids/LeftTubeR"]
+[editable path="GameManager/BossArena/Solids/RightTubeR"]
+[editable path="GameManager/BossArena/Solids/RightTubeL"]
+[editable path="GameManager/BossArena/Solids/LeftToMidL"]
+[editable path="GameManager/BossArena/Solids/LeftToMidR"]
+[editable path="GameManager/BossArena/Solids/RightToMidL"]
+[editable path="GameManager/BossArena/Solids/RightToMidR"]
+[editable path="GameManager/BossArena/Solids/RightTunnelL"]
+[editable path="GameManager/BossArena/Solids/RightTunnelR"]
+[editable path="GameManager/BossArena/Solids/LeftTunnelR"]
+[editable path="GameManager/BossArena/Solids/LeftTunnelL"]
+[editable path="GameManager/BossArena/Solids/Right"]
+[editable path="GameManager/BossArena/Solids/RampPlatform"]
+[editable path="GameManager/BossArena/Solids/MidPopperWall"]
+[editable path="GameManager/BossArena/DefaultPieces/TopLeftTube"]
+[editable path="GameManager/BossArena/DefaultPieces/TopRightTube"]
+[editable path="GameManager/BossArena/DefaultPieces/LeftToMid"]
+[editable path="GameManager/BossArena/DefaultPieces/LeftTunnel"]
+[editable path="GameManager/BossArena/DefaultPieces/RightTunnel"]
+[editable path="GameManager/BossArena/DefaultPieces/RightToMid"]

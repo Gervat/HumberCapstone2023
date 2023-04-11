@@ -1,0 +1,120 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Resources/Shaders/CyberPhase.material" type="Material" id=1]
+[ext_resource path="res://InteractivePiece/_Master/Resource/Bezier.gd" type="Script" id=2]
+[ext_resource path="res://Resources/PhysicsMaterials/FusterCluck.tres" type="PhysicsMaterial" id=3]
+[ext_resource path="res://InteractivePiece/Balls/Resource/FusterCluck.gd" type="Script" id=4]
+
+[sub_resource type="Curve2D" id=53]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 3.81618, 19.6325, 0, 0, 0, 0, 7.49213, 18.5437, 0, 0, 0, 0, 10.8928, 16.7734, 0, 0, 0, 0, 13.8932, 14.3868, 0, 0, 0, 0, 16.383, 11.4715, 0, 0, 0, 0, 18.2709, 8.13473, 0, 0, 0, 0, 19.4874, 4.49902, 0, 0, 0, 0, 19.9878, 0.69799, 0, 0, 0, 0, 19.7538, -3.12869, 0, 0, 0, 0, 18.7939, -6.8404, 0, 0, 0, 0, 17.1433, -10.3008, 0, 0, 0, 0, 14.8629, -13.3826, 0, 0, 0, 0, 12.0363, -15.9727, 0, 0, 0, 0, 8.76742, -17.9759, 0, 0, 0, 0, 5.17638, -19.3185, 0, 0, 0, 0, 1.39513, -19.9513, 0, 0, 0, 0, -2.43739, -19.8509, 0, 0, 0, 0, -6.18034, -19.0211, 0, 0, 0, 0, -9.69619, -17.4924, 0, 0, 0, 0, -12.8558, -15.3209, 0, 0, 0, 0, -15.5429, -12.5864, 0, 0, 0, 0, -17.659, -9.38943, 0, 0, 0, 0, -19.1261, -5.84743, 0, 0, 0, 0, -19.8904, -2.09057, 0, 0, 0, 0, -19.9239, 1.74311, 0, 0, 0, 0, -19.2252, 5.51275, 0, 0, 0, 0, -17.8201, 9.07981, 0, 0, 0, 0, -15.7602, 12.3132, 0, 0, 0, 0, -13.1212, 15.0942, 0, 0, 0, 0, -10, 17.3205, 0, 0, 0, 0, -6.51136, 18.9104, 0, 0, 0, 0, -2.78346, 19.8054, 0, 0, 0, 0, 0, 20 )
+}
+
+[sub_resource type="Gradient" id=54]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=55]
+gradient = SubResource( 54 )
+
+[sub_resource type="Animation" id=56]
+resource_name = "Die"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=57]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[node name="FusterCluck" type="RigidBody2D" groups=["Ball"]]
+material = ExtResource( 1 )
+collision_mask = 0
+mode = 3
+mass = 4.8
+physics_material_override = ExtResource( 3 )
+continuous_cd = 2
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 0.05
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0, 20, 3.81618, 19.6325, 7.49213, 18.5437, 10.8928, 16.7734, 13.8932, 14.3868, 16.383, 11.4715, 18.2709, 8.13473, 19.4874, 4.49902, 19.9878, 0.69799, 19.7538, -3.12869, 18.7939, -6.8404, 17.1433, -10.3008, 14.8629, -13.3826, 12.0363, -15.9727, 8.76742, -17.9759, 5.17638, -19.3185, 1.39513, -19.9513, -2.43739, -19.8509, -6.18034, -19.0211, -9.69619, -17.4924, -12.8558, -15.3209, -15.5429, -12.5864, -17.659, -9.38943, -19.1261, -5.84743, -19.8904, -2.09057, -19.9239, 1.74311, -19.2252, 5.51275, -17.8201, 9.07981, -15.7602, 12.3132, -13.1212, 15.0942, -10, 17.3205, -6.51136, 18.9104, -2.78346, 19.8054 )
+
+[node name="Bezier" type="Path2D" parent="."]
+self_modulate = Color( 0.5, 0.6, 1, 0 )
+curve = SubResource( 53 )
+script = ExtResource( 2 )
+PathVisible = false
+radius = 20
+sides = 32
+
+[node name="Sprite" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="Shape" type="Polygon2D" parent="Sprite"]
+modulate = Color( 0.101961, 0.0431373, 0.0235294, 1 )
+use_parent_material = true
+color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+texture = SubResource( 55 )
+texture_offset = Vector2( 32, 32 )
+polygon = PoolVector2Array( 0, 20, 3.81618, 19.6325, 7.49213, 18.5437, 10.8928, 16.7734, 13.8932, 14.3868, 16.383, 11.4715, 18.2709, 8.13473, 19.4874, 4.49902, 19.9878, 0.69799, 19.7538, -3.12869, 18.7939, -6.8404, 17.1433, -10.3008, 14.8629, -13.3826, 12.0363, -15.9727, 8.76742, -17.9759, 5.17638, -19.3185, 1.39513, -19.9513, -2.43739, -19.8509, -6.18034, -19.0211, -9.69619, -17.4924, -12.8558, -15.3209, -15.5429, -12.5864, -17.659, -9.38943, -19.1261, -5.84743, -19.8904, -2.09057, -19.9239, 1.74311, -19.2252, 5.51275, -17.8201, 9.07981, -15.7602, 12.3132, -13.1212, 15.0942, -10, 17.3205, -6.51136, 18.9104, -2.78346, 19.8054 )
+
+[node name="Outline" type="Line2D" parent="Sprite"]
+modulate = Color( 0, 0.411765, 0.101961, 1 )
+light_mask = 4
+use_parent_material = true
+z_index = 20
+points = PoolVector2Array( 0, 13, 4.86989, 12.0534, 9.03056, 9.35142, 11.8761, 5.28758, 12.9921, 0.453693, 12.216, -4.44626, 9.66088, -8.6987, 5.69882, -11.6843, 0.906834, -12.9683, -4.01722, -12.3637, -8.35624, -9.95858, -11.4783, -6.10313, -12.9288, -1.35887, -12.4964, 3.58329, -10.2441, 8.0036, -4.23239, 12.2917, 0, 13 )
+width = 4.0
+default_color = Color( 0.00784314, 1, 0, 1 )
+texture_mode = 2
+joint_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
+playback_speed = 0.5
+method_call_mode = 1
+anims/Die = SubResource( 56 )
+anims/RESET = SubResource( 57 )
+
+[connection signal="body_entered" from="." to="." method="_on_FusterCluck_body_entered"]

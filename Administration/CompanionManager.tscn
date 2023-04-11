@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Administration/Scripts/CompanionManager.gd" type="Script" id=1]
+
+[node name="CompMan" type="Node"]
+pause_mode = 1
+script = ExtResource( 1 )
+
+[node name="IdleTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="ObjTimer" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[connection signal="timeout" from="IdleTimer" to="." method="_on_IdleTimer_timeout"]
+[connection signal="timeout" from="ObjTimer" to="." method="_on_ObjTimer_timeout"]

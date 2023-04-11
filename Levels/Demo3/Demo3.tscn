@@ -1,0 +1,782 @@
+[gd_scene load_steps=46 format=2]
+
+[ext_resource path="res://default_env.tres" type="Environment" id=1]
+[ext_resource path="res://InteractivePiece/_Master/Resource/BrickSmallDark0012_1_download600.jpg" type="Texture" id=2]
+[ext_resource path="res://Administration/CameraMan.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Levels/_master/Board.gd" type="Script" id=4]
+[ext_resource path="res://Administration/Menus.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Administration/CompanionManager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Administration/Scripts/EventManager.gd" type="Script" id=7]
+[ext_resource path="res://Resources/Effects/PauseEffect.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Administration/Scripts/GameManager.gd" type="Script" id=9]
+[ext_resource path="res://Administration/SkillsManager.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Administration/BallHandler.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Administration/LevelUtilities.tscn" type="PackedScene" id=12]
+[ext_resource path="res://UI/HUD/HUD.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Levels/_master/TierController.gd" type="Script" id=14]
+[ext_resource path="res://Levels/_master/BossArena.gd" type="Script" id=15]
+[ext_resource path="res://Administration/ConquestPanel.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Bosses/Resource/BossPanel.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Bosses/_master/BossTemplate.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Levels/_master/DeathTrigger.gd" type="Script" id=19]
+[ext_resource path="res://InteractivePiece/_Master/BoardSolid.tscn" type="PackedScene" id=20]
+[ext_resource path="res://InteractivePiece/OtherPieces/Launcher.tscn" type="PackedScene" id=21]
+[ext_resource path="res://DefaultPieces/OneWayGate.tscn" type="PackedScene" id=22]
+[ext_resource path="res://InteractivePiece/OtherPieces/Flipper.tscn" type="PackedScene" id=23]
+[ext_resource path="res://DefaultPieces/SetController.tscn" type="PackedScene" id=24]
+[ext_resource path="res://InteractivePiece/OtherPieces/Slingshot.tscn" type="PackedScene" id=25]
+[ext_resource path="res://InteractivePiece/OtherPieces/Popper.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Administration/LightsMeta.tscn" type="PackedScene" id=32]
+[ext_resource path="res://Resources/Fonts/MovieTheaterFont.ttf" type="DynamicFontData" id=34]
+[ext_resource path="res://UI/StoryCutscene.tscn" type="PackedScene" id=35]
+[ext_resource path="res://Resources/Fonts/ClassicArcadeFont.ttf" type="DynamicFontData" id=36]
+
+
+[sub_resource type="Animation" id=21]
+resource_name = "IntroCutscene"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameManager/LightsMeta:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 9, 9.5, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CameraMan:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -2500 ), Vector2( 0, -3000 ), Vector2( 0, 2500 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GameManager/HUD:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 7, 7.5, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("IntroCutscene/SkipTextPanning:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2, 4, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("IntroCutscene/BoardName:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ false, true, false ]
+}
+
+[sub_resource type="Animation" id=22]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameManager/LightsMeta:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CameraMan:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2500 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GameManager/HUD:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("IntroCutscene/SkipTextPanning:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="DynamicFont" id=24]
+extra_spacing_char = -1
+font_data = ExtResource( 36 )
+
+[sub_resource type="DynamicFont" id=23]
+size = 200
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 34 )
+
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1920, 3264, 0, 0, 0, 0, -1920, 960, 0, 0, 0, 0, -32, 960, 0, 0, 0, 0, -32, 1024, 128.023, -128.017, -128.023, 128.017, -304, 1152, 0, 0, 0, 0, -432, 1536, 0, 0, 0, 0, -432, 2592, 0, 0, 0, 0, -32, 2864, 0, 0, 0, 0, -32, 2928, 0, 0, 0, 0, 0, 2928, 0, 0, 0, 0, 0, 3264, 0, 0, 0, 0, -1920, 3264 )
+}
+
+[sub_resource type="Curve2D" id=7]
+_data = {
+"points": PoolVector2Array( -33.3354, -79.37, 0, 0, -1920, 3264, 0, 0, 0, 0, 0, 3264, 0, 0, 0, 0, 0, 2928, 0, 0, 0, 0, -32, 2928, 0, 0, 0, 0, -32, 2864, 0, 0, 0, 0, -432, 2592, 0, 0, 0, -64.0975, -432, 1536, -111.912, 96.5317, 0, 0, -328, 1216, 0, 0, -112.332, 96.4422, -336, 1200, -0.130435, -63.7664, 0, 0, -448, 1536, 0, 0, 0, 0, -448, 2864, 0, 0, 0, 0, -512, 2864, 0, 0, -0.374577, -63.6781, -512, 1536, -128.531, 128.251, 128.531, -128.251, -384, 1152, -55.9725, 0.129961, 0, 0, -32, 1024, 0, 0, 0, 0, -32, 960, 0, 0, 0, 0, -1920, 960, 0, 0, 0, 0, -1920, 3264 )
+}
+
+[sub_resource type="Curve2D" id=8]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -344, 2496, 0, 0, 0, 0, -344, 2368, 0, 0, 0, 0, -368, 2368, 0, 0, 0, 0, -368, 2544, 0, 0, 0, 0, -128, 2712, 0, 0, 0, 0, -96, 2704, 0, 0, -24.8974, -14.1703, -145, 2677, -23.8379, -16.5541, 0, 0, -128, 2650, 0, 0, 0, 0, -344, 2496 )
+}
+
+[sub_resource type="Curve2D" id=9]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -344, 2496, 0, 0, 0, 0, -344, 2368, 0, 0, 0, 0, -368, 2368, 0, 0, 0, 0, -368, 2544, 0, 0, 0, 0, -128, 2712, 0, 0, 0, 0, -96, 2704, 0, 0, -24.8974, -14.1703, -145, 2677, -23.8379, -16.5541, 0, 0, -128, 2650, 0, 0, 0, 0, -344, 2496 )
+}
+
+[sub_resource type="Curve2D" id=10]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1920, 2880, 0, 0, 0, 0, -1920, 960, 0, 0, 0, 0, -32, 960, 0, 0, 0, 0, -32, 1024, 128.023, -128.017, -128.023, 128.017, -304, 1152, 0, 0, 0, 0, -432, 1536, 0, 0, 0, 0, -432, 2592, 0, 0, 0, 0, -32, 2864, 0, 0, 0, 0, -32, 2880, 0, 0, 0, 0, -1920, 2880 )
+}
+
+[sub_resource type="Curve2D" id=11]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1920, 2880, 0, 0, 0, 0, -32, 2880, 0, 0, 0, 0, -32, 2864, 0, 0, 0, 0, -432, 2592, 0, 0, 0, -64.0975, -432, 1536, -111.912, 96.5317, 0, 0, -328, 1216, 0, 0, -112.332, 96.4422, -336, 1200, -0.130435, -63.7664, 0, 0, -448, 1536, 0, 0, 0, 0, -448, 2864, 0, 0, 0, 0, -512, 2864, 0, 0, -0.374577, -63.6781, -512, 1536, -128.531, 128.251, 128.531, -128.251, -384, 1152, -55.9725, 0.129961, 0, 0, -32, 1024, 0, 0, 0, 0, -32, 960, 0, 0, 0, 0, -1920, 960, 0, 0, 0, 0, -1920, 2880 )
+}
+
+[sub_resource type="Curve2D" id=12]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -344, 2496, 0, 0, 0, 0, -344, 2368, 0, 0, 0, 0, -368, 2368, 0, 0, 0, 0, -368, 2544, 0, 0, 0, 0, -128, 2712, 0, 0, 0, 0, -96, 2704, 0, 0, -24.8974, -14.1703, -145, 2677, -23.8379, -16.5541, 0, 0, -128, 2650, 0, 0, 0, 0, -344, 2496 )
+}
+
+[sub_resource type="Curve2D" id=13]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -344, 2496, 0, 0, 0, 0, -344, 2368, 0, 0, 0, 0, -368, 2368, 0, 0, 0, 0, -368, 2544, 0, 0, 0, 0, -128, 2712, 0, 0, 0, 0, -96, 2704, 0, 0, -24.8974, -14.1703, -145, 2677, -23.8379, -16.5541, 0, 0, -128, 2650, 0, 0, 0, 0, -344, 2496 )
+}
+
+[sub_resource type="Curve2D" id=14]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1920, 2880, 0, 0, 0, 0, -1920, 832, 0, 0, 0, 0, 0, 832, 0, 0, -383.898, 0.0610611, 0, 960, 0.186539, -384.001, -0.186539, 384.001, -640, 1536, 0, 0, 0, 0, -640, 2304, 0, 0, -20.9598, -14.2332, -133, 2663, -21.0475, -11.4703, 0, 0, -149, 2691, 0, 0, 0, 0, -32, 2752, 0, 0, 0, 0, -32, 2880, 0, 0, 0, 0, -1920, 2880 )
+}
+
+[sub_resource type="Curve2D" id=15]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1920, 2880, 0, 0, 0, 0, -1920, 832, 0, 0, 0, 0, 0, 832, 0, 0, -383.898, 0.0610611, 0, 960, 0.186539, -384.001, -0.186539, 384.001, -640, 1536, 0, 0, 0, 0, -640, 2304, 0, 0, 0, 0, -212, 2607, 0, 0, 0, 0, -313, 2752, 0, 0, 0, 0, -260, 2789, 0, 0, 0, 0, -158, 2645, 0, 0, -20.9598, -14.2332, -133, 2663, -21.0475, -11.4703, 0, 0, -149, 2691, 0, 0, 0, 0, -32, 2752, 0, 0, 0, 0, -32, 2880, 0, 0, 0, 0, -1920, 2880 )
+}
+
+[sub_resource type="PhysicsMaterial" id=16]
+friction = 0.0
+rough = true
+absorbent = true
+
+[node name="Board" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 4 )
+LevelName = "Demo3"
+
+[node name="StoryCutscene" parent="." instance=ExtResource( 35 )]
+visible = false
+
+[node name="IntroCutscene" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 128
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IntroCutscene"]
+pause_mode = 2
+root_node = NodePath("../..")
+anims/IntroCutscene = SubResource( 21 )
+anims/RESET = SubResource( 22 )
+
+[node name="SkipTextPanning" type="Label" parent="IntroCutscene"]
+pause_mode = 2
+visible = false
+margin_left = 1657.0
+margin_top = 7.0
+margin_right = 1913.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 24 )
+text = "Press Escape to skip cutscene..."
+align = 1
+valign = 1
+
+[node name="BoardName" type="Label" parent="IntroCutscene"]
+visible = false
+margin_left = 430.0
+margin_top = 334.0
+margin_right = 1480.0
+margin_bottom = 518.0
+custom_fonts/font = SubResource( 23 )
+text = "BOARD_TEMPLATE"
+align = 1
+valign = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+bus = "Music"
+
+[node name="Coolness" type="WorldEnvironment" parent="."]
+environment = ExtResource( 1 )
+
+[node name="BoardBackground" type="Polygon2D" parent="."]
+z_index = -50
+color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+texture = ExtResource( 2 )
+texture_scale = Vector2( 2, 2 )
+polygon = PoolVector2Array( -768, 3066, -768, -3068, 768, -3068, 768, 3066 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Menus" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="CompMan" parent="." instance=ExtResource( 6 )]
+
+[node name="EventManager" type="Node" parent="."]
+pause_mode = 2
+process_priority = 1
+script = ExtResource( 7 )
+
+[node name="CameraMan" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 2500 )
+
+[node name="PauseEffect" parent="." instance=ExtResource( 8 )]
+layer = 127
+
+[node name="GameManager" type="Node" parent="."]
+pause_mode = 1
+script = ExtResource( 9 )
+Tier = [ NodePath("Tier1"), NodePath("Tier2"), NodePath("BossArena") ]
+
+[node name="Tier1" type="Node" parent="GameManager"]
+script = ExtResource( 14 )
+TierLock = NodePath("Sets/TierExit")
+
+[node name="Objectives" type="Node" parent="GameManager/Tier1"]
+
+[node name="ConquestPanel" parent="GameManager/Tier1" instance=ExtResource( 16 )]
+position = Vector2( 0, 2112 )
+DecaySpeed = 0.0
+
+[node name="SpawnPoints" type="Node" parent="GameManager/Tier1"]
+
+[node name="LauncherSpawn" type="Position2D" parent="GameManager/Tier1/SpawnPoints"]
+position = Vector2( 480, 2656 )
+
+[node name="RightFlipperSpawn" type="Position2D" parent="GameManager/Tier1/SpawnPoints"]
+position = Vector2( 312, 2368 )
+
+[node name="LeftFlipperSpawn" type="Position2D" parent="GameManager/Tier1/SpawnPoints"]
+position = Vector2( -312, 2368 )
+
+[node name="AreaTriggers" type="Node" parent="GameManager/Tier1"]
+
+[node name="DeathTrigger" type="Area2D" parent="GameManager/Tier1/AreaTriggers"]
+z_index = -10
+collision_layer = 0
+monitorable = false
+script = ExtResource( 19 )
+
+[node name="Collision" type="CollisionPolygon2D" parent="GameManager/Tier1/AreaTriggers/DeathTrigger"]
+polygon = PoolVector2Array( 32, 2880, 32, 2928, -32, 2928, -32, 2880 )
+
+[node name="Tier1Trigger" type="Area2D" parent="GameManager/Tier1/AreaTriggers"]
+visible = false
+position = Vector2( 0, 1008 )
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="Area" type="CollisionPolygon2D" parent="GameManager/Tier1/AreaTriggers/Tier1Trigger"]
+polygon = PoolVector2Array( 776, -58, 776, 2550, -776, 2550, -776, -58 )
+
+[node name="LaunchTube" type="Area2D" parent="GameManager/Tier1/AreaTriggers"]
+visible = false
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameManager/Tier1/AreaTriggers/LaunchTube"]
+polygon = PoolVector2Array( 443, 2770, 442, 1466, 414, 1326, 333, 1208, 393, 1144, 494, 1256, 547, 1587, 525, 2770 )
+
+[node name="Solids" type="Node" parent="GameManager/Tier1"]
+
+[node name="Left" parent="GameManager/Tier1/Solids" instance=ExtResource( 20 )]
+curve = SubResource( 6 )
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/Tier1/Solids/Left/Solid" index="0"]
+polygon = PoolVector2Array( -1920, 3264, -1920, 960, -32, 960, -32, 1024, -38.4366, 1024.25, -56.4968, 1026, -84.3064, 1030.75, -119.991, 1039.99, -161.677, 1055.24, -184.185, 1065.59, -207.49, 1077.99, -231.359, 1092.65, -255.556, 1109.75, -279.848, 1129.47, -304, 1152, -315.631, 1164.36, -326.535, 1177.41, -346.257, 1205.25, -363.352, 1234.98, -378.01, 1266.01, -390.416, 1297.79, -400.76, 1329.76, -416.009, 1392.01, -425.256, 1448.25, -430.003, 1494, -432, 1536, -432, 2592, -32, 2864, -32, 2928, 0, 2928, 0, 3264 )
+
+[node name="Poly" parent="GameManager/Tier1/Solids/Left" index="1"]
+polygon = PoolVector2Array( -1920, 3264, -1920, 960, -32, 960, -32, 1024, -38.4366, 1024.25, -56.4968, 1026, -84.3064, 1030.75, -119.991, 1039.99, -161.677, 1055.24, -184.185, 1065.59, -207.49, 1077.99, -231.359, 1092.65, -255.556, 1109.75, -279.848, 1129.47, -304, 1152, -315.631, 1164.36, -326.535, 1177.41, -346.257, 1205.25, -363.352, 1234.98, -378.01, 1266.01, -390.416, 1297.79, -400.76, 1329.76, -416.009, 1392.01, -425.256, 1448.25, -430.003, 1494, -432, 1536, -432, 2592, -32, 2864, -32, 2928, 0, 2928, 0, 3264 )
+
+[node name="Line" parent="GameManager/Tier1/Solids/Left" index="2"]
+points = PoolVector2Array( -1920, 3264, -1920, 960, -32, 960, -32, 1024, -38.4366, 1024.25, -56.4968, 1026, -84.3064, 1030.75, -119.991, 1039.99, -161.677, 1055.24, -184.185, 1065.59, -207.49, 1077.99, -231.359, 1092.65, -255.556, 1109.75, -279.848, 1129.47, -304, 1152, -315.631, 1164.36, -326.535, 1177.41, -346.257, 1205.25, -363.352, 1234.98, -378.01, 1266.01, -390.416, 1297.79, -400.76, 1329.76, -416.009, 1392.01, -425.256, 1448.25, -430.003, 1494, -432, 1536, -432, 2592, -32, 2864, -32, 2928, 0, 2928, 0, 3264, -1920, 3264 )
+
+[node name="Right" parent="GameManager/Tier1/Solids" instance=ExtResource( 20 )]
+scale = Vector2( -1, 1 )
+curve = SubResource( 7 )
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Solid" parent="GameManager/Tier1/Solids/Right" index="0"]
+collision_layer = 0
+
+[node name="Collision" parent="GameManager/Tier1/Solids/Right/Solid" index="0"]
+polygon = PoolVector2Array( -1920, 3264, 0, 3264, 0, 2928, -32, 2928, -32, 2864, -432, 2592, -432, 1536, -431.488, 1472.53, -428.602, 1432.03, -421.967, 1388.16, -416.776, 1365.54, -410.086, 1342.77, -401.711, 1320.08, -391.463, 1297.71, -379.155, 1275.88, -364.6, 1254.84, -347.611, 1234.8, -338.145, 1225.23, -328, 1216, -336, 1200, -346.205, 1209.27, -355.771, 1218.97, -373.069, 1239.51, -388.06, 1261.36, -400.908, 1284.22, -411.779, 1307.82, -420.837, 1331.88, -428.246, 1356.12, -434.173, 1380.25, -442.239, 1427.09, -446.352, 1470.16, -448, 1536, -448, 2864, -512, 2864, -512, 1536, -510.233, 1467.17, -505.555, 1420.33, -496.34, 1368.21, -489.56, 1340.88, -481.082, 1313.07, -470.717, 1285.07, -458.277, 1257.15, -443.573, 1229.61, -426.418, 1202.71, -406.623, 1176.75, -384, 1152, -359.481, 1129.43, -334.268, 1109.68, -308.584, 1092.57, -282.647, 1077.91, -256.679, 1065.51, -230.9, 1055.17, -205.53, 1046.72, -180.791, 1039.95, -134.082, 1030.74, -92.5387, 1026.02, -32, 1024, -32, 960, -1920, 960 )
+
+[node name="Poly" parent="GameManager/Tier1/Solids/Right" index="1"]
+polygon = PoolVector2Array( -1920, 3264, 0, 3264, 0, 2928, -32, 2928, -32, 2864, -432, 2592, -432, 1536, -431.488, 1472.53, -428.602, 1432.03, -421.967, 1388.16, -416.776, 1365.54, -410.086, 1342.77, -401.711, 1320.08, -391.463, 1297.71, -379.155, 1275.88, -364.6, 1254.84, -347.611, 1234.8, -338.145, 1225.23, -328, 1216, -336, 1200, -346.205, 1209.27, -355.771, 1218.97, -373.069, 1239.51, -388.06, 1261.36, -400.908, 1284.22, -411.779, 1307.82, -420.837, 1331.88, -428.246, 1356.12, -434.173, 1380.25, -442.239, 1427.09, -446.352, 1470.16, -448, 1536, -448, 2864, -512, 2864, -512, 1536, -510.233, 1467.17, -505.555, 1420.33, -496.34, 1368.21, -489.56, 1340.88, -481.082, 1313.07, -470.717, 1285.07, -458.277, 1257.15, -443.573, 1229.61, -426.418, 1202.71, -406.623, 1176.75, -384, 1152, -359.481, 1129.43, -334.268, 1109.68, -308.584, 1092.57, -282.647, 1077.91, -256.679, 1065.51, -230.9, 1055.17, -205.53, 1046.72, -180.791, 1039.95, -134.082, 1030.74, -92.5387, 1026.02, -32, 1024, -32, 960, -1920, 960 )
+
+[node name="Line" parent="GameManager/Tier1/Solids/Right" index="2"]
+points = PoolVector2Array( -1920, 3264, 0, 3264, 0, 2928, -32, 2928, -32, 2864, -432, 2592, -432, 1536, -431.488, 1472.53, -428.602, 1432.03, -421.967, 1388.16, -416.776, 1365.54, -410.086, 1342.77, -401.711, 1320.08, -391.463, 1297.71, -379.155, 1275.88, -364.6, 1254.84, -347.611, 1234.8, -338.145, 1225.23, -328, 1216, -336, 1200, -346.205, 1209.27, -355.771, 1218.97, -373.069, 1239.51, -388.06, 1261.36, -400.908, 1284.22, -411.779, 1307.82, -420.837, 1331.88, -428.246, 1356.12, -434.173, 1380.25, -442.239, 1427.09, -446.352, 1470.16, -448, 1536, -448, 2864, -512, 2864, -512, 1536, -510.233, 1467.17, -505.555, 1420.33, -496.34, 1368.21, -489.56, 1340.88, -481.082, 1313.07, -470.717, 1285.07, -458.277, 1257.15, -443.573, 1229.61, -426.418, 1202.71, -406.623, 1176.75, -384, 1152, -359.481, 1129.43, -334.268, 1109.68, -308.584, 1092.57, -282.647, 1077.91, -256.679, 1065.51, -230.9, 1055.17, -205.53, 1046.72, -180.791, 1039.95, -134.082, 1030.74, -92.5387, 1026.02, -32, 1024, -32, 960, -1920, 960, -1920, 3264 )
+
+[node name="LFunnel" parent="GameManager/Tier1/Solids" instance=ExtResource( 20 )]
+curve = SubResource( 8 )
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/Tier1/Solids/LFunnel/Solid" index="0"]
+polygon = PoolVector2Array( -344, 2496, -344, 2368, -368, 2368, -368, 2544, -128, 2712, -96, 2704, -145, 2677, -147.209, 2675.63, -149.174, 2674.18, -150.9, 2672.66, -152.396, 2671.09, -153.666, 2669.48, -154.719, 2667.83, -155.561, 2666.16, -155.906, 2665.32, -156.2, 2664.48, -156.444, 2663.63, -156.64, 2662.79, -156.789, 2661.96, -156.891, 2661.12, -156.947, 2660.3, -156.958, 2659.48, -156.924, 2658.67, -156.848, 2657.86, -156.729, 2657.07, -156.568, 2656.3, -156.366, 2655.53, -156.125, 2654.79, -155.844, 2654.06, -155.525, 2653.34, -155.169, 2652.65, -154.776, 2651.98, -154.347, 2651.33, -153.884, 2650.7, -153.386, 2650.1, -152.856, 2649.53, -152.293, 2648.99, -151.699, 2648.47, -151.074, 2647.98, -150.419, 2647.53, -149.736, 2647.11, -149.024, 2646.73, -148.286, 2646.38, -147.521, 2646.07, -146.73, 2645.8, -145.915, 2645.57, -145.076, 2645.39, -144.214, 2645.24, -143.33, 2645.14, -142.425, 2645.09, -140.554, 2645.13, -138.609, 2645.37, -136.596, 2645.83, -134.521, 2646.5, -132.393, 2647.42, -130.217, 2648.58, -128, 2650 )
+
+[node name="Poly" parent="GameManager/Tier1/Solids/LFunnel" index="1"]
+polygon = PoolVector2Array( -344, 2496, -344, 2368, -368, 2368, -368, 2544, -128, 2712, -96, 2704, -145, 2677, -147.209, 2675.63, -149.174, 2674.18, -150.9, 2672.66, -152.396, 2671.09, -153.666, 2669.48, -154.719, 2667.83, -155.561, 2666.16, -155.906, 2665.32, -156.2, 2664.48, -156.444, 2663.63, -156.64, 2662.79, -156.789, 2661.96, -156.891, 2661.12, -156.947, 2660.3, -156.958, 2659.48, -156.924, 2658.67, -156.848, 2657.86, -156.729, 2657.07, -156.568, 2656.3, -156.366, 2655.53, -156.125, 2654.79, -155.844, 2654.06, -155.525, 2653.34, -155.169, 2652.65, -154.776, 2651.98, -154.347, 2651.33, -153.884, 2650.7, -153.386, 2650.1, -152.856, 2649.53, -152.293, 2648.99, -151.699, 2648.47, -151.074, 2647.98, -150.419, 2647.53, -149.736, 2647.11, -149.024, 2646.73, -148.286, 2646.38, -147.521, 2646.07, -146.73, 2645.8, -145.915, 2645.57, -145.076, 2645.39, -144.214, 2645.24, -143.33, 2645.14, -142.425, 2645.09, -140.554, 2645.13, -138.609, 2645.37, -136.596, 2645.83, -134.521, 2646.5, -132.393, 2647.42, -130.217, 2648.58, -128, 2650 )
+
+[node name="Line" parent="GameManager/Tier1/Solids/LFunnel" index="2"]
+points = PoolVector2Array( -344, 2496, -344, 2368, -368, 2368, -368, 2544, -128, 2712, -96, 2704, -145, 2677, -147.209, 2675.63, -149.174, 2674.18, -150.9, 2672.66, -152.396, 2671.09, -153.666, 2669.48, -154.719, 2667.83, -155.561, 2666.16, -155.906, 2665.32, -156.2, 2664.48, -156.444, 2663.63, -156.64, 2662.79, -156.789, 2661.96, -156.891, 2661.12, -156.947, 2660.3, -156.958, 2659.48, -156.924, 2658.67, -156.848, 2657.86, -156.729, 2657.07, -156.568, 2656.3, -156.366, 2655.53, -156.125, 2654.79, -155.844, 2654.06, -155.525, 2653.34, -155.169, 2652.65, -154.776, 2651.98, -154.347, 2651.33, -153.884, 2650.7, -153.386, 2650.1, -152.856, 2649.53, -152.293, 2648.99, -151.699, 2648.47, -151.074, 2647.98, -150.419, 2647.53, -149.736, 2647.11, -149.024, 2646.73, -148.286, 2646.38, -147.521, 2646.07, -146.73, 2645.8, -145.915, 2645.57, -145.076, 2645.39, -144.214, 2645.24, -143.33, 2645.14, -142.425, 2645.09, -140.554, 2645.13, -138.609, 2645.37, -136.596, 2645.83, -134.521, 2646.5, -132.393, 2647.42, -130.217, 2648.58, -128, 2650, -344, 2496 )
+
+[node name="RFunnel" parent="GameManager/Tier1/Solids" instance=ExtResource( 20 )]
+scale = Vector2( -1, 1 )
+curve = SubResource( 9 )
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/Tier1/Solids/RFunnel/Solid" index="0"]
+polygon = PoolVector2Array( -344, 2496, -344, 2368, -368, 2368, -368, 2544, -128, 2712, -96, 2704, -145, 2677, -147.209, 2675.63, -149.174, 2674.18, -150.9, 2672.66, -152.396, 2671.09, -153.666, 2669.48, -154.719, 2667.83, -155.561, 2666.16, -155.906, 2665.32, -156.2, 2664.48, -156.444, 2663.63, -156.64, 2662.79, -156.789, 2661.96, -156.891, 2661.12, -156.947, 2660.3, -156.958, 2659.48, -156.924, 2658.67, -156.848, 2657.86, -156.729, 2657.07, -156.568, 2656.3, -156.366, 2655.53, -156.125, 2654.79, -155.844, 2654.06, -155.525, 2653.34, -155.169, 2652.65, -154.776, 2651.98, -154.347, 2651.33, -153.884, 2650.7, -153.386, 2650.1, -152.856, 2649.53, -152.293, 2648.99, -151.699, 2648.47, -151.074, 2647.98, -150.419, 2647.53, -149.736, 2647.11, -149.024, 2646.73, -148.286, 2646.38, -147.521, 2646.07, -146.73, 2645.8, -145.915, 2645.57, -145.076, 2645.39, -144.214, 2645.24, -143.33, 2645.14, -142.425, 2645.09, -140.554, 2645.13, -138.609, 2645.37, -136.596, 2645.83, -134.521, 2646.5, -132.393, 2647.42, -130.217, 2648.58, -128, 2650 )
+
+[node name="Poly" parent="GameManager/Tier1/Solids/RFunnel" index="1"]
+polygon = PoolVector2Array( -344, 2496, -344, 2368, -368, 2368, -368, 2544, -128, 2712, -96, 2704, -145, 2677, -147.209, 2675.63, -149.174, 2674.18, -150.9, 2672.66, -152.396, 2671.09, -153.666, 2669.48, -154.719, 2667.83, -155.561, 2666.16, -155.906, 2665.32, -156.2, 2664.48, -156.444, 2663.63, -156.64, 2662.79, -156.789, 2661.96, -156.891, 2661.12, -156.947, 2660.3, -156.958, 2659.48, -156.924, 2658.67, -156.848, 2657.86, -156.729, 2657.07, -156.568, 2656.3, -156.366, 2655.53, -156.125, 2654.79, -155.844, 2654.06, -155.525, 2653.34, -155.169, 2652.65, -154.776, 2651.98, -154.347, 2651.33, -153.884, 2650.7, -153.386, 2650.1, -152.856, 2649.53, -152.293, 2648.99, -151.699, 2648.47, -151.074, 2647.98, -150.419, 2647.53, -149.736, 2647.11, -149.024, 2646.73, -148.286, 2646.38, -147.521, 2646.07, -146.73, 2645.8, -145.915, 2645.57, -145.076, 2645.39, -144.214, 2645.24, -143.33, 2645.14, -142.425, 2645.09, -140.554, 2645.13, -138.609, 2645.37, -136.596, 2645.83, -134.521, 2646.5, -132.393, 2647.42, -130.217, 2648.58, -128, 2650 )
+
+[node name="Line" parent="GameManager/Tier1/Solids/RFunnel" index="2"]
+points = PoolVector2Array( -344, 2496, -344, 2368, -368, 2368, -368, 2544, -128, 2712, -96, 2704, -145, 2677, -147.209, 2675.63, -149.174, 2674.18, -150.9, 2672.66, -152.396, 2671.09, -153.666, 2669.48, -154.719, 2667.83, -155.561, 2666.16, -155.906, 2665.32, -156.2, 2664.48, -156.444, 2663.63, -156.64, 2662.79, -156.789, 2661.96, -156.891, 2661.12, -156.947, 2660.3, -156.958, 2659.48, -156.924, 2658.67, -156.848, 2657.86, -156.729, 2657.07, -156.568, 2656.3, -156.366, 2655.53, -156.125, 2654.79, -155.844, 2654.06, -155.525, 2653.34, -155.169, 2652.65, -154.776, 2651.98, -154.347, 2651.33, -153.884, 2650.7, -153.386, 2650.1, -152.856, 2649.53, -152.293, 2648.99, -151.699, 2648.47, -151.074, 2647.98, -150.419, 2647.53, -149.736, 2647.11, -149.024, 2646.73, -148.286, 2646.38, -147.521, 2646.07, -146.73, 2645.8, -145.915, 2645.57, -145.076, 2645.39, -144.214, 2645.24, -143.33, 2645.14, -142.425, 2645.09, -140.554, 2645.13, -138.609, 2645.37, -136.596, 2645.83, -134.521, 2646.5, -132.393, 2647.42, -130.217, 2648.58, -128, 2650, -344, 2496 )
+
+[node name="Sets" type="Node" parent="GameManager/Tier1"]
+
+[node name="TierExit" parent="GameManager/Tier1/Sets" instance=ExtResource( 24 )]
+type = 1
+shiftable = false
+unlockCode = 1
+
+[node name="DefaultPieces" type="Node" parent="GameManager/Tier1"]
+
+[node name="LaunchGate" parent="GameManager/Tier1/DefaultPieces" instance=ExtResource( 22 )]
+position = Vector2( 368, 1184 )
+rotation = -0.872665
+scale = Vector2( 1, 1.6 )
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+
+[node name="FunnelGate" parent="GameManager/Tier1/DefaultPieces" instance=ExtResource( 22 )]
+position = Vector2( 0, 1016 )
+rotation = -3.14159
+scale = Vector2( 1, 1.6 )
+contacts_reported = 0
+contact_monitor = false
+
+[node name="IntPieces" type="Node" parent="GameManager/Tier1"]
+
+[node name="Launcher" parent="GameManager/Tier1/IntPieces" instance=ExtResource( 21 )]
+position = Vector2( 480, 2816 )
+
+[node name="Slingshot" parent="GameManager/Tier1/IntPieces" groups=["Conquest", "Scoring"] instance=ExtResource( 25 )]
+position = Vector2( 232, 2408 )
+collision_layer = 32
+
+[node name="Slingshot2" parent="GameManager/Tier1/IntPieces" groups=["Conquest", "Scoring"] instance=ExtResource( 25 )]
+position = Vector2( -232, 2408 )
+scale = Vector2( -1, 1 )
+collision_layer = 32
+
+[node name="Popper" parent="GameManager/Tier1/IntPieces" instance=ExtResource( 29 )]
+position = Vector2( -400, 2512 )
+collision_layer = 32
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+
+[node name="Popper2" parent="GameManager/Tier1/IntPieces" instance=ExtResource( 29 )]
+position = Vector2( 400, 2512 )
+collision_layer = 32
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+
+[node name="FlipperR" parent="GameManager/Tier1/IntPieces" instance=ExtResource( 23 )]
+position = Vector2( 136, 2664 )
+rotation = -0.610865
+collision_layer = 32
+restAngle = -35
+
+[node name="FlipperL" parent="GameManager/Tier1/IntPieces" instance=ExtResource( 23 )]
+position = Vector2( -136, 2664 )
+rotation = 0.610865
+scale = Vector2( -1, 1 )
+LeftFlipper = true
+restAngle = -35
+
+[node name="Tier2" type="Node" parent="GameManager"]
+script = ExtResource( 14 )
+tierNum = 2
+TierLock = NodePath("Sets/TierExit")
+
+[node name="Objectives" type="Node" parent="GameManager/Tier2"]
+
+[node name="ConquestPanel" parent="GameManager/Tier2" instance=ExtResource( 16 )]
+position = Vector2( 0, 192 )
+
+[node name="SpawnPoints" type="Node" parent="GameManager/Tier2"]
+
+[node name="LauncherSpawn" type="Position2D" parent="GameManager/Tier2/SpawnPoints"]
+position = Vector2( 480, 723 )
+
+[node name="RightFlipperSpawn" type="Position2D" parent="GameManager/Tier2/SpawnPoints"]
+position = Vector2( 312, 448 )
+
+[node name="LeftFlipperSpawn" type="Position2D" parent="GameManager/Tier2/SpawnPoints"]
+position = Vector2( -312, 448 )
+
+[node name="AreaTriggers" type="Node" parent="GameManager/Tier2"]
+
+[node name="Tier2Trigger" type="Area2D" parent="GameManager/Tier2/AreaTriggers"]
+visible = false
+z_index = -10
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="Area" type="CollisionPolygon2D" parent="GameManager/Tier2/AreaTriggers/Tier2Trigger"]
+position = Vector2( 0, 1008 )
+polygon = PoolVector2Array( -776, -48, 776, -48, 776, -1968, -776, -1968 )
+
+[node name="LaunchTube" type="Area2D" parent="GameManager/Tier2/AreaTriggers"]
+visible = false
+collision_layer = 0
+monitorable = false
+
+[node name="Area" type="CollisionPolygon2D" parent="GameManager/Tier2/AreaTriggers/LaunchTube"]
+polygon = PoolVector2Array( 440, 872, 440, -384, 432, -512, 392, -648, 336, -712, 392, -784, 536, -560, 528, 872 )
+
+[node name="Solids" type="Node" parent="GameManager/Tier2"]
+
+[node name="Left" parent="GameManager/Tier2/Solids" instance=ExtResource( 20 )]
+position = Vector2( 0, -1920 )
+curve = SubResource( 10 )
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/Tier2/Solids/Left/Solid" index="0"]
+polygon = PoolVector2Array( -1920, 2880, -1920, 960, -32, 960, -32, 1024, -38.4366, 1024.25, -56.4968, 1026, -84.3064, 1030.75, -119.991, 1039.99, -161.677, 1055.24, -184.185, 1065.59, -207.49, 1077.99, -231.359, 1092.65, -255.556, 1109.75, -279.848, 1129.47, -304, 1152, -315.631, 1164.36, -326.535, 1177.41, -346.257, 1205.25, -363.352, 1234.98, -378.01, 1266.01, -390.416, 1297.79, -400.76, 1329.76, -416.009, 1392.01, -425.256, 1448.25, -430.003, 1494, -432, 1536, -432, 2592, -32, 2864, -32, 2880 )
+
+[node name="Poly" parent="GameManager/Tier2/Solids/Left" index="1"]
+polygon = PoolVector2Array( -1920, 2880, -1920, 960, -32, 960, -32, 1024, -38.4366, 1024.25, -56.4968, 1026, -84.3064, 1030.75, -119.991, 1039.99, -161.677, 1055.24, -184.185, 1065.59, -207.49, 1077.99, -231.359, 1092.65, -255.556, 1109.75, -279.848, 1129.47, -304, 1152, -315.631, 1164.36, -326.535, 1177.41, -346.257, 1205.25, -363.352, 1234.98, -378.01, 1266.01, -390.416, 1297.79, -400.76, 1329.76, -416.009, 1392.01, -425.256, 1448.25, -430.003, 1494, -432, 1536, -432, 2592, -32, 2864, -32, 2880 )
+
+[node name="Line" parent="GameManager/Tier2/Solids/Left" index="2"]
+points = PoolVector2Array( -1920, 2880, -1920, 960, -32, 960, -32, 1024, -38.4366, 1024.25, -56.4968, 1026, -84.3064, 1030.75, -119.991, 1039.99, -161.677, 1055.24, -184.185, 1065.59, -207.49, 1077.99, -231.359, 1092.65, -255.556, 1109.75, -279.848, 1129.47, -304, 1152, -315.631, 1164.36, -326.535, 1177.41, -346.257, 1205.25, -363.352, 1234.98, -378.01, 1266.01, -390.416, 1297.79, -400.76, 1329.76, -416.009, 1392.01, -425.256, 1448.25, -430.003, 1494, -432, 1536, -432, 2592, -32, 2864, -32, 2880, -1920, 2880 )
+
+[node name="Right" parent="GameManager/Tier2/Solids" instance=ExtResource( 20 )]
+position = Vector2( 0, -1920 )
+scale = Vector2( -1, 1 )
+curve = SubResource( 11 )
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/Tier2/Solids/Right/Solid" index="0"]
+polygon = PoolVector2Array( -1920, 2880, -32, 2880, -32, 2864, -432, 2592, -432, 1536, -431.488, 1472.53, -428.602, 1432.03, -421.967, 1388.16, -416.776, 1365.54, -410.086, 1342.77, -401.711, 1320.08, -391.463, 1297.71, -379.155, 1275.88, -364.6, 1254.84, -347.611, 1234.8, -338.145, 1225.23, -328, 1216, -336, 1200, -346.205, 1209.27, -355.771, 1218.97, -373.069, 1239.51, -388.06, 1261.36, -400.908, 1284.22, -411.779, 1307.82, -420.837, 1331.88, -428.246, 1356.12, -434.173, 1380.25, -442.239, 1427.09, -446.352, 1470.16, -448, 1536, -448, 2864, -512, 2864, -512, 1536, -510.233, 1467.17, -505.555, 1420.33, -496.34, 1368.21, -489.56, 1340.88, -481.082, 1313.07, -470.717, 1285.07, -458.277, 1257.15, -443.573, 1229.61, -426.418, 1202.71, -406.623, 1176.75, -384, 1152, -359.481, 1129.43, -334.268, 1109.68, -308.584, 1092.57, -282.647, 1077.91, -256.679, 1065.51, -230.9, 1055.17, -205.53, 1046.72, -180.791, 1039.95, -134.082, 1030.74, -92.5387, 1026.02, -32, 1024, -32, 960, -1920, 960 )
+
+[node name="Poly" parent="GameManager/Tier2/Solids/Right" index="1"]
+polygon = PoolVector2Array( -1920, 2880, -32, 2880, -32, 2864, -432, 2592, -432, 1536, -431.488, 1472.53, -428.602, 1432.03, -421.967, 1388.16, -416.776, 1365.54, -410.086, 1342.77, -401.711, 1320.08, -391.463, 1297.71, -379.155, 1275.88, -364.6, 1254.84, -347.611, 1234.8, -338.145, 1225.23, -328, 1216, -336, 1200, -346.205, 1209.27, -355.771, 1218.97, -373.069, 1239.51, -388.06, 1261.36, -400.908, 1284.22, -411.779, 1307.82, -420.837, 1331.88, -428.246, 1356.12, -434.173, 1380.25, -442.239, 1427.09, -446.352, 1470.16, -448, 1536, -448, 2864, -512, 2864, -512, 1536, -510.233, 1467.17, -505.555, 1420.33, -496.34, 1368.21, -489.56, 1340.88, -481.082, 1313.07, -470.717, 1285.07, -458.277, 1257.15, -443.573, 1229.61, -426.418, 1202.71, -406.623, 1176.75, -384, 1152, -359.481, 1129.43, -334.268, 1109.68, -308.584, 1092.57, -282.647, 1077.91, -256.679, 1065.51, -230.9, 1055.17, -205.53, 1046.72, -180.791, 1039.95, -134.082, 1030.74, -92.5387, 1026.02, -32, 1024, -32, 960, -1920, 960 )
+
+[node name="Line" parent="GameManager/Tier2/Solids/Right" index="2"]
+points = PoolVector2Array( -1920, 2880, -32, 2880, -32, 2864, -432, 2592, -432, 1536, -431.488, 1472.53, -428.602, 1432.03, -421.967, 1388.16, -416.776, 1365.54, -410.086, 1342.77, -401.711, 1320.08, -391.463, 1297.71, -379.155, 1275.88, -364.6, 1254.84, -347.611, 1234.8, -338.145, 1225.23, -328, 1216, -336, 1200, -346.205, 1209.27, -355.771, 1218.97, -373.069, 1239.51, -388.06, 1261.36, -400.908, 1284.22, -411.779, 1307.82, -420.837, 1331.88, -428.246, 1356.12, -434.173, 1380.25, -442.239, 1427.09, -446.352, 1470.16, -448, 1536, -448, 2864, -512, 2864, -512, 1536, -510.233, 1467.17, -505.555, 1420.33, -496.34, 1368.21, -489.56, 1340.88, -481.082, 1313.07, -470.717, 1285.07, -458.277, 1257.15, -443.573, 1229.61, -426.418, 1202.71, -406.623, 1176.75, -384, 1152, -359.481, 1129.43, -334.268, 1109.68, -308.584, 1092.57, -282.647, 1077.91, -256.679, 1065.51, -230.9, 1055.17, -205.53, 1046.72, -180.791, 1039.95, -134.082, 1030.74, -92.5387, 1026.02, -32, 1024, -32, 960, -1920, 960, -1920, 2880 )
+
+[node name="LFunnel" parent="GameManager/Tier2/Solids" instance=ExtResource( 20 )]
+position = Vector2( 0, -1920 )
+scale = Vector2( -1, 1 )
+curve = SubResource( 12 )
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/Tier2/Solids/LFunnel/Solid" index="0"]
+polygon = PoolVector2Array( -344, 2496, -344, 2368, -368, 2368, -368, 2544, -128, 2712, -96, 2704, -145, 2677, -147.209, 2675.63, -149.174, 2674.18, -150.9, 2672.66, -152.396, 2671.09, -153.666, 2669.48, -154.719, 2667.83, -155.561, 2666.16, -155.906, 2665.32, -156.2, 2664.48, -156.444, 2663.63, -156.64, 2662.79, -156.789, 2661.96, -156.891, 2661.12, -156.947, 2660.3, -156.958, 2659.48, -156.924, 2658.67, -156.848, 2657.86, -156.729, 2657.07, -156.568, 2656.3, -156.366, 2655.53, -156.125, 2654.79, -155.844, 2654.06, -155.525, 2653.34, -155.169, 2652.65, -154.776, 2651.98, -154.347, 2651.33, -153.884, 2650.7, -153.386, 2650.1, -152.856, 2649.53, -152.293, 2648.99, -151.699, 2648.47, -151.074, 2647.98, -150.419, 2647.53, -149.736, 2647.11, -149.024, 2646.73, -148.286, 2646.38, -147.521, 2646.07, -146.73, 2645.8, -145.915, 2645.57, -145.076, 2645.39, -144.214, 2645.24, -143.33, 2645.14, -142.425, 2645.09, -140.554, 2645.13, -138.609, 2645.37, -136.596, 2645.83, -134.521, 2646.5, -132.393, 2647.42, -130.217, 2648.58, -128, 2650 )
+
+[node name="Poly" parent="GameManager/Tier2/Solids/LFunnel" index="1"]
+polygon = PoolVector2Array( -344, 2496, -344, 2368, -368, 2368, -368, 2544, -128, 2712, -96, 2704, -145, 2677, -147.209, 2675.63, -149.174, 2674.18, -150.9, 2672.66, -152.396, 2671.09, -153.666, 2669.48, -154.719, 2667.83, -155.561, 2666.16, -155.906, 2665.32, -156.2, 2664.48, -156.444, 2663.63, -156.64, 2662.79, -156.789, 2661.96, -156.891, 2661.12, -156.947, 2660.3, -156.958, 2659.48, -156.924, 2658.67, -156.848, 2657.86, -156.729, 2657.07, -156.568, 2656.3, -156.366, 2655.53, -156.125, 2654.79, -155.844, 2654.06, -155.525, 2653.34, -155.169, 2652.65, -154.776, 2651.98, -154.347, 2651.33, -153.884, 2650.7, -153.386, 2650.1, -152.856, 2649.53, -152.293, 2648.99, -151.699, 2648.47, -151.074, 2647.98, -150.419, 2647.53, -149.736, 2647.11, -149.024, 2646.73, -148.286, 2646.38, -147.521, 2646.07, -146.73, 2645.8, -145.915, 2645.57, -145.076, 2645.39, -144.214, 2645.24, -143.33, 2645.14, -142.425, 2645.09, -140.554, 2645.13, -138.609, 2645.37, -136.596, 2645.83, -134.521, 2646.5, -132.393, 2647.42, -130.217, 2648.58, -128, 2650 )
+
+[node name="Line" parent="GameManager/Tier2/Solids/LFunnel" index="2"]
+points = PoolVector2Array( -344, 2496, -344, 2368, -368, 2368, -368, 2544, -128, 2712, -96, 2704, -145, 2677, -147.209, 2675.63, -149.174, 2674.18, -150.9, 2672.66, -152.396, 2671.09, -153.666, 2669.48, -154.719, 2667.83, -155.561, 2666.16, -155.906, 2665.32, -156.2, 2664.48, -156.444, 2663.63, -156.64, 2662.79, -156.789, 2661.96, -156.891, 2661.12, -156.947, 2660.3, -156.958, 2659.48, -156.924, 2658.67, -156.848, 2657.86, -156.729, 2657.07, -156.568, 2656.3, -156.366, 2655.53, -156.125, 2654.79, -155.844, 2654.06, -155.525, 2653.34, -155.169, 2652.65, -154.776, 2651.98, -154.347, 2651.33, -153.884, 2650.7, -153.386, 2650.1, -152.856, 2649.53, -152.293, 2648.99, -151.699, 2648.47, -151.074, 2647.98, -150.419, 2647.53, -149.736, 2647.11, -149.024, 2646.73, -148.286, 2646.38, -147.521, 2646.07, -146.73, 2645.8, -145.915, 2645.57, -145.076, 2645.39, -144.214, 2645.24, -143.33, 2645.14, -142.425, 2645.09, -140.554, 2645.13, -138.609, 2645.37, -136.596, 2645.83, -134.521, 2646.5, -132.393, 2647.42, -130.217, 2648.58, -128, 2650, -344, 2496 )
+
+[node name="RFunnel" parent="GameManager/Tier2/Solids" instance=ExtResource( 20 )]
+position = Vector2( 0, -1920 )
+curve = SubResource( 13 )
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/Tier2/Solids/RFunnel/Solid" index="0"]
+polygon = PoolVector2Array( -344, 2496, -344, 2368, -368, 2368, -368, 2544, -128, 2712, -96, 2704, -145, 2677, -147.209, 2675.63, -149.174, 2674.18, -150.9, 2672.66, -152.396, 2671.09, -153.666, 2669.48, -154.719, 2667.83, -155.561, 2666.16, -155.906, 2665.32, -156.2, 2664.48, -156.444, 2663.63, -156.64, 2662.79, -156.789, 2661.96, -156.891, 2661.12, -156.947, 2660.3, -156.958, 2659.48, -156.924, 2658.67, -156.848, 2657.86, -156.729, 2657.07, -156.568, 2656.3, -156.366, 2655.53, -156.125, 2654.79, -155.844, 2654.06, -155.525, 2653.34, -155.169, 2652.65, -154.776, 2651.98, -154.347, 2651.33, -153.884, 2650.7, -153.386, 2650.1, -152.856, 2649.53, -152.293, 2648.99, -151.699, 2648.47, -151.074, 2647.98, -150.419, 2647.53, -149.736, 2647.11, -149.024, 2646.73, -148.286, 2646.38, -147.521, 2646.07, -146.73, 2645.8, -145.915, 2645.57, -145.076, 2645.39, -144.214, 2645.24, -143.33, 2645.14, -142.425, 2645.09, -140.554, 2645.13, -138.609, 2645.37, -136.596, 2645.83, -134.521, 2646.5, -132.393, 2647.42, -130.217, 2648.58, -128, 2650 )
+
+[node name="Poly" parent="GameManager/Tier2/Solids/RFunnel" index="1"]
+polygon = PoolVector2Array( -344, 2496, -344, 2368, -368, 2368, -368, 2544, -128, 2712, -96, 2704, -145, 2677, -147.209, 2675.63, -149.174, 2674.18, -150.9, 2672.66, -152.396, 2671.09, -153.666, 2669.48, -154.719, 2667.83, -155.561, 2666.16, -155.906, 2665.32, -156.2, 2664.48, -156.444, 2663.63, -156.64, 2662.79, -156.789, 2661.96, -156.891, 2661.12, -156.947, 2660.3, -156.958, 2659.48, -156.924, 2658.67, -156.848, 2657.86, -156.729, 2657.07, -156.568, 2656.3, -156.366, 2655.53, -156.125, 2654.79, -155.844, 2654.06, -155.525, 2653.34, -155.169, 2652.65, -154.776, 2651.98, -154.347, 2651.33, -153.884, 2650.7, -153.386, 2650.1, -152.856, 2649.53, -152.293, 2648.99, -151.699, 2648.47, -151.074, 2647.98, -150.419, 2647.53, -149.736, 2647.11, -149.024, 2646.73, -148.286, 2646.38, -147.521, 2646.07, -146.73, 2645.8, -145.915, 2645.57, -145.076, 2645.39, -144.214, 2645.24, -143.33, 2645.14, -142.425, 2645.09, -140.554, 2645.13, -138.609, 2645.37, -136.596, 2645.83, -134.521, 2646.5, -132.393, 2647.42, -130.217, 2648.58, -128, 2650 )
+
+[node name="Line" parent="GameManager/Tier2/Solids/RFunnel" index="2"]
+points = PoolVector2Array( -344, 2496, -344, 2368, -368, 2368, -368, 2544, -128, 2712, -96, 2704, -145, 2677, -147.209, 2675.63, -149.174, 2674.18, -150.9, 2672.66, -152.396, 2671.09, -153.666, 2669.48, -154.719, 2667.83, -155.561, 2666.16, -155.906, 2665.32, -156.2, 2664.48, -156.444, 2663.63, -156.64, 2662.79, -156.789, 2661.96, -156.891, 2661.12, -156.947, 2660.3, -156.958, 2659.48, -156.924, 2658.67, -156.848, 2657.86, -156.729, 2657.07, -156.568, 2656.3, -156.366, 2655.53, -156.125, 2654.79, -155.844, 2654.06, -155.525, 2653.34, -155.169, 2652.65, -154.776, 2651.98, -154.347, 2651.33, -153.884, 2650.7, -153.386, 2650.1, -152.856, 2649.53, -152.293, 2648.99, -151.699, 2648.47, -151.074, 2647.98, -150.419, 2647.53, -149.736, 2647.11, -149.024, 2646.73, -148.286, 2646.38, -147.521, 2646.07, -146.73, 2645.8, -145.915, 2645.57, -145.076, 2645.39, -144.214, 2645.24, -143.33, 2645.14, -142.425, 2645.09, -140.554, 2645.13, -138.609, 2645.37, -136.596, 2645.83, -134.521, 2646.5, -132.393, 2647.42, -130.217, 2648.58, -128, 2650, -344, 2496 )
+
+[node name="Sets" type="Node" parent="GameManager/Tier2"]
+
+[node name="TierExit" parent="GameManager/Tier2/Sets" instance=ExtResource( 24 )]
+
+[node name="DefaultPieces" type="Node" parent="GameManager/Tier2"]
+
+[node name="OWG" parent="GameManager/Tier2/DefaultPieces" instance=ExtResource( 22 )]
+position = Vector2( 363, -742 )
+rotation = -0.959931
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+
+[node name="FunnelGate" parent="GameManager/Tier2/DefaultPieces" instance=ExtResource( 22 )]
+position = Vector2( -8.76753e-10, -912 )
+rotation = -3.14159
+scale = Vector2( 1, 1.6 )
+contacts_reported = 0
+contact_monitor = false
+
+[node name="IntPieces" type="Node" parent="GameManager/Tier2"]
+
+[node name="Launcher" parent="GameManager/Tier2/IntPieces" instance=ExtResource( 21 )]
+position = Vector2( 480, 896 )
+
+[node name="SlingshotR" parent="GameManager/Tier2/IntPieces" instance=ExtResource( 25 )]
+position = Vector2( 232, 488 )
+
+[node name="SlingshotL" parent="GameManager/Tier2/IntPieces" instance=ExtResource( 25 )]
+position = Vector2( -232, 488 )
+scale = Vector2( -1, 1 )
+
+[node name="FlipperR" parent="GameManager/Tier2/IntPieces" instance=ExtResource( 23 )]
+position = Vector2( 136, 744 )
+rotation = -0.610865
+restAngle = -35
+
+[node name="FlipperL" parent="GameManager/Tier2/IntPieces" instance=ExtResource( 23 )]
+position = Vector2( -136, 744 )
+rotation = 0.610865
+scale = Vector2( -1, 1 )
+LeftFlipper = true
+restAngle = -35
+
+[node name="BossArena" type="Node" parent="GameManager"]
+script = ExtResource( 15 )
+
+[node name="Objectives" type="Node" parent="GameManager/BossArena"]
+
+[node name="Boss" parent="GameManager/BossArena" instance=ExtResource( 18 )]
+position = Vector2( 0, -2209 )
+
+[node name="BossPanel" parent="GameManager/BossArena" instance=ExtResource( 17 )]
+position = Vector2( 0, -1592 )
+
+[node name="SpawnPoints" type="Node" parent="GameManager/BossArena"]
+
+[node name="LauncherSpawn" type="Position2D" parent="GameManager/BossArena/SpawnPoints"]
+position = Vector2( 224, -1184 )
+
+[node name="RightFlipperSpawn" type="Position2D" parent="GameManager/BossArena/SpawnPoints"]
+position = Vector2( 128, -1344 )
+
+[node name="LeftFlipperSpawn" type="Position2D" parent="GameManager/BossArena/SpawnPoints"]
+position = Vector2( -128, -1344 )
+
+[node name="AreaTriggers" type="Node" parent="GameManager/BossArena"]
+
+[node name="BossTrigger" type="Area2D" parent="GameManager/BossArena/AreaTriggers"]
+visible = false
+position = Vector2( -16, -2016 )
+z_index = -10
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="Area" type="CollisionPolygon2D" parent="GameManager/BossArena/AreaTriggers/BossTrigger"]
+position = Vector2( 0, 2856 )
+polygon = PoolVector2Array( -776, -1804, -776, -3860, 776, -3860, 776, -1804 )
+
+[node name="LaunchTube" type="Area2D" parent="GameManager/BossArena/AreaTriggers"]
+
+[node name="Area" type="CollisionPolygon2D" parent="GameManager/BossArena/AreaTriggers/LaunchTube"]
+position = Vector2( 0, -3000 )
+polygon = PoolVector2Array( 160, 1816, 224, 1768, 272, 1840, 208, 1888 )
+
+[node name="Solids" type="Node" parent="GameManager/BossArena"]
+
+[node name="Left" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+position = Vector2( 0, -3840 )
+curve = SubResource( 14 )
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/BossArena/Solids/Left/Solid" index="0"]
+polygon = PoolVector2Array( -1920, 2880, -1920, 832, 0, 832, 0, 960, -70.4499, 962.26, -137.713, 969.017, -201.602, 980.273, -261.931, 996.026, -318.511, 1016.28, -371.156, 1041.03, -395.944, 1055.09, -419.679, 1070.28, -442.336, 1086.59, -463.892, 1104.02, -484.324, 1122.58, -503.608, 1142.27, -521.722, 1163.08, -538.641, 1185.02, -554.343, 1208.08, -568.803, 1232.26, -581.999, 1257.57, -593.907, 1284.01, -604.504, 1311.57, -613.766, 1340.25, -628.192, 1401, -636.999, 1466.25, -640, 1536, -640, 2304, -133, 2663, -134.95, 2661.8, -136.865, 2660.84, -138.74, 2660.13, -139.66, 2659.86, -140.569, 2659.65, -141.464, 2659.49, -142.345, 2659.38, -143.212, 2659.32, -144.063, 2659.32, -144.899, 2659.36, -145.718, 2659.45, -146.519, 2659.58, -147.302, 2659.76, -148.066, 2659.98, -148.811, 2660.24, -149.535, 2660.54, -150.238, 2660.88, -150.919, 2661.25, -151.577, 2661.66, -152.823, 2662.58, -153.969, 2663.62, -155.01, 2664.77, -155.94, 2666.02, -156.753, 2667.36, -157.442, 2668.77, -158.003, 2670.25, -158.428, 2671.78, -158.713, 2673.35, -158.852, 2674.94, -158.837, 2676.56, -158.664, 2678.17, -158.327, 2679.78, -157.819, 2681.38, -157.5, 2682.16, -157.135, 2682.94, -156.725, 2683.7, -156.269, 2684.46, -155.766, 2685.2, -155.215, 2685.92, -153.967, 2687.32, -152.519, 2688.64, -150.865, 2689.87, -149, 2691, -32, 2752, -32, 2880 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/Left" index="1"]
+polygon = PoolVector2Array( -1920, 2880, -1920, 832, 0, 832, 0, 960, -70.4499, 962.26, -137.713, 969.017, -201.602, 980.273, -261.931, 996.026, -318.511, 1016.28, -371.156, 1041.03, -395.944, 1055.09, -419.679, 1070.28, -442.336, 1086.59, -463.892, 1104.02, -484.324, 1122.58, -503.608, 1142.27, -521.722, 1163.08, -538.641, 1185.02, -554.343, 1208.08, -568.803, 1232.26, -581.999, 1257.57, -593.907, 1284.01, -604.504, 1311.57, -613.766, 1340.25, -628.192, 1401, -636.999, 1466.25, -640, 1536, -640, 2304, -133, 2663, -134.95, 2661.8, -136.865, 2660.84, -138.74, 2660.13, -139.66, 2659.86, -140.569, 2659.65, -141.464, 2659.49, -142.345, 2659.38, -143.212, 2659.32, -144.063, 2659.32, -144.899, 2659.36, -145.718, 2659.45, -146.519, 2659.58, -147.302, 2659.76, -148.066, 2659.98, -148.811, 2660.24, -149.535, 2660.54, -150.238, 2660.88, -150.919, 2661.25, -151.577, 2661.66, -152.823, 2662.58, -153.969, 2663.62, -155.01, 2664.77, -155.94, 2666.02, -156.753, 2667.36, -157.442, 2668.77, -158.003, 2670.25, -158.428, 2671.78, -158.713, 2673.35, -158.852, 2674.94, -158.837, 2676.56, -158.664, 2678.17, -158.327, 2679.78, -157.819, 2681.38, -157.5, 2682.16, -157.135, 2682.94, -156.725, 2683.7, -156.269, 2684.46, -155.766, 2685.2, -155.215, 2685.92, -153.967, 2687.32, -152.519, 2688.64, -150.865, 2689.87, -149, 2691, -32, 2752, -32, 2880 )
+
+[node name="Line" parent="GameManager/BossArena/Solids/Left" index="2"]
+points = PoolVector2Array( -1920, 2880, -1920, 832, 0, 832, 0, 960, -70.4499, 962.26, -137.713, 969.017, -201.602, 980.273, -261.931, 996.026, -318.511, 1016.28, -371.156, 1041.03, -395.944, 1055.09, -419.679, 1070.28, -442.336, 1086.59, -463.892, 1104.02, -484.324, 1122.58, -503.608, 1142.27, -521.722, 1163.08, -538.641, 1185.02, -554.343, 1208.08, -568.803, 1232.26, -581.999, 1257.57, -593.907, 1284.01, -604.504, 1311.57, -613.766, 1340.25, -628.192, 1401, -636.999, 1466.25, -640, 1536, -640, 2304, -133, 2663, -134.95, 2661.8, -136.865, 2660.84, -138.74, 2660.13, -139.66, 2659.86, -140.569, 2659.65, -141.464, 2659.49, -142.345, 2659.38, -143.212, 2659.32, -144.063, 2659.32, -144.899, 2659.36, -145.718, 2659.45, -146.519, 2659.58, -147.302, 2659.76, -148.066, 2659.98, -148.811, 2660.24, -149.535, 2660.54, -150.238, 2660.88, -150.919, 2661.25, -151.577, 2661.66, -152.823, 2662.58, -153.969, 2663.62, -155.01, 2664.77, -155.94, 2666.02, -156.753, 2667.36, -157.442, 2668.77, -158.003, 2670.25, -158.428, 2671.78, -158.713, 2673.35, -158.852, 2674.94, -158.837, 2676.56, -158.664, 2678.17, -158.327, 2679.78, -157.819, 2681.38, -157.5, 2682.16, -157.135, 2682.94, -156.725, 2683.7, -156.269, 2684.46, -155.766, 2685.2, -155.215, 2685.92, -153.967, 2687.32, -152.519, 2688.64, -150.865, 2689.87, -149, 2691, -32, 2752, -32, 2880, -1920, 2880 )
+
+[node name="Right" parent="GameManager/BossArena/Solids" instance=ExtResource( 20 )]
+position = Vector2( 0, -3840 )
+scale = Vector2( -1, 1 )
+curve = SubResource( 15 )
+accuracy = 3
+radius = 32
+sides = 32
+
+[node name="Collision" parent="GameManager/BossArena/Solids/Right/Solid" index="0"]
+polygon = PoolVector2Array( -1920, 2880, -1920, 832, 0, 832, 0, 960, -70.4499, 962.26, -137.713, 969.017, -201.602, 980.273, -261.931, 996.026, -318.511, 1016.28, -371.156, 1041.03, -395.944, 1055.09, -419.679, 1070.28, -442.336, 1086.59, -463.892, 1104.02, -484.324, 1122.58, -503.608, 1142.27, -521.722, 1163.08, -538.641, 1185.02, -554.343, 1208.08, -568.803, 1232.26, -581.999, 1257.57, -593.907, 1284.01, -604.504, 1311.57, -613.766, 1340.25, -628.192, 1401, -636.999, 1466.25, -640, 1536, -640, 2304, -212, 2607, -313, 2752, -260, 2789, -158, 2645, -133, 2663, -134.95, 2661.8, -136.865, 2660.84, -138.74, 2660.13, -139.66, 2659.86, -140.569, 2659.65, -141.464, 2659.49, -142.345, 2659.38, -143.212, 2659.32, -144.063, 2659.32, -144.899, 2659.36, -145.718, 2659.45, -146.519, 2659.58, -147.302, 2659.76, -148.066, 2659.98, -148.811, 2660.24, -149.535, 2660.54, -150.238, 2660.88, -150.919, 2661.25, -151.577, 2661.66, -152.823, 2662.58, -153.969, 2663.62, -155.01, 2664.77, -155.94, 2666.02, -156.753, 2667.36, -157.442, 2668.77, -158.003, 2670.25, -158.428, 2671.78, -158.713, 2673.35, -158.852, 2674.94, -158.837, 2676.56, -158.664, 2678.17, -158.327, 2679.78, -157.819, 2681.38, -157.5, 2682.16, -157.135, 2682.94, -156.725, 2683.7, -156.269, 2684.46, -155.766, 2685.2, -155.215, 2685.92, -153.967, 2687.32, -152.519, 2688.64, -150.865, 2689.87, -149, 2691, -32, 2752, -32, 2880 )
+
+[node name="Poly" parent="GameManager/BossArena/Solids/Right" index="1"]
+polygon = PoolVector2Array( -1920, 2880, -1920, 832, 0, 832, 0, 960, -70.4499, 962.26, -137.713, 969.017, -201.602, 980.273, -261.931, 996.026, -318.511, 1016.28, -371.156, 1041.03, -395.944, 1055.09, -419.679, 1070.28, -442.336, 1086.59, -463.892, 1104.02, -484.324, 1122.58, -503.608, 1142.27, -521.722, 1163.08, -538.641, 1185.02, -554.343, 1208.08, -568.803, 1232.26, -581.999, 1257.57, -593.907, 1284.01, -604.504, 1311.57, -613.766, 1340.25, -628.192, 1401, -636.999, 1466.25, -640, 1536, -640, 2304, -212, 2607, -313, 2752, -260, 2789, -158, 2645, -133, 2663, -134.95, 2661.8, -136.865, 2660.84, -138.74, 2660.13, -139.66, 2659.86, -140.569, 2659.65, -141.464, 2659.49, -142.345, 2659.38, -143.212, 2659.32, -144.063, 2659.32, -144.899, 2659.36, -145.718, 2659.45, -146.519, 2659.58, -147.302, 2659.76, -148.066, 2659.98, -148.811, 2660.24, -149.535, 2660.54, -150.238, 2660.88, -150.919, 2661.25, -151.577, 2661.66, -152.823, 2662.58, -153.969, 2663.62, -155.01, 2664.77, -155.94, 2666.02, -156.753, 2667.36, -157.442, 2668.77, -158.003, 2670.25, -158.428, 2671.78, -158.713, 2673.35, -158.852, 2674.94, -158.837, 2676.56, -158.664, 2678.17, -158.327, 2679.78, -157.819, 2681.38, -157.5, 2682.16, -157.135, 2682.94, -156.725, 2683.7, -156.269, 2684.46, -155.766, 2685.2, -155.215, 2685.92, -153.967, 2687.32, -152.519, 2688.64, -150.865, 2689.87, -149, 2691, -32, 2752, -32, 2880 )
+
+[node name="Line" parent="GameManager/BossArena/Solids/Right" index="2"]
+points = PoolVector2Array( -1920, 2880, -1920, 832, 0, 832, 0, 960, -70.4499, 962.26, -137.713, 969.017, -201.602, 980.273, -261.931, 996.026, -318.511, 1016.28, -371.156, 1041.03, -395.944, 1055.09, -419.679, 1070.28, -442.336, 1086.59, -463.892, 1104.02, -484.324, 1122.58, -503.608, 1142.27, -521.722, 1163.08, -538.641, 1185.02, -554.343, 1208.08, -568.803, 1232.26, -581.999, 1257.57, -593.907, 1284.01, -604.504, 1311.57, -613.766, 1340.25, -628.192, 1401, -636.999, 1466.25, -640, 1536, -640, 2304, -212, 2607, -313, 2752, -260, 2789, -158, 2645, -133, 2663, -134.95, 2661.8, -136.865, 2660.84, -138.74, 2660.13, -139.66, 2659.86, -140.569, 2659.65, -141.464, 2659.49, -142.345, 2659.38, -143.212, 2659.32, -144.063, 2659.32, -144.899, 2659.36, -145.718, 2659.45, -146.519, 2659.58, -147.302, 2659.76, -148.066, 2659.98, -148.811, 2660.24, -149.535, 2660.54, -150.238, 2660.88, -150.919, 2661.25, -151.577, 2661.66, -152.823, 2662.58, -153.969, 2663.62, -155.01, 2664.77, -155.94, 2666.02, -156.753, 2667.36, -157.442, 2668.77, -158.003, 2670.25, -158.428, 2671.78, -158.713, 2673.35, -158.852, 2674.94, -158.837, 2676.56, -158.664, 2678.17, -158.327, 2679.78, -157.819, 2681.38, -157.5, 2682.16, -157.135, 2682.94, -156.725, 2683.7, -156.269, 2684.46, -155.766, 2685.2, -155.215, 2685.92, -153.967, 2687.32, -152.519, 2688.64, -150.865, 2689.87, -149, 2691, -32, 2752, -32, 2880, -1920, 2880 )
+
+[node name="DefaultPieces" type="Node" parent="GameManager/BossArena"]
+
+[node name="FlipperR" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 23 )]
+position = Vector2( 136, -1160 )
+rotation = -0.610865
+restAngle = -35
+
+[node name="FlipperL" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 23 )]
+position = Vector2( -136, -1160 )
+rotation = 0.610865
+scale = Vector2( -1, 1 )
+LeftFlipper = true
+restAngle = -35
+
+[node name="Launcher" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 21 )]
+position = Vector2( 259, -1109 )
+rotation = -0.610865
+Force = 150
+
+[node name="LaunchGate" parent="GameManager/BossArena/DefaultPieces" instance=ExtResource( 22 )]
+position = Vector2( 193, -1207 )
+rotation = -0.610865
+physics_material_override = SubResource( 16 )
+
+[node name="LevelUtilities" parent="GameManager" instance=ExtResource( 12 )]
+
+[node name="LightsMeta" parent="GameManager" instance=ExtResource( 32 )]
+
+[node name="HUD" parent="GameManager" instance=ExtResource( 13 )]
+layer = 113
+
+[node name="SkillsMan" parent="GameManager" instance=ExtResource( 10 )]
+
+[node name="BallHandler" parent="GameManager" instance=ExtResource( 11 )]
+
+[connection signal="cheatDamage" from="." to="EventManager" method="addDamage"]
+[connection signal="LevelEvent" from="EventManager" to="." method="_on_LevelEvent"]
+[connection signal="LevelEvent" from="EventManager" to="CompMan" method="event"]
+[connection signal="LevelEvent" from="EventManager" to="GameManager" method="_on_LevelEvent"]
+[connection signal="LevelEvent" from="EventManager" to="GameManager/Tier1" method="event"]
+[connection signal="LevelEvent" from="EventManager" to="GameManager/Tier2" method="event"]
+[connection signal="LevelEvent" from="EventManager" to="GameManager/BossArena" method="event"]
+[connection signal="MetaEvent" from="EventManager" to="." method="_on_MetaEvent"]
+[connection signal="MetaEvent" from="EventManager" to="Menus" method="event"]
+[connection signal="EndGame" from="GameManager" to="EventManager" method="endGame"]
+[connection signal="ballDied" from="GameManager/Tier1/AreaTriggers/DeathTrigger" to="EventManager" method="ballDeath"]
+[connection signal="body_entered" from="GameManager/Tier1/AreaTriggers/DeathTrigger" to="GameManager/Tier1/AreaTriggers/DeathTrigger" method="_on_DeathTrigger_body_entered"]
+[connection signal="body_entered" from="GameManager/Tier1/AreaTriggers/Tier1Trigger" to="EventManager" method="tierTrigger" binds= [ 1, true ]]
+[connection signal="body_entered" from="GameManager/Tier1/AreaTriggers/Tier1Trigger" to="GameManager/Tier1" method="setSleep" binds= [ false ]]
+[connection signal="body_exited" from="GameManager/Tier1/AreaTriggers/Tier1Trigger" to="EventManager" method="tierTrigger" binds= [ 1, false ]]
+[connection signal="body_exited" from="GameManager/Tier1/AreaTriggers/Tier1Trigger" to="GameManager/Tier1" method="setSleep" binds= [ true ]]
+[connection signal="body_exited" from="GameManager/Tier1/AreaTriggers/LaunchTube" to="EventManager" method="ballLaunched" binds= [ 1 ]]
+[connection signal="body_entered" from="GameManager/Tier2/AreaTriggers/Tier2Trigger" to="EventManager" method="tierTrigger" binds= [ 2, true ]]
+[connection signal="body_entered" from="GameManager/Tier2/AreaTriggers/Tier2Trigger" to="GameManager/Tier2" method="setSleep" binds= [ false ]]
+[connection signal="body_exited" from="GameManager/Tier2/AreaTriggers/Tier2Trigger" to="EventManager" method="tierTrigger" binds= [ 2, false ]]
+[connection signal="body_exited" from="GameManager/Tier2/AreaTriggers/Tier2Trigger" to="GameManager/Tier2" method="setSleep" binds= [ true ]]
+[connection signal="body_exited" from="GameManager/Tier2/AreaTriggers/LaunchTube" to="EventManager" method="ballLaunched" binds= [ 2 ]]
+[connection signal="Win" from="GameManager/BossArena/BossPanel" to="EventManager" method="endGame"]
+[connection signal="body_entered" from="GameManager/BossArena/AreaTriggers/BossTrigger" to="EventManager" method="tierTrigger" binds= [ 3, true ]]
+[connection signal="body_entered" from="GameManager/BossArena/AreaTriggers/BossTrigger" to="GameManager/BossArena" method="setSleep" binds= [ false ]]
+[connection signal="body_exited" from="GameManager/BossArena/AreaTriggers/BossTrigger" to="EventManager" method="tierTrigger" binds= [ 3, false ]]
+[connection signal="body_exited" from="GameManager/BossArena/AreaTriggers/BossTrigger" to="GameManager/BossArena" method="setSleep" binds= [ true ]]
+[connection signal="body_exited" from="GameManager/BossArena/AreaTriggers/LaunchTube" to="EventManager" method="ballLaunched" binds= [ 3 ]]
+[connection signal="ballsGone" from="GameManager/HUD" to="EventManager" method="_on_HUD_ballsGone"]
+[connection signal="skillEvent" from="GameManager/SkillsMan" to="EventManager" method="skill"]
+
+[editable path="StoryCutscene"]
+[editable path="GameManager/Tier1/Solids/Left"]
+[editable path="GameManager/Tier1/Solids/Right"]
+[editable path="GameManager/Tier1/Solids/LFunnel"]
+[editable path="GameManager/Tier1/Solids/RFunnel"]
+[editable path="GameManager/Tier2/Solids/Left"]
+[editable path="GameManager/Tier2/Solids/Right"]
+[editable path="GameManager/Tier2/Solids/LFunnel"]
+[editable path="GameManager/Tier2/Solids/RFunnel"]
+[editable path="GameManager/BossArena/Solids/Left"]
+[editable path="GameManager/BossArena/Solids/Right"]

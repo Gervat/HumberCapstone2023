@@ -1,0 +1,1060 @@
+[gd_scene load_steps=43 format=2]
+
+[ext_resource path="res://UI/HUD/Resource/IMG/Cortana2_Alert.png" type="Texture" id=1]
+[ext_resource path="res://UI/HUD/Resource/HUDManager.gd" type="Script" id=2]
+[ext_resource path="res://HotkeyIcon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/HUD/Resource/IMG/Cortana2_Placeholder.png" type="Texture" id=4]
+[ext_resource path="res://UI/HUD/Resource/IMG/HUD_Rescale_Mar2023_v3.png" type="Texture" id=5]
+[ext_resource path="res://UI/HUD/Resource/IMG/DialogueWindow2_Placeholder-export.png" type="Texture" id=6]
+[ext_resource path="res://UI/HUD/Resource/IMG/Cortana2_Checkmark.png" type="Texture" id=9]
+[ext_resource path="res://UI/HUD/Resource/Hotkeys.gd" type="Script" id=14]
+[ext_resource path="res://UI/HUD/Resource/IMG/Circle2.png" type="Texture" id=15]
+[ext_resource path="res://UI/HUD/Resource/IMG/Circle.png" type="Texture" id=16]
+[ext_resource path="res://UI/HUD/Resource/Decal.gd" type="Script" id=17]
+[ext_resource path="res://Resources/Shaders/RadialProgress.material" type="Material" id=18]
+[ext_resource path="res://UI/HUD/Resource/IMG/Speedometer_Left_Fill.png" type="Texture" id=19]
+[ext_resource path="res://UI/HUD/Resource/IMG/Speedometer_Left_Under.png" type="Texture" id=20]
+[ext_resource path="res://UI/HUD/Resource/IMG/SPeedometer_Right_Under.png" type="Texture" id=21]
+[ext_resource path="res://UI/HUD/Resource/IMG/SPeedometer_Right_Fill.png" type="Texture" id=22]
+
+[sub_resource type="Animation" id=57]
+resource_name = "Checkmark"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.129412, 0.231373, 0.639216, 1 ), Color( 0.207843, 0.243137, 0.4, 1 ), Color( 0.129412, 0.231373, 0.639216, 1 ), Color( 0.207843, 0.243137, 0.4, 1 ), Color( 0.129412, 0.231373, 0.639216, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Checkmark:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false ]
+}
+
+[sub_resource type="Animation" id=56]
+resource_name = "Danger"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.129412, 0.231373, 0.639216, 1 ), Color( 0.0784314, 0.0980392, 0.180392, 1 ), Color( 0.129412, 0.231373, 0.639216, 1 ), Color( 0.0784314, 0.0980392, 0.180392, 1 ), Color( 0.129412, 0.231373, 0.639216, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Alert:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false ]
+}
+
+[sub_resource type="Animation" id=58]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id=54]
+resource_name = "Neutral"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.129412, 0.231373, 0.639216, 1 ), Color( 0.266667, 0.341176, 0.639216, 1 ), Color( 0.129412, 0.231373, 0.639216, 1 ), Color( 0.266667, 0.341176, 0.639216, 1 ), Color( 0.129412, 0.231373, 0.639216, 1 ) ]
+}
+
+[sub_resource type="Animation" id=55]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.129412, 0.231373, 0.639216, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Alert:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Checkmark:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="RichTextEffect" id=76]
+
+[sub_resource type="Gradient" id=32]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=33]
+gradient = SubResource( 32 )
+
+[sub_resource type="Gradient" id=34]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=35]
+gradient = SubResource( 34 )
+
+[sub_resource type="Gradient" id=36]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=37]
+gradient = SubResource( 36 )
+
+[sub_resource type="Gradient" id=40]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=41]
+gradient = SubResource( 40 )
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+const float PI = 3.141592656;
+
+uniform sampler2D fill_texture_overlay;
+uniform sampler2D bg_texture;
+uniform float fill_ratio:hint_range(0., 1.) = 1.;
+uniform float start_angle:hint_range(0., 360.) = 0.;
+uniform float max_angle:hint_range(0., 360.) = 360.;
+uniform bool invert_fill = false;
+uniform bool reflect_x = false;
+uniform bool reflect_y = false;
+uniform vec2 offset = vec2(0., 0.);
+
+mat2 tex_rotate(float _angle){
+	return mat2(vec2(cos(_angle), -sin(_angle)), vec2(sin(_angle), cos(_angle)));
+}
+
+void fragment() {
+	float fill_angle = radians(fill_ratio * max_angle);
+	vec2 uv = ((UV * 2. - 1.) + offset) * tex_rotate(-radians(start_angle));
+	
+	if (reflect_x) {
+		uv *= mat2(vec2(1., 0.), vec2(0., 1.));
+	}
+	if (reflect_y) {
+		uv *= mat2(vec2(1., 0.), vec2(0., -1.));
+	}
+		
+	if ((!invert_fill && atan(uv.x, uv.y) + PI < fill_angle) || (invert_fill && atan(uv.x, uv.y) + PI > fill_angle)) {
+		COLOR = texture(TEXTURE, UV) * texture(fill_texture_overlay, UV);
+	} else {
+		COLOR = texture(bg_texture, UV);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=63]
+shader = SubResource( 1 )
+shader_param/fill_ratio = 1.0
+shader_param/start_angle = 0.0
+shader_param/max_angle = 360.0
+shader_param/invert_fill = true
+shader_param/reflect_x = false
+shader_param/reflect_y = false
+shader_param/offset = Vector2( 0, 0 )
+shader_param/fill_texture_overlay = ExtResource( 15 )
+shader_param/bg_texture = ExtResource( 16 )
+
+[sub_resource type="ShaderMaterial" id=67]
+shader = SubResource( 1 )
+shader_param/fill_ratio = 0.0
+shader_param/start_angle = 0.0
+shader_param/max_angle = 360.0
+shader_param/invert_fill = false
+shader_param/reflect_x = false
+shader_param/reflect_y = false
+shader_param/offset = Vector2( 0, 0 )
+shader_param/fill_texture_overlay = ExtResource( 15 )
+shader_param/bg_texture = ExtResource( 16 )
+
+[sub_resource type="Animation" id=64]
+resource_name = "FillCircle1"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Circle01/Circle_1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Circle01/Circle_1:material:shader_param/fill_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Circle01/Circle_1:material:shader_param/invert_fill")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Circle01/Circle_2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Circle01/Circle_2:material:shader_param/invert_fill")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Circle01/Circle_2:material:shader_param/fill_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 2.5, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Shader" id=68]
+code = "shader_type canvas_item;
+
+const float PI = 3.141592656;
+
+uniform sampler2D fill_texture_overlay;
+uniform sampler2D bg_texture;
+uniform float fill_ratio:hint_range(0., 1.) = 1.;
+uniform float start_angle:hint_range(0., 360.) = 0.;
+uniform float max_angle:hint_range(0., 360.) = 360.;
+uniform bool invert_fill = false;
+uniform bool reflect_x = false;
+uniform bool reflect_y = false;
+uniform vec2 offset = vec2(0., 0.);
+
+mat2 tex_rotate(float _angle){
+	return mat2(vec2(cos(_angle), -sin(_angle)), vec2(sin(_angle), cos(_angle)));
+}
+
+void fragment() {
+	float fill_angle = radians(fill_ratio * max_angle);
+	vec2 uv = ((UV * 2. - 1.) + offset) * tex_rotate(-radians(start_angle));
+	
+	if (reflect_x) {
+		uv *= mat2(vec2(1., 0.), vec2(0., 1.));
+	}
+	if (reflect_y) {
+		uv *= mat2(vec2(1., 0.), vec2(0., -1.));
+	}
+		
+	if ((!invert_fill && atan(uv.x, uv.y) + PI < fill_angle) || (invert_fill && atan(uv.x, uv.y) + PI > fill_angle)) {
+		COLOR = texture(TEXTURE, UV) * texture(fill_texture_overlay, UV);
+	} else {
+		COLOR = texture(bg_texture, UV);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=73]
+shader = SubResource( 68 )
+shader_param/fill_ratio = 1.0
+shader_param/start_angle = 0.0
+shader_param/max_angle = 360.0
+shader_param/invert_fill = false
+shader_param/reflect_x = false
+shader_param/reflect_y = false
+shader_param/offset = Vector2( 0, 0 )
+shader_param/fill_texture_overlay = ExtResource( 16 )
+shader_param/bg_texture = ExtResource( 15 )
+
+[sub_resource type="Animation" id=74]
+resource_name = "FillCircle3"
+length = 5.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Circle_1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Circle_1:material:shader_param/fill_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 2.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Circle_1:material:shader_param/invert_fill")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Circle_2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Circle_2:material:shader_param/fill_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2.7, 5.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Circle_2:material:shader_param/invert_fill")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 2.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=75]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Circle_1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Circle_1:material:shader_param/fill_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Circle_1:material:shader_param/invert_fill")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Circle_2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Circle_2:material:shader_param/fill_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Circle_2:material:shader_param/invert_fill")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="ShaderMaterial" id=69]
+shader = SubResource( 68 )
+shader_param/fill_ratio = 1.0
+shader_param/start_angle = 0.0
+shader_param/max_angle = 360.0
+shader_param/invert_fill = false
+shader_param/reflect_x = false
+shader_param/reflect_y = false
+shader_param/offset = Vector2( 0, 0 )
+shader_param/fill_texture_overlay = ExtResource( 16 )
+shader_param/bg_texture = ExtResource( 15 )
+
+[sub_resource type="ShaderMaterial" id=70]
+shader = SubResource( 68 )
+shader_param/fill_ratio = 1.0
+shader_param/start_angle = 0.0
+shader_param/max_angle = 360.0
+shader_param/invert_fill = false
+shader_param/reflect_x = false
+shader_param/reflect_y = false
+shader_param/offset = Vector2( 0, 0 )
+shader_param/fill_texture_overlay = ExtResource( 16 )
+shader_param/bg_texture = ExtResource( 15 )
+
+[sub_resource type="Animation" id=71]
+resource_name = "FillCircle2"
+length = 5.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Circle_1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Circle_1:material:shader_param/fill_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 2.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Circle_1:material:shader_param/invert_fill")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Circle_2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Circle_2:material:shader_param/invert_fill")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Circle_2:material:shader_param/fill_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 2.6, 5.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=72]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Circle_1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Circle_1:material:shader_param/fill_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Circle_1:material:shader_param/invert_fill")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Circle_2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Circle_2:material:shader_param/invert_fill")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Circle_2:material:shader_param/fill_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[node name="HUD" type="CanvasLayer"]
+pause_mode = 1
+layer = 128
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": "Handles HUD and scorekeep"
+}
+
+[node name="Score" type="Label" parent="."]
+modulate = Color( 0.137255, 0.682353, 0.756863, 1 )
+light_mask = 64
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 182.0
+margin_bottom = 46.0
+rect_scale = Vector2( 3, 3 )
+text = "000000000"
+align = 1
+valign = 1
+
+[node name="CC" type="Label" parent="."]
+modulate = Color( 0.137255, 0.682353, 0.756863, 1 )
+light_mask = 64
+margin_left = 8.416
+margin_top = 144.98
+margin_right = 60.416
+margin_bottom = 174.98
+rect_scale = Vector2( 2, 2 )
+text = "cc:"
+
+[node name="MX" type="Label" parent="."]
+modulate = Color( 0.137255, 0.682353, 0.756863, 1 )
+light_mask = 64
+margin_left = 118.279
+margin_top = 150.952
+margin_right = 162.279
+margin_bottom = 180.952
+rect_scale = Vector2( 2, 2 )
+text = "00"
+
+[node name="BC" type="Label" parent="."]
+modulate = Color( 0.137255, 0.682353, 0.756863, 1 )
+light_mask = 64
+margin_left = 10.0
+margin_top = 194.738
+margin_right = 62.0
+margin_bottom = 224.738
+rect_scale = Vector2( 2, 2 )
+text = "bc:"
+
+[node name="Balls" type="Label" parent="."]
+modulate = Color( 0.137255, 0.682353, 0.756863, 1 )
+light_mask = 64
+margin_left = 118.28
+margin_top = 201.076
+margin_right = 162.28
+margin_bottom = 231.076
+rect_scale = Vector2( 2, 2 )
+text = "00"
+
+[node name="ScoreTween" type="Tween" parent="."]
+
+[node name="ComboTimeout" type="Timer" parent="."]
+pause_mode = 1
+wait_time = 5.0
+one_shot = true
+
+[node name="Skills" type="Node2D" parent="."]
+script = ExtResource( 14 )
+
+[node name="SkillIconN" parent="Skills" instance=ExtResource( 3 )]
+position = Vector2( 160, 880 )
+
+[node name="SkillIconE" parent="Skills" instance=ExtResource( 3 )]
+position = Vector2( 232, 952 )
+
+[node name="SkillIconS" parent="Skills" instance=ExtResource( 3 )]
+position = Vector2( 160, 1024 )
+
+[node name="SkillIconW" parent="Skills" instance=ExtResource( 3 )]
+position = Vector2( 88, 952 )
+
+[node name="Dialogue" type="Node2D" parent="."]
+
+[node name="Cortana" type="Sprite" parent="Dialogue"]
+modulate = Color( 0.129412, 0.231373, 0.639216, 1 )
+light_mask = 64
+position = Vector2( 1364.05, 120 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Dialogue/Cortana"]
+anims/Checkmark = SubResource( 57 )
+anims/Danger = SubResource( 56 )
+anims/Idle = SubResource( 58 )
+anims/Neutral = SubResource( 54 )
+anims/RESET = SubResource( 55 )
+
+[node name="Alert" type="Sprite" parent="Dialogue/Cortana"]
+visible = false
+modulate = Color( 1, 0, 0, 1 )
+light_mask = 128
+texture = ExtResource( 1 )
+
+[node name="Checkmark" type="Sprite" parent="Dialogue/Cortana"]
+visible = false
+modulate = Color( 0.101961, 1, 0, 1 )
+light_mask = 128
+texture = ExtResource( 9 )
+
+[node name="DialogueWindow" type="Sprite" parent="Dialogue"]
+modulate = Color( 0.129412, 0.231373, 0.639216, 1 )
+light_mask = 64
+position = Vector2( 1690.76, 120 )
+texture = ExtResource( 6 )
+
+[node name="CompText" type="RichTextLabel" parent="Dialogue"]
+modulate = Color( 0.137255, 0.682353, 0.756863, 1 )
+light_mask = 64
+margin_left = 1486.0
+margin_top = 25.0
+margin_right = 1900.0
+margin_bottom = 223.0
+text = "[Static]"
+scroll_active = false
+custom_effects = [ SubResource( 76 ) ]
+
+[node name="Connection Established" type="Label" parent="Dialogue"]
+modulate = Color( 0.203922, 0.584314, 0.498039, 0.333333 )
+light_mask = 32
+margin_left = 1376.0
+margin_top = 284.0
+margin_right = 1909.0
+margin_bottom = 314.0
+text = "Connection Established: Athena"
+align = 1
+valign = 1
+
+[node name="Lights" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="WhiteLight_Low" type="Light2D" parent="Lights"]
+position = Vector2( 959, 541.25 )
+scale = Vector2( 0.938477, 1083.5 )
+texture = SubResource( 33 )
+energy = 0.75
+range_layer_min = 1
+range_layer_max = 500
+range_item_cull_mask = 32
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="WhiteLight_Med" type="Light2D" parent="Lights"]
+position = Vector2( 1001, 568.75 )
+scale = Vector2( 0.980467, 1138.5 )
+texture = SubResource( 35 )
+energy = 1.25
+range_layer_min = 50
+range_layer_max = 500
+range_item_cull_mask = 64
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="WhiteLight_High" type="Light2D" parent="Lights"]
+light_mask = 128
+position = Vector2( 1008, 567.25 )
+scale = Vector2( 0.982423, 1135.5 )
+texture = SubResource( 37 )
+energy = 2.0
+range_layer_min = 50
+range_layer_max = 500
+range_item_cull_mask = 128
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HUD_Light" type="Light2D" parent="Lights"]
+position = Vector2( 956, 546.625 )
+scale = Vector2( 1, 1123.25 )
+texture = SubResource( 41 )
+color = Color( 0.180392, 0.392157, 0.662745, 1 )
+energy = 9.38
+range_layer_min = 50
+range_layer_max = 500
+range_item_cull_mask = 2048
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Audio Visualizer" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SongName" type="Label" parent="Audio Visualizer"]
+modulate = Color( 0.203922, 0.584314, 0.498039, 0.333333 )
+light_mask = 32
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1154.0
+margin_top = 1005.0
+margin_right = -50.0
+margin_bottom = -12.0
+grow_horizontal = 0
+text = "Song Name"
+align = 2
+valign = 1
+
+[node name="Decal" type="Node2D" parent="."]
+pause_mode = 1
+light_mask = 0
+script = ExtResource( 17 )
+
+[node name="Circle01" type="Control" parent="Decal"]
+margin_left = 150.0
+margin_top = 387.0
+margin_right = 190.0
+margin_bottom = 427.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Circle_1" type="TextureRect" parent="Decal/Circle01"]
+modulate = Color( 0.164706, 0.301961, 0.619608, 0.372549 )
+light_mask = 128
+material = SubResource( 63 )
+margin_left = 362.0
+margin_top = 765.0
+margin_right = 662.0
+margin_bottom = 1065.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 16 )
+
+[node name="Circle_2" type="TextureRect" parent="Decal/Circle01"]
+visible = false
+modulate = Color( 0.164706, 0.301961, 0.619608, 0.372549 )
+light_mask = 128
+material = SubResource( 67 )
+margin_left = 362.0
+margin_top = 765.0
+margin_right = 662.0
+margin_bottom = 1065.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Decal/Circle01"]
+pause_mode = 1
+root_node = NodePath("../..")
+autoplay = "FillCircle1"
+anims/FillCircle1 = SubResource( 64 )
+
+[node name="Circle02" type="Control" parent="Decal"]
+margin_left = 363.0
+margin_top = 892.0
+margin_right = 403.0
+margin_bottom = 932.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Circle_1" type="TextureRect" parent="Decal/Circle02"]
+modulate = Color( 0.164706, 0.301961, 0.619608, 0.372549 )
+light_mask = 128
+material = ExtResource( 18 )
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 16 )
+
+[node name="Circle_2" type="TextureRect" parent="Decal/Circle02"]
+visible = false
+modulate = Color( 0.164706, 0.301961, 0.619608, 0.372549 )
+light_mask = 128
+material = SubResource( 73 )
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Decal/Circle02"]
+autoplay = "FillCircle3"
+playback_speed = 1.5
+anims/FillCircle3 = SubResource( 74 )
+anims/RESET = SubResource( 75 )
+
+[node name="Circle03" type="Control" parent="Decal"]
+margin_left = 390.0
+margin_top = 1003.0
+margin_right = 430.0
+margin_bottom = 1043.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Circle_1" type="TextureRect" parent="Decal/Circle03"]
+modulate = Color( 0.164706, 0.301961, 0.619608, 0.372549 )
+light_mask = 128
+material = SubResource( 69 )
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 16 )
+
+[node name="Circle_2" type="TextureRect" parent="Decal/Circle03"]
+visible = false
+modulate = Color( 0.164706, 0.301961, 0.619608, 0.372549 )
+light_mask = 128
+material = SubResource( 70 )
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Decal/Circle03"]
+autoplay = "FillCircle2"
+playback_speed = 0.75
+anims/FillCircle2 = SubResource( 71 )
+anims/RESET = SubResource( 72 )
+
+[node name="Speedometer" type="Node2D" parent="."]
+
+[node name="Speed" type="Label" parent="Speedometer"]
+modulate = Color( 0.203922, 0.584314, 0.498039, 0.333333 )
+light_mask = 32
+margin_left = 21.0
+margin_top = 355.0
+margin_right = 79.0
+margin_bottom = 385.0
+rect_scale = Vector2( 1.00122, 0.97256 )
+text = "000"
+
+[node name="Km H" type="Label" parent="Speedometer"]
+modulate = Color( 0.203922, 0.584314, 0.498039, 0.333333 )
+light_mask = 32
+margin_left = 84.0
+margin_top = 355.0
+margin_right = 217.0
+margin_bottom = 385.0
+text = "Kmph"
+
+[node name="Speed_Left" type="TextureProgress" parent="Speedometer"]
+modulate = Color( 0.164706, 0.301961, 0.619608, 1 )
+light_mask = 32
+margin_top = 272.0
+margin_right = 191.0
+margin_bottom = 336.0
+max_value = 50.0
+value = 50.0
+texture_under = ExtResource( 20 )
+texture_progress = ExtResource( 19 )
+
+[node name="Speed_Right" type="TextureProgress" parent="Speedometer"]
+modulate = Color( 0.164706, 0.301961, 0.619608, 1 )
+light_mask = 32
+margin_left = 194.0
+margin_top = 144.0
+margin_right = 342.0
+margin_bottom = 336.0
+min_value = 50.0
+value = 75.0
+texture_under = ExtResource( 21 )
+texture_progress = ExtResource( 22 )
+
+[node name="Tween" type="Tween" parent="Speedometer"]
+
+[node name="HUD" type="Node2D" parent="."]
+
+[node name="HUD_Rect" type="TextureRect" parent="HUD"]
+modulate = Color( 0.243137, 0.243137, 0.243137, 0.027451 )
+light_mask = 2048
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HUD_Corner" type="Polygon2D" parent="HUD"]
+modulate = Color( 0.243137, 0.243137, 0.243137, 0.027451 )
+light_mask = 2048
+polygon = PoolVector2Array( 600, 0, 0, 0, 0, 5, 600, 5 )
+
+[connection signal="timeout" from="ComboTimeout" to="." method="_on_ComboTimeout_timeout"]

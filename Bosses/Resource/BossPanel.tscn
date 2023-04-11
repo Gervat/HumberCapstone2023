@@ -1,0 +1,584 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Resources/Fonts/ClassicArcadeFont32.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Bosses/Resource/BossPanel.gd" type="Script" id=2]
+[ext_resource path="res://InteractivePiece/_Master/Resource/BrickSmallDark0012_1_download600.jpg" type="Texture" id=3]
+[ext_resource path="res://Resources/Fonts/MovieTheatreFont.tres" type="DynamicFont" id=4]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color_gap: hint_color = vec4(0.25);
+uniform vec4 color_stripe: hint_color = vec4(1.0, 0.75, 0.0, 1.0);
+uniform float divisions = 8.0; // increase for more stripe density
+uniform float stripe_bias = 2.5; // 1.0 means no stripes; 2.0 means stripes and gaps are equal size
+uniform float speed = 0.1;
+uniform float angle = 0.7854; // in radians
+
+void fragment() {
+	float w = cos(angle) * UV.x + sin(angle) * UV.y - speed * TIME;
+	if (floor(mod(w * divisions, stripe_bias)) < 0.0001) {
+		COLOR = color_gap;
+	} else {
+		COLOR = color_stripe;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 1 )
+shader_param/color_gap = Color( 0.609375, 0.152941, 0, 1 )
+shader_param/color_stripe = Color( 0.332031, 0.0833332, 0, 1 )
+shader_param/divisions = 15.79
+shader_param/stripe_bias = 2.0
+shader_param/speed = 0.099
+shader_param/angle = 0.081
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 1 )
+shader_param/color_gap = Color( 0.14902, 0.160784, 0.00392157, 1 )
+shader_param/color_stripe = Color( 0.00784314, 0.0156863, 0, 1 )
+shader_param/divisions = 15.79
+shader_param/stripe_bias = 2.0
+shader_param/speed = 0.099
+shader_param/angle = 0.081
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform vec4 color_gap: hint_color = vec4(0.25);
+uniform vec4 color_stripe: hint_color = vec4(1.0, 0.75, 0.0, 1.0);
+uniform float divisions = 8.0; // increase for more stripe density
+uniform float stripe_bias = 2.5; // 1.0 means no stripes; 2.0 means stripes and gaps are equal size
+uniform float speed = 0.1;
+uniform float angle = 0.7854; // in radians
+
+void fragment() {
+	float w = cos(angle) * UV.x + sin(angle) * UV.y - speed * TIME;
+	if (floor(mod(w * divisions, stripe_bias)) < 0.0001) {
+		COLOR = color_gap;
+	} else {
+		COLOR = color_stripe;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 7 )
+shader_param/color_gap = Color( 0, 0.0470588, 0.0470588, 1 )
+shader_param/color_stripe = Color( 0, 0.113725, 0.113725, 1 )
+shader_param/divisions = 15.79
+shader_param/stripe_bias = 2.0
+shader_param/speed = 0.1
+shader_param/angle = 0.081
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=4]
+gradient = SubResource( 5 )
+width = 432
+height = 48
+use_hdr = true
+
+[sub_resource type="Shader" id=9]
+code = "/*
+Shader from Godot Shaders - the free shader library.
+godotshaders.com/shader/VHS-and-CRT-monitor-effect
+
+This shader is under CC0 license. Feel free to use, improve and 
+change this shader according to your needs and consider sharing 
+the modified result to godotshaders.com.
+*/
+
+shader_type canvas_item;
+
+//*** IMPORTANT! ***/ 
+// - If you are using this shader to affect the node it is applied to set 'overlay' to false (unchecked in the instepctor).
+// - If you are using this shader as an overlay, and want the shader to affect the nodes below in the Scene hierarchy,
+//   set 'overlay' to true (checked in the inspector).
+// On Mac there is potentially a bug causing this to not work properly. If that is the case and you want to use the shader as an overlay
+// change all \"overlay ? SCREEN_TEXTURE : TEXTURE\" to only \"SCREEN_TEXTURE\" on lines 129-140, and \"vec2 uv = overlay ? warp(SCREEN_UV) : warp(UV);\"
+// to \"vec2 uv = warp(SCREEN_UV);\" on line 98.
+uniform bool overlay = false;
+
+uniform float scanlines_opacity : hint_range(0.0, 1.0) = 0.4;
+uniform float scanlines_width : hint_range(0.0, 0.5) = 0.25;
+uniform float grille_opacity : hint_range(0.0, 1.0) = 0.3;
+uniform vec2 resolution = vec2(640.0, 480.0); // Set the number of rows and columns the texture will be divided in. Scanlines and grille will make a square based on these values
+
+uniform bool pixelate = true; // Fill each square (\"pixel\") with a sampled color, creating a pixel look and a more accurate representation of how a CRT monitor would work.
+
+uniform bool roll = true;
+uniform float roll_speed = 8.0; // Positive values are down, negative are up
+uniform float roll_size : hint_range(0.0, 100.0) = 15.0;
+uniform float roll_variation : hint_range(0.1, 5.0) = 1.8; // This valie is not an exact science. You have to play around with the value to find a look you like. How this works is explained in the code below.
+uniform float distort_intensity : hint_range(0.0, 0.2) = 0.05; // The distortion created by the rolling effect.
+
+uniform float noise_opacity : hint_range(0.0, 1.0) = 0.4;
+uniform float noise_speed = 5.0; // There is a movement in the noise pattern that can be hard to see first. This sets the speed of that movement.
+
+uniform float static_noise_intensity : hint_range(0.0, 1.0) = 0.06;
+
+uniform float aberration : hint_range(-1.0, 1.0) = 0.03; // Chromatic aberration, a distortion on each color channel.
+uniform float brightness = 1.4; // When adding scanline gaps and grille the image can get very dark. Brightness tries to compensate for that.
+uniform bool discolor = true; // Add a discolor effect simulating a VHS
+
+uniform float warp_amount :hint_range(0.0, 5.0) = 1.0; // Warp the texture edges simulating the curved glass of a CRT monitor or old TV.
+uniform bool clip_warp = false;
+
+uniform float vignette_intensity = 0.4; // Size of the vignette, how far towards the middle it should go.
+uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
+
+// Used by the noise functin to generate a pseudo random value between 0.0 and 1.0
+vec2 random(vec2 uv){
+    uv = vec2( dot(uv, vec2(127.1,311.7) ),
+               dot(uv, vec2(269.5,183.3) ) );
+    return -1.0 + 2.0 * fract(sin(uv) * 43758.5453123);
+}
+
+// Generate a Perlin noise used by the distortion effects
+float noise(vec2 uv) {
+    vec2 uv_index = floor(uv);
+    vec2 uv_fract = fract(uv);
+
+    vec2 blur = smoothstep(0.0, 1.0, uv_fract);
+
+    return mix( mix( dot( random(uv_index + vec2(0.0,0.0) ), uv_fract - vec2(0.0,0.0) ),
+                     dot( random(uv_index + vec2(1.0,0.0) ), uv_fract - vec2(1.0,0.0) ), blur.x),
+                mix( dot( random(uv_index + vec2(0.0,1.0) ), uv_fract - vec2(0.0,1.0) ),
+                     dot( random(uv_index + vec2(1.0,1.0) ), uv_fract - vec2(1.0,1.0) ), blur.x), blur.y) * 0.5 + 0.5;
+}
+
+// Takes in the UV and warps the edges, creating the spherized effect
+vec2 warp(vec2 uv){
+	vec2 delta = uv - 0.5;
+	float delta2 = dot(delta.xy, delta.xy);
+	float delta4 = delta2 * delta2;
+	float delta_offset = delta4 * warp_amount;
+	
+	return uv + delta * delta_offset;
+}
+
+// Adds a black border to hide stretched pixel created by the warp effect
+float border (vec2 uv){
+	float radius = min(warp_amount, 0.08);
+	radius = max(min(min(abs(radius * 2.0), abs(1.0)), abs(1.0)), 1e-5);
+	vec2 abs_uv = abs(uv * 2.0 - 1.0) - vec2(1.0, 1.0) + radius;
+	float dist = length(max(vec2(0.0), abs_uv)) / radius;
+	float square = smoothstep(0.96, 1.0, dist);
+	return clamp(1.0 - square, 0.0, 1.0);
+}
+
+// Adds a vignette shadow to the edges of the image
+float vignette(vec2 uv){
+	uv *= 1.0 - uv.xy;
+	float vignette = uv.x * uv.y * 15.0;
+	return pow(vignette, vignette_intensity * vignette_opacity);
+}
+
+void fragment()
+{
+	vec2 uv = overlay ? warp(SCREEN_UV) : warp(UV); // Warp the uv. uv will be used in most cases instead of UV to keep the warping
+	vec2 text_uv = uv;
+	vec2 roll_uv = vec2(0.0);
+	float time = roll ? TIME : 0.0;
+	
+
+	// Pixelate the texture based on the given resolution.
+	if (pixelate)
+	{
+		text_uv = ceil(uv * resolution) / resolution;
+	}
+	
+	// Create the rolling effect. We need roll_line a bit later to make the noise effect.
+	// That is why this runs if roll is true OR noise_opacity is over 0.
+	float roll_line = 0.0;
+	if (roll || noise_opacity > 0.0)
+	{
+		// Create the areas/lines where the texture will be distorted.
+		roll_line = smoothstep(0.3, 0.9, sin(uv.y * roll_size - (time * roll_speed) ) );
+		// Create more lines of a different size and apply to the first set of lines. This creates a bit of variation.
+		roll_line *= roll_line * smoothstep(0.3, 0.9, sin(uv.y * roll_size * roll_variation - (time * roll_speed * roll_variation) ) );
+		// Distort the UV where where the lines are
+		roll_uv = vec2(( roll_line * distort_intensity * (1.-UV.x)), 0.0);
+	}
+	
+	vec4 text;
+	if (roll)
+	{
+		// If roll is true distort the texture with roll_uv. The texture is split up into RGB to 
+		// make some chromatic aberration. We apply the aberration to the red and green channels accorging to the aberration parameter
+		// and intensify it a bit in the roll distortion.
+		text.r = texture(SCREEN_TEXTURE, text_uv + roll_uv * 0.8 + vec2(aberration, 0.0) * .1).r;
+		text.g = texture(SCREEN_TEXTURE, text_uv + roll_uv * 1.2 - vec2(aberration, 0.0) * .1 ).g;
+		text.b = texture(SCREEN_TEXTURE, text_uv + roll_uv).b;
+		text.a = 1.0;
+	}
+	else
+	{
+		// If roll is false only apply the aberration without any distorion. The aberration values are very small so the .1 is only 
+		// to make the slider in the Inspector less sensitive.
+		text.r = texture(SCREEN_TEXTURE, text_uv + vec2(aberration, 0.0) * .1).r;
+		text.g = texture(SCREEN_TEXTURE, text_uv - vec2(aberration, 0.0) * .1).g;
+		text.b = texture(SCREEN_TEXTURE, text_uv).b;
+		text.a = 1.0;
+	}
+	
+	float r = text.r;
+	float g = text.g;
+	float b = text.b;
+	
+	uv = warp(UV);
+	
+	// CRT monitors don't have pixels but groups of red, green and blue dots or lines, called grille. We isolate the texture's color channels 
+	// and divide it up in 3 offsetted lines to show the red, green and blue colors next to each other, with a small black gap between.
+	if (grille_opacity > 0.0){
+		
+		float g_r = smoothstep(0.85, 0.95, abs(sin(uv.x * (resolution.x * 3.14159265))));
+		r = mix(r, r * g_r, grille_opacity);
+		
+		float g_g = smoothstep(0.85, 0.95, abs(sin(1.05 + uv.x * (resolution.x * 3.14159265))));
+		g = mix(g, g * g_g, grille_opacity);
+		
+		float b_b = smoothstep(0.85, 0.95, abs(sin(2.1 + uv.x * (resolution.x * 3.14159265))));
+		b = mix(b, b * b_b, grille_opacity);
+		
+	}
+	
+	// Apply the grille to the texture's color channels and apply Brightness. Since the grille and the scanlines (below) make the image very dark you
+	// can compensate by increasing the brightness.
+	text.r = clamp(r * brightness, 0.0, 1.0);
+	text.g = clamp(g * brightness, 0.0, 1.0);
+	text.b = clamp(b * brightness, 0.0, 1.0);
+	
+	// Scanlines are the horizontal lines that make up the image on a CRT monitor. 
+	// Here we are actual setting the black gap between each line, which I guess is not the right definition of the word, but you get the idea  
+	float scanlines = 0.5;
+	if (scanlines_opacity > 0.0)
+	{
+		// Same technique as above, create lines with sine and applying it to the texture. Smoothstep to allow setting the line size.
+		scanlines = smoothstep(scanlines_width, scanlines_width + 0.5, abs(sin(uv.y * (resolution.y * 3.14159265))));
+		text.rgb = mix(text.rgb, text.rgb * vec3(scanlines), scanlines_opacity);
+	}
+	
+	// Apply the banded noise.
+	if (noise_opacity > 0.0)
+	{
+		// Generate a noise pattern that is very stretched horizontally, and animate it with noise_speed
+		float noise = smoothstep(0.4, 0.5, noise(uv * vec2(2.0, 200.0) + vec2(10.0, (TIME * (noise_speed))) ) );
+		
+		// We use roll_line (set above) to define how big the noise should be vertically (multiplying cuts off all black parts).
+		// We also add in some basic noise with random() to break up the noise pattern above. The noise is sized according to 
+		// the resolution value set in the inspector. If you don't like this look you can 
+		// change \"ceil(uv * resolution) / resolution\" to only \"uv\" to make it less pixelated. Or multiply resolution with som value
+		// greater than 1.0 to make them smaller.
+		roll_line *= noise * scanlines * clamp(random((ceil(uv * resolution) / resolution) + vec2(TIME * 0.8, 0.0)).x + 0.8, 0.0, 1.0);
+		// Add it to the texture based on noise_opacity
+		text.rgb = clamp(mix(text.rgb, text.rgb + roll_line, noise_opacity), vec3(0.0), vec3(1.0));
+	}
+	
+	// Apply static noise by generating it over the whole screen in the same way as above
+	if (static_noise_intensity > 0.0)
+	{
+		text.rgb += clamp(random((ceil(uv * resolution) / resolution) + fract(TIME)).x, 0.0, 1.0) * static_noise_intensity;
+	}
+	
+	// Apply a black border to hide imperfections caused by the warping.
+	// Also apply the vignette
+	text.rgb *= border(uv);
+	text.rgb *= vignette(uv);
+	// Hides the black border and make that area transparent. Good if you want to add the the texture on top an image of a TV or monitor.
+	if (clip_warp)
+	{
+		text.a = border(uv);
+	}
+	
+	// Apply discoloration to get a VHS look (lower saturation and higher contrast)
+	// You can play with the values below or expose them in the Inspector.
+	float saturation = 0.5;
+	float contrast = 1.2;
+	if (discolor)
+	{
+		// Saturation
+		vec3 greyscale = vec3(text.r + text.g + text.b) / 3.;
+		text.rgb = mix(text.rgb, greyscale, saturation);
+		
+		// Contrast
+		float midpoint = pow(0.5, 2.2);
+		text.rgb = (text.rgb - vec3(midpoint)) * contrast + midpoint;
+	}
+	
+	COLOR = text;
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/overlay = true
+shader_param/scanlines_opacity = 0.0
+shader_param/scanlines_width = 0.5
+shader_param/grille_opacity = 0.0
+shader_param/resolution = Vector2( 1920, 1080 )
+shader_param/pixelate = false
+shader_param/roll = true
+shader_param/roll_speed = 6.484
+shader_param/roll_size = 100.0
+shader_param/roll_variation = 0.761
+shader_param/distort_intensity = 0.002
+shader_param/noise_opacity = 0.005
+shader_param/noise_speed = 2.0
+shader_param/static_noise_intensity = 0.05
+shader_param/aberration = 0.01
+shader_param/brightness = 1.25
+shader_param/discolor = false
+shader_param/warp_amount = 0.5
+shader_param/clip_warp = true
+shader_param/vignette_intensity = -5.402
+shader_param/vignette_opacity = 0.0
+
+[sub_resource type="Animation" id=30]
+resource_name = "DimToNewState"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Screen/TopBar:default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.2, 0.2, 0.2, 1 ), Color( 0.2, 0.2, 0.2, 1 ), Color( 0.0666667, 0.0666667, 0.0666667, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Screen/BottomBar:default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.2, 0.2, 0.2, 1 ), Color( 0.2, 0.2, 0.2, 1 ), Color( 0.0666667, 0.0666667, 0.0666667, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("STATUS:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Screen/TopBar:light_mask")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Screen/BottomBar:light_mask")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "FlashNewState"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Screen/TopBar:default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.8, 0.8, 0.8, 1 ), Color( 0.203922, 0.203922, 0.203922, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Screen/BottomBar:default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.8, 0.8, 0.8, 1 ), Color( 0.211765, 0.211765, 0.211765, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("STATUS:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "changeLights"
+} ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "Idle"
+loop = true
+
+[node name="BossPanel" type="Node2D"]
+pause_mode = 1
+z_index = -2
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="OuterPanel" type="Polygon2D" parent="Sprite"]
+color = Color( 0.453125, 0, 0, 1 )
+
+[node name="WiresL" type="Polygon2D" parent="Sprite"]
+position = Vector2( 267, -150 )
+scale = Vector2( 1, -1 )
+color = Color( 0.145098, 0, 0.145098, 1 )
+polygon = PoolVector2Array( -483, -89, -483, -87, -483, -57, -476, -50, -456, -50, -456, -53, -475, -53, -481, -59, -478, -61, -471, -54, -456, -54, -456, -57, -470, -57, -476, -63, -473, -66, -467, -60, -456, -60, -456, -61, -466, -61, -472, -67, -469, -70, -465, -66, -456, -66, -456, -69, -464, -69, -467, -72, -467, -74, -460, -81, -394, -81, -394, -83, -462, -83, -469, -76, -472, -79, -463, -88, -378, -88, -378, -90, -465, -90, -474, -81, -476, -83, -465, -94, -390, -94, -390, -98, -468, -98, -480, -86 )
+
+[node name="WiresL2" type="Polygon2D" parent="Sprite"]
+position = Vector2( -280, -150 )
+rotation = 3.14159
+color = Color( 0.145098, 0, 0.145098, 1 )
+polygon = PoolVector2Array( -483, -89, -483, -87, -483, -57, -476, -50, -456, -50, -456, -53, -475, -53, -481, -59, -478, -61, -471, -54, -456, -54, -456, -57, -470, -57, -476, -63, -473, -66, -467, -60, -456, -60, -456, -61, -466, -61, -472, -67, -469, -70, -465, -66, -456, -66, -456, -69, -464, -69, -467, -72, -467, -74, -460, -81, -386, -81, -386, -83, -462, -83, -469, -76, -472, -79, -463, -88, -386, -88, -386, -90, -465, -90, -474, -81, -476, -83, -465, -94, -374, -94, -374, -98, -468, -98, -480, -86 )
+
+[node name="DiamondL" type="Polygon2D" parent="Sprite"]
+light_mask = 2
+position = Vector2( -55, -4 )
+color = Color( 0.435294, 0, 0.435294, 1 )
+polygon = PoolVector2Array( -161, -91, -179, -73, -161, -55, -143, -73 )
+
+[node name="DiamondR" type="Polygon2D" parent="Sprite"]
+light_mask = 2
+position = Vector2( 365, -4 )
+color = Color( 0.435294, 0, 0.435294, 1 )
+polygon = PoolVector2Array( -161, -91, -179, -73, -161, -55, -143, -73 )
+
+[node name="StatusBox" type="Polygon2D" parent="Sprite"]
+color = Color( 0.184314, 0, 0.184314, 1 )
+polygon = PoolVector2Array( -134, -73, 134, -73, 134, -47, 27, -47, 27, -45, 23, -41, -23, -41, -27, -45, -27, -47, -134, -47 )
+
+[node name="StatusBoxShadow" type="Polygon2D" parent="Sprite"]
+light_mask = 3
+color = Color( 0.654902, 0, 0.654902, 1 )
+polygon = PoolVector2Array( 0, -72, 0, -71, -16, -71, -132, -71, -132, -50, 132, -50, 132, -71, 0, -71, 0, -72, 133, -72, 133, -49, -25, -49, -25, -46, -22, -43, 22, -43, 25, -46, 25, -49, 26, -49, 26, -45, 23, -42, -23, -42, -26, -45, -26, -49, -133, -49, -133, -72, -16, -72 )
+
+[node name="STATUS" type="Label" parent="Sprite"]
+modulate = Color( 0.435294, 0, 0.435294, 1 )
+light_mask = 2
+margin_left = -180.0
+margin_top = -119.0
+margin_right = 180.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 4 )
+text = "oVERseer_statUS"
+
+[node name="STATUS" type="Label" parent="."]
+modulate = Color( 1, 0.25098, 0, 1 )
+light_mask = 8
+margin_left = -132.0
+margin_top = -70.0
+margin_right = 28.0
+margin_bottom = -40.0
+rect_scale = Vector2( 1.65, 0.65 )
+custom_fonts/font = ExtResource( 1 )
+text = "ACTIVE"
+align = 1
+valign = 1
+
+[node name="EnemyBar" type="ColorRect" parent="."]
+light_mask = 3
+material = SubResource( 6 )
+margin_left = -216.0
+margin_top = -30.0
+margin_right = 216.0
+margin_bottom = 32.0
+
+[node name="ParasiteBar" type="ColorRect" parent="."]
+light_mask = 2
+material = SubResource( 8 )
+margin_left = -216.0
+margin_top = -30.0
+margin_right = 216.0
+margin_bottom = 32.0
+
+[node name="PlayerConquestBar" type="TextureProgress" parent="."]
+light_mask = 2
+material = SubResource( 3 )
+margin_left = -216.0
+margin_top = -30.0
+margin_right = 216.0
+margin_bottom = 32.0
+step = 0.01
+value = 50.0
+texture_progress = SubResource( 4 )
+nine_patch_stretch = true
+
+[node name="Screen" type="Polygon2D" parent="."]
+material = SubResource( 10 )
+position = Vector2( -259, -205 )
+scale = Vector2( 1.23, 1 )
+texture = ExtResource( 3 )
+polygon = PoolVector2Array( 2.43903, 80, 413.008, 79, 410.569, 300, 3.25203, 299 )
+
+[node name="TopBar" type="Line2D" parent="Screen"]
+light_mask = 8
+position = Vector2( 198.374, 191 )
+points = PoolVector2Array( -191.057, -112, 209.756, -112 )
+width = 8.0
+default_color = Color( 0.203922, 0.203922, 0.203922, 1 )
+
+[node name="BottomBar" type="Line2D" parent="Screen"]
+light_mask = 8
+position = Vector2( 199.187, 417 )
+points = PoolVector2Array( -191.057, -112, 208.943, -112 )
+width = 8.0
+default_color = Color( 0.211765, 0.211765, 0.211765, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
+method_call_mode = 1
+anims/DimToNewState = SubResource( 30 )
+anims/FlashNewState = SubResource( 35 )
+anims/Idle = SubResource( 34 )
+next/DimToNewState = "FlashNewState"
+
+[node name="Sprite2" type="Sprite" parent="."]

@@ -1,0 +1,149 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Administration/Objectives/Resource/ScoreObjective.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 8 )
+
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item;
+
+uniform vec4 color_gap: hint_color = vec4(0.25);
+uniform vec4 color_stripe: hint_color = vec4(1.0, 0.75, 0.0, 1.0);
+uniform float divisions = 8.0; // increase for more stripe density
+uniform float stripe_bias = 2.5; // 1.0 means no stripes; 2.0 means stripes and gaps are equal size
+uniform float speed = 0.1;
+uniform float angle = 0.7854; // in radians
+
+void fragment() {
+	float w = cos(angle) * UV.x + sin(angle) * UV.y - speed * TIME;
+	if (floor(mod(w * divisions, stripe_bias)) < 0.0001) {
+		COLOR = color_gap;
+	} else {
+		COLOR = color_stripe;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/color_gap = Color( 0, 0.180392, 1, 0.780392 )
+shader_param/color_stripe = Color( 0, 1, 1, 1 )
+shader_param/divisions = 8.677
+shader_param/stripe_bias = 1.956
+shader_param/speed = 0.1
+shader_param/angle = 6.28
+
+[sub_resource type="GradientTexture2D" id=11]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color_gap: hint_color = vec4(0.25);
+uniform vec4 color_stripe: hint_color = vec4(1.0, 0.75, 0.0, 1.0);
+uniform float divisions = 8.0; // increase for more stripe density
+uniform float stripe_bias = 2.5; // 1.0 means no stripes; 2.0 means stripes and gaps are equal size
+uniform float speed = 0.1;
+uniform float angle = 0.7854; // in radians
+
+void fragment() {
+	float w = cos(angle) * UV.x + sin(angle) * UV.y - speed * TIME;
+	if (floor(mod(w * divisions, stripe_bias)) < 0.0001) {
+		COLOR = color_gap;
+	} else {
+		COLOR = color_stripe;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 1 )
+shader_param/color_gap = Color( 0, 0, 0, 1 )
+shader_param/color_stripe = Color( 1, 0.75, 0, 1 )
+shader_param/divisions = 0.871
+shader_param/stripe_bias = 1.82
+shader_param/speed = 1.0
+shader_param/angle = 1.303
+
+[sub_resource type="Gradient" id=4]
+
+[sub_resource type="Animation" id=5]
+resource_name = "WarningFlash"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="ScoreGets" type="CanvasLayer"]
+layer = 113
+visible = false
+script = ExtResource( 1 )
+activateOnLaunch = true
+oneOff = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 704.0
+margin_top = 48.0
+margin_right = 1160.0
+margin_bottom = 80.0
+color = Color( 0.364706, 0, 0, 1 )
+
+[node name="ProgressBar" type="Light2D" parent="."]
+position = Vector2( 1245, 21 )
+scale = Vector2( -0.160769, 32 )
+z_index = 1
+texture = SubResource( 7 )
+offset = Vector2( 1024, 0 )
+color = Color( 1, 1, 1, 0 )
+mode = 3
+range_layer_min = -128
+range_layer_max = 128
+range_item_cull_mask = 256
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+light_mask = 256
+material = SubResource( 10 )
+texture = SubResource( 11 )
+polygon = PoolVector2Array( 602, 36, 616, 14, 693, 14, 697, 9, 1145, 9, 1150, 14, 1233, 14, 1244, 36 )
+
+[node name="Progress" type="Label" parent="."]
+margin_left = 616.0
+margin_top = 8.0
+margin_right = 1240.0
+margin_bottom = 38.0
+text = "50%"
+align = 1
+
+[node name="Label" type="Label" parent="."]
+margin_left = 709.0
+margin_top = 48.0
+margin_right = 1157.0
+margin_bottom = 78.0
+text = "DATA OVERLOAD IN PROGRESS"
+
+[node name="Line2D" type="Line2D" parent="Label"]
+light_mask = 2
+material = SubResource( 3 )
+position = Vector2( -709, -58 )
+points = PoolVector2Array( 704, 56, 1160, 56, 1160, 88, 704, 88, 704, 56 )
+width = 5.0
+gradient = SubResource( 4 )
+texture_mode = 1
+begin_cap_mode = 1
+sharp_limit = 32.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
+root_node = NodePath("../..")
+autoplay = "WarningFlash"
+anims/WarningFlash = SubResource( 5 )

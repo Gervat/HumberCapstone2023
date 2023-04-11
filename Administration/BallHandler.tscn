@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Administration/Scripts/BallHandler.gd" type="Script" id=3]
+
+[node name="BallHandler" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Special" type="Node" parent="."]
+
+[node name="BugTimer" type="Timer" parent="."]
+wait_time = 15.0
+
+[connection signal="timeout" from="BugTimer" to="." method="_on_BugTimer_timeout"]

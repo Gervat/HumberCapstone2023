@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://InteractivePiece/_Master/InteractivePiece.tscn" type="PackedScene" id=1]
+[ext_resource path="res://InteractivePiece/Bumper/Resource/Bumper.gd" type="Script" id=2]
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 16.5644, 61.8193, 0, 0, 0, 0, 32, 55.4256, 0, 0, 0, 0, 45.2548, 45.2548, 0, 0, 0, 0, 55.4256, 32, 0, 0, 0, 0, 61.8193, 16.5644, 0, 0, 0, 0, 64, 3.91874e-15, 0, 0, 0, 0, 61.8193, -16.5644, 0, 0, 0, 0, 55.4256, -32, 0, 0, 0, 0, 45.2548, -45.2548, 0, 0, 0, 0, 32, -55.4256, 0, 0, 0, 0, 16.5644, -61.8193, 0, 0, 0, 0, 7.83748e-15, -64, 0, 0, 0, 0, -16.5644, -61.8193, 0, 0, 0, 0, -32, -55.4256, 0, 0, 0, 0, -45.2548, -45.2548, 0, 0, 0, 0, -55.4256, -32, 0, 0, 0, 0, -61.8193, -16.5644, 0, 0, 0, 0, -64, -1.17562e-14, 0, 0, 0, 0, -61.8193, 16.5644, 0, 0, 0, 0, -55.4256, 32, 0, 0, 0, 0, -45.2548, 45.2548, 0, 0, 0, 0, -32, 55.4256, 0, 0, 0, 0, -16.5644, 61.8193, 0, 0, 0, 0, 0, 64 )
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Bump"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Design:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 3, 1 ),
+"update": 0,
+"values": [ Color( 0.6, 0.6, 0.6, 1 ), Color( 0.133333, 0.133333, 0.133333, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Outline:default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 3, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.333333, 0.333333, 0.333333, 1 ) ]
+}
+
+[node name="Bumper" groups=["Conquest", "Scoring"] instance=ExtResource( 1 )]
+light_mask = 8
+collision_layer = 0
+mode = 3
+continuous_cd = 1
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 17.0, 7.0 ]
+}
+strength = 5000
+sensitivity = 5
+
+[node name="Collision" parent="." index="0"]
+polygon = PoolVector2Array( -54.9999, 32.0002, -55.0001, -31.9998, -0.000231679, -64, 54.9999, -32.0002, 55.0001, 31.9998, 0.000231679, 64 )
+
+[node name="Bezier" parent="." index="1"]
+visible = false
+z_index = 1
+curve = SubResource( 2 )
+sides = 6
+
+[node name="Shape" parent="Sprite" index="0"]
+polygon = PoolVector2Array( 0, 64, 55.4256, 32, 55.4256, -32, 7.83748e-15, -64, -55.4256, -32, -55.4256, 32 )
+
+[node name="Design" parent="Sprite" index="1"]
+light_mask = 4
+polygon = PoolVector2Array( 0, -54.5, -0.5, -48, -8, -33.5, -59, -8.5, -62, -3.5, -10, -29.5, -24.5, 0, -21.5, 0, -1, -40, -1.5, -33, -18, 0, -14.5, 0, -2, -26.5, -4, 0, -2, 26.5, -14.5, 0, -18, 0, -1.5, 33, -1, 40, -21.5, 0, -24.5, 0, -10, 30, -62, 3.5, -59, 8.5, -8, 33.5, -0.5, 48, 0, 54.5, 0.5, 48, 8, 33.5, 59, 8.5, 62, 3.5, 10, 29.5, 24.5, 0, 21.5, 0, 1, 40, 1.5, 33, 18, 0, 14.5, 0, 2, 26.5, 4, 0, 2, -26.5, 14.5, 0, 18, 0, 1.5, -33, 1, -40, 21.5, 0, 24.5, 0, 10, -29.5, 62, -3.5, 59, -8.5, 8, -33.5, 0.5, -48 )
+
+[node name="Outline" parent="Sprite" index="2"]
+light_mask = 4
+points = PoolVector2Array( -2, 57, 48, 28, 48, -28, -2.44784e-06, -56, -48, -28, -48, 28, 2, 57 )
+width = 8.0
+
+[node name="AnimationPlayer" parent="." index="3"]
+anims/Bump = SubResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_Bumper_body_entered"]

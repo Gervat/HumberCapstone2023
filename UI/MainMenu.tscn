@@ -1,0 +1,1900 @@
+[gd_scene load_steps=79 format=2]
+
+[ext_resource path="res://Resources/Fonts/MovieTheatreFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/Resource/PerkNode/Resource/Perk_Plus.png" type="Texture" id=2]
+[ext_resource path="res://InteractivePiece/_Master/Resource/BrickSmallDark0012_1_download600.jpg" type="Texture" id=3]
+[ext_resource path="res://Resources/Fonts/ClassicArcadeFont32.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Resources/Fonts/test1.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Resources/Fonts/ClassicArcadeFont.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Resources/Fonts/MovieTheaterFont.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://UI/Resource/MainMenu.gd" type="Script" id=8]
+[ext_resource path="res://UI/LevelMenus/Resource/PauseMenu.png" type="Texture" id=9]
+[ext_resource path="res://UI/HUD/Resource/IMG/ControlsHTP.PNG" type="Texture" id=10]
+[ext_resource path="res://Resources/Shaders/InputOutput.material" type="Material" id=11]
+[ext_resource path="res://Resources/Music/MarchoftheAI.sample" type="AudioStream" id=12]
+
+[sub_resource type="DynamicFont" id=13]
+size = 256
+outline_size = 4
+use_mipmaps = true
+extra_spacing_char = 4
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=68]
+size = 60
+outline_size = 2
+use_mipmaps = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="Environment" id=9]
+background_mode = 4
+background_color = Color( 0.933333, 0.933333, 0.933333, 1 )
+background_energy = 16.0
+background_canvas_max_layer = 1000
+background_camera_feed_id = 6
+ambient_light_color = Color( 0.945098, 0.945098, 0.945098, 1 )
+ambient_light_energy = 16.0
+ambient_light_sky_contribution = 0.0
+tonemap_mode = 2
+tonemap_exposure = 4.0
+tonemap_white = 16.0
+glow_enabled = true
+glow_levels/3 = false
+glow_levels/4 = true
+glow_levels/6 = true
+glow_levels/7 = true
+glow_intensity = 0.1
+glow_strength = 0.66
+glow_bloom = 1.0
+glow_blend_mode = 0
+glow_hdr_threshold = 4.0
+glow_hdr_luminance_cap = 256.0
+glow_hdr_scale = 1.0
+glow_bicubic_upscale = true
+glow_high_quality = true
+adjustment_enabled = true
+adjustment_brightness = 0.5
+adjustment_saturation = 0.85
+
+[sub_resource type="Gradient" id=69]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=8]
+gradient = SubResource( 69 )
+
+[sub_resource type="Gradient" id=42]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=43]
+gradient = SubResource( 42 )
+
+[sub_resource type="Animation" id=44]
+resource_name = "Idle"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Left Symbol:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.0470588, 0.701961, 0.788235, 1 ), Color( 0.0470588, 0.701961, 0.788235, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Right Symbol:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.0470588, 0.701961, 0.788235, 1 ), Color( 0.0470588, 0.701961, 0.788235, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=45]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Left Symbol:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Right Symbol:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="StyleBoxEmpty" id=22]
+
+[sub_resource type="StyleBoxEmpty" id=23]
+
+[sub_resource type="StyleBoxEmpty" id=30]
+
+[sub_resource type="StyleBoxEmpty" id=31]
+
+[sub_resource type="StyleBoxEmpty" id=18]
+
+[sub_resource type="StyleBoxEmpty" id=24]
+
+[sub_resource type="StyleBoxEmpty" id=25]
+
+[sub_resource type="StyleBoxEmpty" id=32]
+
+[sub_resource type="StyleBoxEmpty" id=33]
+
+[sub_resource type="StyleBoxEmpty" id=19]
+
+[sub_resource type="StyleBoxEmpty" id=26]
+
+[sub_resource type="StyleBoxEmpty" id=27]
+
+[sub_resource type="StyleBoxEmpty" id=34]
+
+[sub_resource type="StyleBoxEmpty" id=35]
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="StyleBoxEmpty" id=28]
+
+[sub_resource type="StyleBoxEmpty" id=29]
+
+[sub_resource type="StyleBoxEmpty" id=36]
+
+[sub_resource type="StyleBoxEmpty" id=37]
+
+[sub_resource type="StyleBoxEmpty" id=21]
+
+[sub_resource type="StyleBoxTexture" id=65]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 800, 830 )
+
+[sub_resource type="StyleBoxTexture" id=66]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 800, 830 )
+
+[sub_resource type="StyleBoxEmpty" id=62]
+
+[sub_resource type="StyleBoxEmpty" id=63]
+
+[sub_resource type="StyleBoxTexture" id=64]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 800, 830 )
+
+[sub_resource type="DynamicFont" id=58]
+size = 125
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=49]
+size = 64
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxEmpty" id=50]
+
+[sub_resource type="StyleBoxEmpty" id=51]
+
+[sub_resource type="StyleBoxEmpty" id=52]
+
+[sub_resource type="StyleBoxEmpty" id=53]
+
+[sub_resource type="StyleBoxEmpty" id=54]
+
+[sub_resource type="StyleBoxEmpty" id=74]
+
+[sub_resource type="StyleBoxEmpty" id=75]
+
+[sub_resource type="StyleBoxEmpty" id=76]
+
+[sub_resource type="StyleBoxEmpty" id=77]
+
+[sub_resource type="StyleBoxEmpty" id=78]
+
+[sub_resource type="Animation" id=79]
+resource_name = "HTP_IMG_Enlarge"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("IMG:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 978, 615 ), Vector2( 983, 517 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("IMG:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.416, 0.379 ), Vector2( 0.9, 0.9 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HTP_IMG Button:rect_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 771, 380 ), Vector2( 1669, 910 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HTP_IMG Button:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 592, 429 ), Vector2( 146, 61 ) ]
+}
+
+[sub_resource type="Animation" id=80]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("IMG:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 978, 615 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("IMG:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.416, 0.379 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HTP_IMG Button:rect_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 771, 380 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HTP_IMG Button:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 592, 429 ) ]
+}
+
+[sub_resource type="DynamicFont" id=46]
+size = 64
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=47]
+size = 64
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=48]
+size = 64
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=57]
+size = 32
+extra_spacing_char = -1
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=70]
+size = 64
+extra_spacing_char = -1
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=71]
+size = 40
+extra_spacing_char = -1
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=81]
+size = 32
+extra_spacing_char = -1
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=82]
+size = 32
+extra_spacing_char = -1
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=83]
+size = 32
+extra_spacing_char = -1
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=84]
+size = 32
+extra_spacing_char = -1
+font_data = ExtResource( 6 )
+
+[sub_resource type="Animation" id=55]
+resource_name = "Audio_FadeAway"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainMenuManager/Audio:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 581, 897 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainMenuManager/Audio:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.001, 0.001 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainMenuManager/Audio:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=72]
+resource_name = "Credits_FadeAway"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainMenuManager/Credits:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 574, 892 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainMenuManager/Credits:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.01, 0.01 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainMenuManager/Credits:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=56]
+resource_name = "Graphics_FadeAway"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainMenuManager/Graphics:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 577, 901 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainMenuManager/Graphics:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.01, 0.01 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainMenuManager/Graphics:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=59]
+resource_name = "HTP_FadeAway"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainMenuManager/HowToPlay:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1370, 891 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainMenuManager/HowToPlay:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.01, 0.01 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainMenuManager/HowToPlay:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=40]
+resource_name = "MainButtons_FadeAway"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainMenuManager/Main_Buttons:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 710, 406 ), Vector2( 578, 895 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainMenuManager/Main_Buttons:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 512, 460 ), Vector2( 512, 460 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainMenuManager/Main_Buttons:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.01, 0.01 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MainMenuManager/Main_Buttons:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=41]
+resource_name = "OptionButtons_FadeAway"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainMenuManager/Options_Buttons:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 710, 406 ), Vector2( 1379, 895 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainMenuManager/Options_Buttons:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.01, 0.01 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainMenuManager/Options_Buttons:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=67]
+resource_name = "PlayConfirm_FadeAway"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainMenuManager/Start Confirmation:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1369, 891 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainMenuManager/Start Confirmation:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.01, 0.01 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainMenuManager/Start Confirmation:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=39]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Decal/Left Symbol:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Decal/Right Symbol:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainMenuManager/Main_Buttons:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 710, 406 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MainMenuManager/Main_Buttons:rect_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 512, 460 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MainMenuManager/Main_Buttons:rect_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("MainMenuManager/Options_Buttons:rect_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 710, 406 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("MainMenuManager/Options_Buttons:rect_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("MainMenuManager/Main_Buttons:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("MainMenuManager/Options_Buttons:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("MainMenuManager/Audio:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("MainMenuManager/Audio:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("MainMenuManager/Audio:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("MainMenuManager/Graphics:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("MainMenuManager/Graphics:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("MainMenuManager/Graphics:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("MainMenuManager/HowToPlay/IMG:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 978, 615 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("MainMenuManager/HowToPlay/IMG:scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.415625, 0.378704 ) ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("MainMenuManager/HowToPlay/IMG:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("MainMenuManager/HowToPlay:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("MainMenuManager/HowToPlay:scale")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("MainMenuManager/HowToPlay:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("MainMenuManager/Start Confirmation:position")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("MainMenuManager/Start Confirmation:scale")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("MainMenuManager/Start Confirmation:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("MainMenuManager/Credits:position")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("MainMenuManager/Credits:scale")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/26/type = "value"
+tracks/26/path = NodePath("MainMenuManager/Credits:visible")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[node name="MainMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_vertical_guides_": [ 985.0 ]
+}
+
+[node name="Title" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Neon Impulse" type="Label" parent="Title"]
+modulate = Color( 0, 1, 0.952941, 1 )
+light_mask = 64
+margin_left = 330.0
+margin_top = 87.0
+margin_right = 2182.0
+margin_bottom = 353.0
+rect_scale = Vector2( 0.7, 0.7 )
+custom_fonts/font = SubResource( 13 )
+text = "Neon Impulse"
+
+[node name="Polygon2D" type="Polygon2D" parent="Title/Neon Impulse"]
+light_mask = 64
+position = Vector2( -14.2857, -324.286 )
+scale = Vector2( 1.01184, 2.05882 )
+polygon = PoolVector2Array( 12.8237, 312.857, 12.7067, 297.673, 1814.35, 297.592, 1814.29, 312.857 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Title/Neon Impulse"]
+light_mask = 64
+position = Vector2( -11.4286, -631.429 )
+scale = Vector2( 1.01184, 2.05882 )
+polygon = PoolVector2Array( 12.8237, 312.857, 12.7067, 297.673, 1814.35, 297.592, 1814.29, 312.857 )
+
+[node name="RebelHead" type="Label" parent="Title"]
+light_mask = 0
+margin_left = 1606.0
+margin_top = 1046.0
+margin_right = 1914.0
+margin_bottom = 1076.0
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = ExtResource( 4 )
+text = "RebelHead Studios"
+align = 1
+valign = 1
+
+[node name="Showcase Demo" type="Label" parent="Title"]
+light_mask = 32
+margin_left = 500.0
+margin_top = -10.0
+margin_right = 1435.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 68 )
+text = "CAPSTONE DEMO VERSION"
+align = 1
+valign = 1
+
+[node name="BackgroundImage" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BoardBackground" type="Polygon2D" parent="BackgroundImage"]
+light_mask = 0
+position = Vector2( 678.5, 55.5484 )
+scale = Vector2( 1.88477, 0.983837 )
+z_index = -10
+color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+texture = ExtResource( 3 )
+texture_scale = Vector2( 2, 2 )
+polygon = PoolVector2Array( -768, 3066.01, -768, -3068.14, 768, -3068.14, 768, 3066.01 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 9 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 954.5, 549.5 )
+scale = Vector2( 30.1094, 17.0156 )
+texture = SubResource( 8 )
+energy = 1.42
+range_layer_max = 100
+range_item_cull_mask = 64
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Decal" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Left Symbol" type="Sprite" parent="Decal"]
+light_mask = 64
+position = Vector2( 580, 900 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Right Symbol" type="Sprite" parent="Decal"]
+light_mask = 64
+position = Vector2( 1380, 900 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Decal"]
+material = ExtResource( 11 )
+position = Vector2( -89.9999, 1074 )
+scale = Vector2( 0.925293, 1071 )
+texture = SubResource( 43 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite2" type="Sprite" parent="Decal"]
+material = ExtResource( 11 )
+position = Vector2( 1974, 10 )
+rotation = 3.14159
+scale = Vector2( 0.788818, 1071 )
+texture = SubResource( 43 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Decal"]
+autoplay = "Idle"
+anims/Idle = SubResource( 44 )
+anims/RESET = SubResource( 45 )
+
+[node name="MainMenuManager" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Main_Buttons" type="VBoxContainer" parent="MainMenuManager"]
+margin_left = 710.0
+margin_top = 406.0
+margin_right = 1222.0
+margin_bottom = 866.0
+custom_constants/separation = 20
+
+[node name="Start Game" type="Button" parent="MainMenuManager/Main_Buttons"]
+light_mask = 0
+margin_right = 512.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/hover = SubResource( 22 )
+custom_styles/pressed = SubResource( 23 )
+custom_styles/focus = SubResource( 30 )
+custom_styles/disabled = SubResource( 31 )
+custom_styles/normal = SubResource( 18 )
+toggle_mode = true
+
+[node name="StartLabel" type="Label" parent="MainMenuManager/Main_Buttons/Start Game"]
+light_mask = 65
+margin_left = -2.0
+margin_top = -21.0
+margin_right = 238.0
+margin_bottom = 35.0
+rect_scale = Vector2( 2.3, 2.5 )
+custom_fonts/font = ExtResource( 1 )
+text = "StartGame"
+align = 1
+valign = 1
+
+[node name="HowToPlay" type="Button" parent="MainMenuManager/Main_Buttons"]
+light_mask = 0
+margin_top = 120.0
+margin_right = 512.0
+margin_bottom = 220.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/hover = SubResource( 24 )
+custom_styles/pressed = SubResource( 25 )
+custom_styles/focus = SubResource( 32 )
+custom_styles/disabled = SubResource( 33 )
+custom_styles/normal = SubResource( 19 )
+toggle_mode = true
+
+[node name="HTPLabel" type="Label" parent="MainMenuManager/Main_Buttons/HowToPlay"]
+light_mask = 65
+margin_left = -37.0
+margin_top = -21.0
+margin_right = 227.0
+margin_bottom = 35.0
+rect_scale = Vector2( 2.3, 2.5 )
+custom_fonts/font = ExtResource( 1 )
+text = "Howtoplay"
+align = 1
+valign = 1
+
+[node name="Options" type="Button" parent="MainMenuManager/Main_Buttons"]
+light_mask = 0
+margin_top = 240.0
+margin_right = 512.0
+margin_bottom = 340.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/hover = SubResource( 26 )
+custom_styles/pressed = SubResource( 27 )
+custom_styles/focus = SubResource( 34 )
+custom_styles/disabled = SubResource( 35 )
+custom_styles/normal = SubResource( 20 )
+toggle_mode = true
+
+[node name="OptionsLabel" type="Label" parent="MainMenuManager/Main_Buttons/Options"]
+light_mask = 65
+margin_left = 7.0
+margin_top = -21.0
+margin_right = 235.0
+margin_bottom = 35.0
+rect_scale = Vector2( 2.3, 2.5 )
+custom_fonts/font = ExtResource( 1 )
+text = "options"
+align = 1
+valign = 1
+
+[node name="Exit" type="Button" parent="MainMenuManager/Main_Buttons"]
+light_mask = 0
+margin_top = 360.0
+margin_right = 512.0
+margin_bottom = 460.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 36 )
+custom_styles/disabled = SubResource( 37 )
+custom_styles/normal = SubResource( 21 )
+toggle_mode = true
+
+[node name="ExitLabel" type="Label" parent="MainMenuManager/Main_Buttons/Exit"]
+light_mask = 65
+margin_left = 7.0
+margin_top = -21.0
+margin_right = 235.0
+margin_bottom = 35.0
+rect_scale = Vector2( 2.3, 2.5 )
+custom_fonts/font = ExtResource( 1 )
+text = "exit"
+align = 1
+valign = 1
+
+[node name="Options_Buttons" type="VBoxContainer" parent="MainMenuManager"]
+margin_left = 710.0
+margin_top = 406.0
+margin_right = 1222.0
+margin_bottom = 866.0
+custom_constants/separation = 20
+
+[node name="Graphics" type="Button" parent="MainMenuManager/Options_Buttons"]
+light_mask = 0
+margin_right = 512.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/hover = SubResource( 22 )
+custom_styles/pressed = SubResource( 23 )
+custom_styles/focus = SubResource( 30 )
+custom_styles/disabled = SubResource( 31 )
+custom_styles/normal = SubResource( 18 )
+toggle_mode = true
+
+[node name="GraphicsLabel" type="Label" parent="MainMenuManager/Options_Buttons/Graphics"]
+light_mask = 65
+margin_left = 7.0
+margin_top = -21.0
+margin_right = 235.0
+margin_bottom = 35.0
+rect_scale = Vector2( 2.3, 2.5 )
+custom_fonts/font = ExtResource( 1 )
+text = "Graphics"
+align = 1
+valign = 1
+
+[node name="Audio" type="Button" parent="MainMenuManager/Options_Buttons"]
+light_mask = 0
+margin_top = 120.0
+margin_right = 512.0
+margin_bottom = 220.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/hover = SubResource( 24 )
+custom_styles/pressed = SubResource( 25 )
+custom_styles/focus = SubResource( 32 )
+custom_styles/disabled = SubResource( 33 )
+custom_styles/normal = SubResource( 19 )
+toggle_mode = true
+
+[node name="AudioLabel" type="Label" parent="MainMenuManager/Options_Buttons/Audio"]
+light_mask = 65
+margin_left = 7.0
+margin_top = -21.0
+margin_right = 235.0
+margin_bottom = 35.0
+rect_scale = Vector2( 2.3, 2.5 )
+custom_fonts/font = ExtResource( 1 )
+text = "AUdio"
+align = 1
+valign = 1
+
+[node name="Credits" type="Button" parent="MainMenuManager/Options_Buttons"]
+light_mask = 0
+margin_top = 240.0
+margin_right = 512.0
+margin_bottom = 340.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/hover = SubResource( 26 )
+custom_styles/pressed = SubResource( 27 )
+custom_styles/focus = SubResource( 34 )
+custom_styles/disabled = SubResource( 35 )
+custom_styles/normal = SubResource( 20 )
+toggle_mode = true
+
+[node name="CreditsLabel" type="Label" parent="MainMenuManager/Options_Buttons/Credits"]
+light_mask = 65
+margin_left = 7.0
+margin_top = -21.0
+margin_right = 235.0
+margin_bottom = 35.0
+rect_scale = Vector2( 2.3, 2.5 )
+custom_fonts/font = ExtResource( 1 )
+text = "credits"
+align = 1
+valign = 1
+
+[node name="Back" type="Button" parent="MainMenuManager/Options_Buttons"]
+light_mask = 0
+margin_top = 360.0
+margin_right = 512.0
+margin_bottom = 460.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 36 )
+custom_styles/disabled = SubResource( 37 )
+custom_styles/normal = SubResource( 21 )
+toggle_mode = true
+
+[node name="BackLabel" type="Label" parent="MainMenuManager/Options_Buttons/Back"]
+light_mask = 65
+margin_left = 7.0
+margin_top = -21.0
+margin_right = 235.0
+margin_bottom = 35.0
+rect_scale = Vector2( 2.3, 2.5 )
+custom_fonts/font = ExtResource( 1 )
+text = "back"
+align = 1
+valign = 1
+
+[node name="Start Confirmation" type="Node2D" parent="MainMenuManager"]
+
+[node name="Disclaimer" type="Label" parent="MainMenuManager/Start Confirmation"]
+margin_left = 587.0
+margin_top = 483.0
+margin_right = 1385.0
+margin_bottom = 513.0
+text = "Please note progress is not saved for the demo."
+align = 1
+valign = 1
+
+[node name="Disclaimer2" type="Label" parent="MainMenuManager/Start Confirmation"]
+margin_left = 388.0
+margin_top = 522.0
+margin_right = 1583.0
+margin_bottom = 577.0
+text = "Returning to the main menu from pause menu will restart your progress."
+align = 1
+valign = 1
+
+[node name="PlayButton" type="Button" parent="MainMenuManager/Start Confirmation"]
+margin_left = 649.0
+margin_top = 882.0
+margin_right = 1311.0
+margin_bottom = 918.0
+custom_styles/hover = SubResource( 65 )
+custom_styles/pressed = SubResource( 66 )
+custom_styles/focus = SubResource( 62 )
+custom_styles/disabled = SubResource( 63 )
+custom_styles/normal = SubResource( 64 )
+toggle_mode = true
+text = "   I understand, please start the game.   "
+
+[node name="HowToPlay" type="Node2D" parent="MainMenuManager"]
+
+[node name="IMG_Title" type="Label" parent="MainMenuManager/HowToPlay"]
+margin_left = 587.0
+margin_top = 303.0
+margin_right = 1381.0
+margin_bottom = 417.0
+custom_fonts/font = SubResource( 58 )
+text = "title"
+align = 1
+valign = 1
+
+[node name="Press To Enlarge" type="Label" parent="MainMenuManager/HowToPlay"]
+margin_left = 843.0
+margin_top = 823.0
+margin_right = 1128.0
+margin_bottom = 853.0
+text = "PRESS TO ENLARGE"
+align = 1
+valign = 1
+
+[node name="LeftButton" type="Button" parent="MainMenuManager/HowToPlay"]
+margin_left = 492.0
+margin_top = 566.0
+margin_right = 552.0
+margin_bottom = 650.0
+text = "<"
+
+[node name="RightButton" type="Button" parent="MainMenuManager/HowToPlay"]
+margin_left = 1403.0
+margin_top = 566.0
+margin_right = 1463.0
+margin_bottom = 650.0
+text = ">"
+
+[node name="HTP_Return Button" type="Button" parent="MainMenuManager/HowToPlay"]
+margin_left = 849.0
+margin_top = 853.0
+margin_right = 993.0
+margin_bottom = 909.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 49 )
+custom_styles/hover = SubResource( 50 )
+custom_styles/pressed = SubResource( 51 )
+custom_styles/focus = SubResource( 52 )
+custom_styles/disabled = SubResource( 53 )
+custom_styles/normal = SubResource( 54 )
+text = "RetUrn"
+
+[node name="IMG" type="Sprite" parent="MainMenuManager/HowToPlay"]
+position = Vector2( 978, 615 )
+scale = Vector2( 0.415625, 0.378704 )
+texture = ExtResource( 10 )
+
+[node name="HTP_IMG Button" type="Button" parent="MainMenuManager/HowToPlay"]
+margin_left = 592.0
+margin_top = 429.0
+margin_right = 1363.0
+margin_bottom = 809.0
+custom_styles/hover = SubResource( 74 )
+custom_styles/pressed = SubResource( 75 )
+custom_styles/focus = SubResource( 76 )
+custom_styles/disabled = SubResource( 77 )
+custom_styles/normal = SubResource( 78 )
+toggle_mode = true
+icon_align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenuManager/HowToPlay"]
+reset_on_save = false
+anims/HTP_IMG_Enlarge = SubResource( 79 )
+anims/RESET = SubResource( 80 )
+
+[node name="Audio" type="Node2D" parent="MainMenuManager"]
+
+[node name="Audio" type="Label" parent="MainMenuManager/Audio"]
+margin_left = 843.0
+margin_top = 307.0
+margin_right = 947.0
+margin_bottom = 363.0
+rect_scale = Vector2( 3, 3 )
+custom_fonts/font = SubResource( 46 )
+text = "AUdio"
+
+[node name="Volume Control" type="Label" parent="MainMenuManager/Audio"]
+margin_left = 677.0
+margin_top = 449.0
+margin_right = 1013.0
+margin_bottom = 505.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 47 )
+text = "volUme_control"
+align = 1
+valign = 1
+
+[node name="Master" type="HBoxContainer" parent="MainMenuManager/Audio/Volume Control"]
+margin_left = -72.0
+margin_top = 45.0
+margin_right = 542.0
+margin_bottom = 101.0
+rect_scale = Vector2( 0.7, 0.7 )
+
+[node name="Master Label" type="Label" parent="MainMenuManager/Audio/Volume Control/Master"]
+margin_right = 312.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 48 )
+text = "Master_VolUme"
+align = 1
+valign = 1
+
+[node name="Master Slider" type="HSlider" parent="MainMenuManager/Audio/Volume Control/Master"]
+light_mask = 0
+margin_left = 316.0
+margin_right = 614.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = -8.0
+max_value = 8.0
+step = 0.1
+rounded = true
+
+[node name="Master Slider #" type="Label" parent="MainMenuManager/Audio/Volume Control/Master"]
+visible = false
+margin_left = 556.0
+margin_top = 13.0
+margin_right = 614.0
+margin_bottom = 43.0
+text = "000"
+align = 1
+valign = 1
+
+[node name="Sound Effects" type="HBoxContainer" parent="MainMenuManager/Audio/Volume Control"]
+margin_left = -71.0
+margin_top = 80.0
+margin_right = 541.0
+margin_bottom = 136.0
+rect_scale = Vector2( 0.7, 0.7 )
+
+[node name="SE Label" type="Label" parent="MainMenuManager/Audio/Volume Control/Sound Effects"]
+margin_right = 312.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 48 )
+text = "SoUnd_Effects"
+align = 1
+valign = 1
+
+[node name="SE Slider" type="HSlider" parent="MainMenuManager/Audio/Volume Control/Sound Effects"]
+light_mask = 0
+margin_left = 316.0
+margin_right = 612.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = -15.0
+max_value = 15.0
+step = 0.5
+rounded = true
+
+[node name="SE Slider #" type="Label" parent="MainMenuManager/Audio/Volume Control/Sound Effects"]
+visible = false
+margin_left = 554.0
+margin_top = 13.0
+margin_right = 612.0
+margin_bottom = 43.0
+text = "000"
+align = 1
+valign = 1
+
+[node name="Dialogue" type="HBoxContainer" parent="MainMenuManager/Audio/Volume Control"]
+margin_left = 24.0
+margin_top = 115.0
+margin_right = 500.0
+margin_bottom = 171.0
+rect_scale = Vector2( 0.7, 0.7 )
+
+[node name="Dialogue Label" type="Label" parent="MainMenuManager/Audio/Volume Control/Dialogue"]
+margin_right = 176.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 48 )
+text = "DialogUe"
+
+[node name="Dialogue Slider" type="HSlider" parent="MainMenuManager/Audio/Volume Control/Dialogue"]
+light_mask = 0
+margin_left = 180.0
+margin_right = 476.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = -15.0
+max_value = 15.0
+step = 0.5
+rounded = true
+
+[node name="Dialogue Slider #" type="Label" parent="MainMenuManager/Audio/Volume Control/Dialogue"]
+visible = false
+margin_left = 418.0
+margin_top = 13.0
+margin_right = 476.0
+margin_bottom = 43.0
+text = "000"
+align = 1
+valign = 1
+
+[node name="Music" type="HBoxContainer" parent="MainMenuManager/Audio/Volume Control"]
+margin_left = 74.0
+margin_top = 150.0
+margin_right = 479.0
+margin_bottom = 206.0
+rect_scale = Vector2( 0.7, 0.7 )
+
+[node name="Music Label" type="Label" parent="MainMenuManager/Audio/Volume Control/Music"]
+margin_right = 104.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 48 )
+text = "MUsic"
+
+[node name="Music Slider" type="HSlider" parent="MainMenuManager/Audio/Volume Control/Music"]
+light_mask = 0
+margin_left = 108.0
+margin_right = 405.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -15.0
+max_value = 15.0
+step = 0.5
+rounded = true
+
+[node name="Music Slider #" type="Label" parent="MainMenuManager/Audio/Volume Control/Music"]
+visible = false
+margin_left = 347.0
+margin_top = 13.0
+margin_right = 405.0
+margin_bottom = 43.0
+text = "000"
+align = 1
+valign = 1
+
+[node name="Return Button" type="Button" parent="MainMenuManager/Audio"]
+margin_left = 859.0
+margin_top = 853.0
+margin_right = 1003.0
+margin_bottom = 909.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 49 )
+custom_styles/hover = SubResource( 50 )
+custom_styles/pressed = SubResource( 51 )
+custom_styles/focus = SubResource( 52 )
+custom_styles/disabled = SubResource( 53 )
+custom_styles/normal = SubResource( 54 )
+text = "RetUrn"
+
+[node name="Graphics" type="Node2D" parent="MainMenuManager"]
+
+[node name="Graphics" type="Label" parent="MainMenuManager/Graphics"]
+margin_left = 748.0
+margin_top = 308.0
+margin_right = 924.0
+margin_bottom = 364.0
+rect_scale = Vector2( 3, 3 )
+custom_fonts/font = SubResource( 46 )
+text = "Graphics"
+
+[node name="Resolution" type="Node2D" parent="MainMenuManager/Graphics"]
+position = Vector2( 676, 362 )
+scale = Vector2( 2, 2 )
+
+[node name="Resolution Label" type="Label" parent="MainMenuManager/Graphics/Resolution"]
+margin_left = -16.0
+margin_top = 53.5
+margin_right = 208.0
+margin_bottom = 109.5
+rect_scale = Vector2( 0.7, 0.7 )
+custom_fonts/font = SubResource( 48 )
+text = "ResolUtion"
+
+[node name="Resolutions" type="OptionButton" parent="MainMenuManager/Graphics/Resolution"]
+light_mask = 0
+margin_left = 174.0
+margin_top = 61.0
+margin_right = 386.0
+margin_bottom = 97.0
+rect_scale = Vector2( 1, 0.7 )
+custom_fonts/font = SubResource( 57 )
+align = 1
+icon_align = 1
+
+[node name="Screen Mode" type="Node2D" parent="MainMenuManager/Graphics"]
+position = Vector2( 676, 362 )
+scale = Vector2( 2, 2 )
+
+[node name="Screen Label" type="Label" parent="MainMenuManager/Graphics/Screen Mode"]
+margin_left = -43.5
+margin_top = 94.0
+margin_right = 220.5
+margin_bottom = 150.0
+rect_scale = Vector2( 0.7, 0.7 )
+custom_fonts/font = SubResource( 48 )
+text = "Screen_Mode"
+
+[node name="Screen Options" type="OptionButton" parent="MainMenuManager/Graphics/Screen Mode"]
+light_mask = 0
+margin_left = 174.5
+margin_top = 102.0
+margin_right = 386.5
+margin_bottom = 138.0
+rect_scale = Vector2( 1, 0.7 )
+align = 1
+icon_align = 1
+
+[node name="Brightness" type="Node2D" parent="MainMenuManager/Graphics"]
+visible = false
+position = Vector2( 676, 362 )
+scale = Vector2( 2, 2 )
+
+[node name="Brightness Label" type="Label" parent="MainMenuManager/Graphics/Brightness"]
+margin_left = -15.5
+margin_top = 134.5
+margin_right = 208.5
+margin_bottom = 190.5
+rect_scale = Vector2( 0.7, 0.7 )
+custom_fonts/font = SubResource( 48 )
+text = "Brightness"
+
+[node name="Brightness Slider" type="HSlider" parent="MainMenuManager/Graphics/Brightness"]
+light_mask = 0
+margin_left = 172.5
+margin_top = 148.0
+margin_right = 384.5
+margin_bottom = 164.0
+value = 50.0
+rounded = true
+tick_count = 10
+
+[node name="Brightness Slider #" type="Label" parent="MainMenuManager/Graphics/Brightness"]
+margin_left = 398.5
+margin_top = 142.5
+margin_right = 456.5
+margin_bottom = 172.5
+text = "000"
+
+[node name="GraphicsReturn Button" type="Button" parent="MainMenuManager/Graphics"]
+margin_left = 859.0
+margin_top = 853.0
+margin_right = 1003.0
+margin_bottom = 909.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 49 )
+custom_styles/hover = SubResource( 50 )
+custom_styles/pressed = SubResource( 51 )
+custom_styles/focus = SubResource( 52 )
+custom_styles/disabled = SubResource( 53 )
+custom_styles/normal = SubResource( 54 )
+text = "RetUrn"
+
+[node name="Credits" type="Node2D" parent="MainMenuManager"]
+
+[node name="Development Team" type="Label" parent="MainMenuManager/Credits"]
+light_mask = 64
+margin_left = 680.0
+margin_top = 443.0
+margin_right = 1289.0
+margin_bottom = 503.0
+custom_fonts/font = SubResource( 70 )
+text = "DEVELOPMENT TEAM"
+align = 1
+valign = 1
+
+[node name="Me" type="Label" parent="MainMenuManager/Credits/Development Team"]
+light_mask = 64
+margin_left = 191.0
+margin_top = 68.0
+margin_right = 418.0
+margin_bottom = 106.0
+custom_fonts/font = SubResource( 71 )
+text = "OSCAR TIEN"
+align = 1
+valign = 1
+
+[node name="Vany" type="Label" parent="MainMenuManager/Credits/Development Team"]
+light_mask = 64
+margin_left = 189.0
+margin_top = 119.0
+margin_right = 416.0
+margin_bottom = 157.0
+custom_fonts/font = SubResource( 71 )
+text = "VANYMEDES"
+align = 1
+valign = 1
+
+[node name="Assets Used" type="Label" parent="MainMenuManager/Credits"]
+visible = false
+light_mask = 64
+margin_left = 778.0
+margin_top = 546.0
+margin_right = 1192.0
+margin_bottom = 606.0
+custom_fonts/font = SubResource( 70 )
+text = "ASSETS USED"
+align = 1
+valign = 1
+
+[node name="Asset 1" type="Label" parent="MainMenuManager/Credits/Assets Used"]
+light_mask = 64
+margin_left = -43.0
+margin_top = 62.0
+margin_right = 457.0
+margin_bottom = 97.0
+custom_fonts/font = SubResource( 81 )
+text = "CLASSIC ARCADE FONT 32 - FONT"
+align = 1
+valign = 1
+
+[node name="Asset 2" type="Label" parent="MainMenuManager/Credits/Assets Used"]
+light_mask = 64
+margin_left = 20.0
+margin_top = 99.0
+margin_right = 393.0
+margin_bottom = 129.0
+custom_fonts/font = SubResource( 82 )
+text = "MAIN TITLE FONT - FONT"
+align = 1
+valign = 1
+
+[node name="Asset 3" type="Label" parent="MainMenuManager/Credits/Assets Used"]
+light_mask = 64
+margin_left = -9.0
+margin_top = 133.0
+margin_right = 423.0
+margin_bottom = 163.0
+custom_fonts/font = SubResource( 83 )
+text = "MOVIE THEATRE FONT - FONT"
+align = 1
+valign = 1
+
+[node name="Asset 4" type="Label" parent="MainMenuManager/Credits/Assets Used"]
+light_mask = 64
+margin_left = 16.0
+margin_top = 169.0
+margin_right = 398.0
+margin_bottom = 199.0
+custom_fonts/font = SubResource( 84 )
+text = "MARCH OF THE AI - MUSIC"
+align = 1
+valign = 1
+
+[node name="Asset 5" type="Label" parent="MainMenuManager/Credits/Assets Used"]
+light_mask = 64
+margin_left = 28.0
+margin_top = 202.0
+margin_right = 386.0
+margin_bottom = 232.0
+custom_fonts/font = SubResource( 84 )
+text = "TOTAL REKT'EM - MUSIC"
+align = 1
+valign = 1
+
+[node name="Asset 6" type="Label" parent="MainMenuManager/Credits/Assets Used"]
+light_mask = 64
+margin_left = 80.0
+margin_top = 236.0
+margin_right = 332.0
+margin_bottom = 266.0
+custom_fonts/font = SubResource( 84 )
+text = "THEME 2 - MUSIC"
+align = 1
+valign = 1
+
+[node name="Credits_Return" type="Button" parent="MainMenuManager/Credits"]
+margin_left = 859.0
+margin_top = 853.0
+margin_right = 1003.0
+margin_bottom = 909.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 49 )
+custom_styles/hover = SubResource( 50 )
+custom_styles/pressed = SubResource( 51 )
+custom_styles/focus = SubResource( 52 )
+custom_styles/disabled = SubResource( 53 )
+custom_styles/normal = SubResource( 54 )
+text = "RetUrn"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenuManager"]
+root_node = NodePath("../..")
+anims/Audio_FadeAway = SubResource( 55 )
+anims/Credits_FadeAway = SubResource( 72 )
+anims/Graphics_FadeAway = SubResource( 56 )
+anims/HTP_FadeAway = SubResource( 59 )
+anims/MainButtons_FadeAway = SubResource( 40 )
+anims/OptionButtons_FadeAway = SubResource( 41 )
+anims/PlayConfirm_FadeAway = SubResource( 67 )
+anims/RESET = SubResource( 39 )
+
+[node name="Node2D" type="Node2D" parent="MainMenuManager"]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+autoplay = true
+bus = "Music"
+
+[connection signal="pressed" from="MainMenuManager/Main_Buttons/Start Game" to="." method="_on_Start_Game_pressed"]
+[connection signal="pressed" from="MainMenuManager/Main_Buttons/HowToPlay" to="." method="_on_HowToPlay_pressed"]
+[connection signal="pressed" from="MainMenuManager/Main_Buttons/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="MainMenuManager/Main_Buttons/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="MainMenuManager/Options_Buttons/Graphics" to="." method="_on_Graphics_pressed"]
+[connection signal="pressed" from="MainMenuManager/Options_Buttons/Audio" to="." method="_on_Audio_pressed"]
+[connection signal="pressed" from="MainMenuManager/Options_Buttons/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="MainMenuManager/Options_Buttons/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="MainMenuManager/Start Confirmation/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="MainMenuManager/HowToPlay/LeftButton" to="." method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="MainMenuManager/HowToPlay/RightButton" to="." method="_on_RightButton_pressed"]
+[connection signal="pressed" from="MainMenuManager/HowToPlay/HTP_Return Button" to="." method="_on_HTP_Return_Button_pressed"]
+[connection signal="toggled" from="MainMenuManager/HowToPlay/HTP_IMG Button" to="." method="_on_HTP_IMG_Button_toggled"]
+[connection signal="value_changed" from="MainMenuManager/Audio/Volume Control/Master/Master Slider" to="." method="_on_Master_Slider_value_changed"]
+[connection signal="value_changed" from="MainMenuManager/Audio/Volume Control/Sound Effects/SE Slider" to="." method="_on_SE_Slider_value_changed"]
+[connection signal="value_changed" from="MainMenuManager/Audio/Volume Control/Dialogue/Dialogue Slider" to="." method="_on_Dialogue_Slider_value_changed"]
+[connection signal="value_changed" from="MainMenuManager/Audio/Volume Control/Music/Music Slider" to="." method="_on_Music_Slider_value_changed"]
+[connection signal="pressed" from="MainMenuManager/Audio/Return Button" to="." method="_on_Return_Button_pressed"]
+[connection signal="item_selected" from="MainMenuManager/Graphics/Resolution/Resolutions" to="." method="_on_Resolutions_item_selected"]
+[connection signal="item_selected" from="MainMenuManager/Graphics/Screen Mode/Screen Options" to="." method="_on_Screen_Options_item_selected"]
+[connection signal="pressed" from="MainMenuManager/Graphics/GraphicsReturn Button" to="." method="_on_GraphicsReturn_Button_pressed"]
+[connection signal="pressed" from="MainMenuManager/Credits/Credits_Return" to="." method="_on_Credits_Return_pressed"]

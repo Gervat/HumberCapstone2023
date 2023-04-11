@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://InteractivePiece/_Master/InteractivePiece.tscn" type="PackedScene" id=1]
+[ext_resource path="res://InteractivePiece/Bumper/Resource/Bumper.gd" type="Script" id=2]
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array(  )
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Bump"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Design:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 3, 1 ),
+"update": 0,
+"values": [ Color( 0.6, 0.6, 0.6, 1 ), Color( 0.133333, 0.133333, 0.133333, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Outline:default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 3, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.333333, 0.333333, 0.333333, 1 ) ]
+}
+
+[node name="Bumper" groups=["Conquest", "Scoring"] instance=ExtResource( 1 )]
+collision_layer = 0
+mode = 3
+continuous_cd = 1
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 2 )
+strength = 5000
+sensitivity = 5
+
+[node name="Collision" parent="." index="0"]
+polygon = PoolVector2Array( 0, -71, 22, -49, 22, -22, 49, -22, 71, 0, 49, 22, 22, 22, 22, 49, 0, 71, -22, 49, -22, 22, -49, 22, -71, 0, -49, -22, -22, -22, -22, -49 )
+
+[node name="Bezier" parent="." index="1"]
+visible = false
+rotation = 1.5708
+z_index = 1
+curve = SubResource( 2 )
+sides = 24
+
+[node name="Shape" parent="Sprite" index="0"]
+light_mask = 0
+rotation = -3.14159
+scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( -44, 44, -98, 44, -142, 6.20702e-06, -98, -44, -44, -44, -44, -98, 0, -142, 44, -98, 44, -44, 98, -44, 142, 6.20702e-06, 98, 44, 44, 44, 44, 98, -1.2414e-05, 142, -44, 98 )
+
+[node name="Design" parent="Sprite" index="1"]
+polygon = PoolVector2Array( -18.5, -14.5, -8, -4, -8, 4, -18.5, 14.5, -16, 20, -4, 8, -1.5, 8, -1.5, 49, 0, 52, 1.5, 49, 1.5, 8, 4, 8, 16, 20, 18.5, 14.5, 8, 4, 8, -4, 18.5, -14.5, 25.5, -0.5, 25.5, 0.5, 0, 52, 0, 62, 7, 48, 10, 51, 10, 61, 14, 57, 14, 46, 10, 42, 25, 12, 49.5, 12, 54, 16.5, 57, 13.5, 51.5, 8, 44, 8, 48, 4, 67, 4, 69, 2, 46, 2, 40, 8, 27, 8, 31, 0, 27, -8, 40, -8, 46, -2, 69, -2, 67, -4, 48, -4, 44, -8, 51.5, -8, 57, -13.5, 54, -16.5, 49.5, -12, 25, -12, 10, -42, 14, -46, 14, -57, 10, -61, 10, -51, 7, -48, 0, -62, 0, -52, 16, -20, 4, -8, 1.5, -8, 1.5, -49, 0, -52, -1.5, -49, -1.5, -8, -4, -8, -16, -20, 0, -52, 0, -62, -7, -48, -10, -51, -10, -61, -14, -57, -14, -46, -10, -42, -25, -12, -49.5, -12, -54, -16.5, -57, -13.5, -51.5, -8, -44, -8, -48, -4, -67, -4, -69, -2, -46, -2, -40, -8, -27, -8, -31, 0, -27, 8, -40, 8, -46, 2, -69, 2, -67, 4, -48, 4, -44, 8, -51.5, 8, -57, 13.5, -54, 16.5, -49.5, 12, -25, 12, -10, 42, -14, 46, -14, 57, -10, 61, -10, 51, -7, 48, 0, 62, 0, 52, -25.5, 0.5, -25.5, -0.5 )
+
+[node name="Outline" parent="Sprite" index="2"]
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+points = PoolVector2Array( -132, 5.7699e-06, -95, -37, -37, -37, -37, -95, -5.7699e-06, -132, 37, -95, 37, -37, 95, -37, 132, -5.7699e-06, 95, 37, 37, 37, 37, 95, 5.7699e-06, 132, -37, 95, -37, 37, -95, 37, -134.824, -2.81787 )
+width = 8.0
+
+[node name="AnimationPlayer" parent="." index="3"]
+anims/Bump = SubResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_Bumper_body_entered"]

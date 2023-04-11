@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=2]
+gradient = SubResource( 1 )
+
+[node name="LightsMeta" type="CanvasLayer"]
+layer = 0
+
+[node name="DefaultLight" type="Light2D" parent="."]
+scale = Vector2( 67, 100 )
+texture = SubResource( 2 )
+energy = 3.0
+range_layer_min = -50
+range_layer_max = 50
+range_item_cull_mask = 2
+
+[node name="ActiveLight" type="Light2D" parent="."]
+scale = Vector2( 67, 100 )
+texture = SubResource( 2 )
+color = Color( 0, 1, 0, 1 )
+energy = 2.0
+range_item_cull_mask = 1024
+
+[node name="PlayerLight" type="Light2D" parent="."]
+light_mask = 4
+scale = Vector2( 67, 100 )
+texture = SubResource( 2 )
+color = Color( 0, 1, 1, 1 )
+energy = 2.75
+range_layer_min = -128
+range_layer_max = 128
+range_item_cull_mask = 4
+
+[node name="OccupiedLight" type="Light2D" parent="."]
+scale = Vector2( 67, 100 )
+texture = SubResource( 2 )
+color = Color( 1, 0.25098, 0, 1 )
+energy = 4.0
+range_item_cull_mask = 8
+
+[node name="EnemyLight" type="Light2D" parent="."]
+scale = Vector2( 67, 100 )
+texture = SubResource( 2 )
+color = Color( 1, 0, 0, 1 )
+energy = 6.0
+range_item_cull_mask = 16

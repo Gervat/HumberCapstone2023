@@ -1,0 +1,286 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Resources/Fonts/MovieTheaterFont.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://InteractivePiece/_Master/Resource/BrickSmallDark0012_1_download600.jpg" type="Texture" id=2]
+[ext_resource path="res://Resources/Fonts/test1.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Resources/Music/MarchoftheAI.sample" type="AudioStream" id=4]
+[ext_resource path="res://Resources/Fonts/ClassicArcadeFont.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://UI/StoryCutscene.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Levels/DemoEnd/Resource/DemoEndStory.gd" type="Script" id=7]
+[ext_resource path="res://Levels/DemoEnd/Resource/DemoEnd.gd" type="Script" id=8]
+
+[sub_resource type="Gradient" id=69]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=70]
+gradient = SubResource( 69 )
+
+[sub_resource type="DynamicFont" id=71]
+size = 256
+outline_size = 4
+use_mipmaps = true
+extra_spacing_char = 4
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=72]
+size = 44
+extra_spacing_char = -1
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=73]
+size = 64
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=74]
+
+[sub_resource type="StyleBoxEmpty" id=75]
+
+[sub_resource type="StyleBoxEmpty" id=76]
+
+[sub_resource type="StyleBoxEmpty" id=77]
+
+[sub_resource type="StyleBoxEmpty" id=78]
+
+[sub_resource type="Environment" id=79]
+background_mode = 4
+background_color = Color( 0.933333, 0.933333, 0.933333, 1 )
+background_energy = 16.0
+background_canvas_max_layer = 1000
+background_camera_feed_id = 6
+ambient_light_color = Color( 0.945098, 0.945098, 0.945098, 1 )
+ambient_light_energy = 16.0
+ambient_light_sky_contribution = 0.0
+tonemap_mode = 2
+tonemap_exposure = 4.0
+tonemap_white = 16.0
+glow_enabled = true
+glow_levels/3 = false
+glow_levels/4 = true
+glow_levels/6 = true
+glow_levels/7 = true
+glow_intensity = 0.1
+glow_strength = 0.66
+glow_bloom = 1.0
+glow_blend_mode = 0
+glow_hdr_threshold = 4.0
+glow_hdr_luminance_cap = 256.0
+glow_hdr_scale = 1.0
+glow_bicubic_upscale = true
+glow_high_quality = true
+adjustment_enabled = true
+adjustment_brightness = 0.5
+adjustment_saturation = 0.85
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=80]
+gradient = SubResource( 7 )
+
+[sub_resource type="Animation" id=81]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SkipText:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=82]
+resource_name = "SpacebarSkip"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("SkipText:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 8 )
+
+[node name="DemoEnd" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite" parent="DemoEnd"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 957, 1095 )
+scale = Vector2( 0.946289, 1109 )
+texture = SubResource( 70 )
+
+[node name="Words" type="Control" parent="DemoEnd"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Neon Impulse" type="Label" parent="DemoEnd/Words"]
+modulate = Color( 0, 1, 0.952941, 1 )
+light_mask = 64
+margin_left = 351.0
+margin_top = 87.0
+margin_right = 2203.0
+margin_bottom = 353.0
+rect_scale = Vector2( 0.7, 0.7 )
+custom_fonts/font = SubResource( 71 )
+text = "Neon Impulse"
+align = 1
+valign = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="DemoEnd/Words/Neon Impulse"]
+light_mask = 64
+position = Vector2( -14.2857, -324.286 )
+scale = Vector2( 1.01184, 2.05882 )
+polygon = PoolVector2Array( 12.8237, 312.857, 12.7067, 297.673, 1814.35, 297.592, 1814.29, 312.857 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="DemoEnd/Words/Neon Impulse"]
+light_mask = 64
+position = Vector2( -11.4286, -631.429 )
+scale = Vector2( 1.01184, 2.05882 )
+polygon = PoolVector2Array( 12.8237, 312.857, 12.7067, 297.673, 1814.35, 297.592, 1814.29, 312.857 )
+
+[node name="End Of Demo" type="Label" parent="DemoEnd/Words"]
+light_mask = 32
+margin_left = 435.0
+margin_top = 351.0
+margin_right = 1562.0
+margin_bottom = 753.0
+custom_fonts/font = SubResource( 72 )
+text = "This is the end of the demo.
+
+This version of the game was a capstone demo.
+Please expect a fully playable demo
+version in the near future.
+
+Thank you very much for playing!
+-Much love from RebelHead Studios-"
+align = 1
+valign = 1
+
+[node name="DemoEnd_Return" type="Button" parent="DemoEnd"]
+margin_left = 859.0
+margin_top = 853.0
+margin_right = 1003.0
+margin_bottom = 909.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 73 )
+custom_styles/hover = SubResource( 74 )
+custom_styles/pressed = SubResource( 75 )
+custom_styles/focus = SubResource( 76 )
+custom_styles/disabled = SubResource( 77 )
+custom_styles/normal = SubResource( 78 )
+text = "RetUrn"
+
+[node name="BackgroundImage" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BoardBackground" type="Polygon2D" parent="BackgroundImage"]
+light_mask = 0
+position = Vector2( 678.5, 55.5484 )
+scale = Vector2( 1.88477, 0.983837 )
+z_index = -10
+color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+texture = ExtResource( 2 )
+texture_scale = Vector2( 2, 2 )
+polygon = PoolVector2Array( -768, 3066.01, -768, -3068.14, 768, -3068.14, 768, 3066.01 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 79 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+bus = "Music"
+
+[node name="Light2D" type="Light2D" parent="."]
+light_mask = 64
+position = Vector2( 954.5, 549.5 )
+scale = Vector2( 30.1094, 17.0156 )
+texture = SubResource( 80 )
+energy = 1.7
+range_layer_max = 100
+range_item_cull_mask = 64
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StoryCutscene" parent="." instance=ExtResource( 6 )]
+script = ExtResource( 7 )
+StoryDialogue = [ "Athena: \"They're close!\"
+Geronimo: \"This was fun, Athena. I hope we made the right call on
+this one.\"
+Athena: \"All these years and you doubt me still?\"
+Geronimo: \"Just getting you riled up for the fight, my dear!\"
+
+They pull out their weapons and prepare for the worst...", "The year is 20XX. You are the last surviving member of 
+The Rebellion and continue the fight to free the populace from 
+The Morning Star's control.", "You must rescue the others to have any chance
+of continuing the fight against wickedness and malice. From the
+smallest seed, you will plant the downfall of the cult.
+
+You alone rise to oppose the cult, and risk your life.", "But you're not entirely alone.", "Your helmet picks up a voice through the static.
+
+\"Ca...anybody...ear me? Th...s...D...pher. Pl..se...re...nd\"
+", "" ]
+
+[node name="Text" parent="StoryCutscene" index="1"]
+text = "Your helmet picks up a voice through the static.
+
+\"Ca...anybody...ear me? Th...s...D...pher. Pl..se...re...nd\"
+"
+
+[node name="AnimationPlayer" parent="StoryCutscene" index="3"]
+anims/RESET = SubResource( 81 )
+anims/SpacebarSkip = SubResource( 82 )
+
+[connection signal="pressed" from="DemoEnd/DemoEnd_Return" to="." method="_on_DemoEnd_Return_pressed"]
+
+[editable path="StoryCutscene"]

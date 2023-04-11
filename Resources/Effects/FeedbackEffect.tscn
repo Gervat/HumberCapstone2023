@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Resources/Effects/UHOH.mp3str" type="AudioStream" id=1]
+[ext_resource path="res://Resources/Effects/FeedbackEffect.gd" type="Script" id=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+lifetime_randomness = 1.0
+flag_disable_z = true
+spread = 180.0
+flatness = 1.0
+gravity = Vector3( 0, 150, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+scale_random = 0.7
+
+[node name="FeedbackEffect" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
+volume_db = 12.0
+autoplay = true
+bus = "SFX"
+
+[node name="Particles" type="Particles2D" parent="."]
+light_mask = 2
+emitting = false
+amount = 32
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+local_coords = false
+process_material = SubResource( 1 )
+
+[connection signal="finished" from="Sound" to="." method="_on_Sound_finished"]

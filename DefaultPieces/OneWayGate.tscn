@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://InteractivePiece/_Master/InteractivePiece.tscn" type="PackedScene" id=1]
+[ext_resource path="res://DefaultPieces/Resource/OneWayGate.gd" type="Script" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+rough = true
+absorbent = true
+
+[node name="OWG" instance=ExtResource( 1 )]
+light_mask = 2
+z_index = 5
+collision_layer = 32
+mode = 1
+physics_material_override = SubResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": "One Way Gate"
+}
+OneWay = true
+Open = false
+Repellant = false
+
+[node name="Collision" parent="." index="0"]
+visible = false
+polygon = PoolVector2Array( -40, 2, 40, 2, 40, -8, -40, -8 )
+one_way_collision = true
+
+[node name="Bezier" parent="." index="1"]
+visible = false
+
+[node name="Shape" parent="Sprite" index="0"]
+light_mask = 2
+color = Color( 0.14902, 0, 0.247059, 1 )
+polygon = PoolVector2Array( -40, 8, -39.2651, 7.82742, -37.1233, 7.37259, -33.6687, 6.72986, -28.9955, 5.99357, -23.1978, 5.25809, -16.3699, 4.61777, -12.599, 4.36278, -8.6059, 4.16695, -4.4023, 4.0421, 0, 4, 4.4023, 4.04775, 8.6059, 4.1768, 12.599, 4.3755, 16.3699, 4.63223, 23.1978, 5.27316, 28.9955, 6.00643, 33.6687, 6.73889, 37.1233, 7.37741, 39.2651, 7.82883, 40, 8, 40, -8, 39.2649, -8.17142, 37.1224, -8.62345, 33.6671, -9.26271, 28.9932, -9.99586, 23.1951, -10.7295, 16.3673, -11.3703, 12.5968, -11.6268, 8.60415, -11.825, 4.4013, -11.9533, 0, -12, -4.4013, -11.9569, -8.60415, -11.8313, -12.5968, -11.635, -16.3673, -11.3797, -23.1951, -10.7392, -28.9932, -10.0041, -33.6671, -9.26854, -37.1224, -8.62655, -39.2649, -8.17233, -40, -8 )
+
+[node name="Design" parent="Sprite" index="1"]
+modulate = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+light_mask = 2
+z_index = 2
+polygon = PoolVector2Array( -38, 6, -37.3511, 5.87039, -35.4358, 5.52884, -32.3015, 5.04626, -27.9955, 4.49357, -22.565, 3.94169, -16.0574, 3.46152, -8.51996, 3.12399, 0, 3, 8.51996, 3.13383, 16.0574, 3.47598, 22.565, 3.95675, 27.9955, 4.50643, 32.3015, 5.0553, 35.4358, 5.53366, 37.3511, 5.8718, 38, 6, 38, -7, 37.3508, -7.17142, 35.4349, -7.62345, 32.2999, -8.26271, 27.9932, -8.99586, 25.4153, -9.36846, 22.5623, -9.72952, 19.4402, -10.0674, 16.0548, -10.3703, 12.4122, -10.6268, 8.51821, -10.825, 4.37884, -10.9533, 0, -11, -4.37884, -10.9569, -8.51821, -10.8313, -12.4122, -10.635, -16.0548, -10.3797, -19.4402, -10.0772, -22.5623, -9.73923, -25.4153, -9.37764, -27.9932, -9.00414, -32.2999, -8.26854, -35.4349, -7.62655, -37.3508, -7.17233, -38, -7 )
+
+[node name="Outline" parent="Sprite" index="2"]
+modulate = Color( 0.866667, 0.729412, 1, 1 )
+light_mask = 2
+z_index = 2
+points = PoolVector2Array( -16, 0, 0, -8, 16, 0 )
+
+[connection signal="body_entered" from="." to="." method="_on_Gate_body_entered"]

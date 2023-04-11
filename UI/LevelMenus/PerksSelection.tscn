@@ -1,0 +1,263 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Resources/Fonts/ClassicArcadeFont.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/Resource/PerkNode/PerkNode.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/LevelMenus/Resource/PerksSelection.gd" type="Script" id=4]
+[ext_resource path="res://UI/Resource/PerkNode/Resource/Perk_Minus.png" type="Texture" id=5]
+[ext_resource path="res://UI/LevelMenus/Resource/PauseMenu.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=43]
+size = 64
+extra_spacing_char = -1
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=44]
+
+[sub_resource type="StyleBoxEmpty" id=38]
+
+[sub_resource type="Animation" id=45]
+resource_name = "Perk_Fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 949, 537 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.01, 0.01 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=46]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[node name="PerksSelection" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 542.0 ],
+"_edit_vertical_guides_": [ 958.0 ]
+}
+
+[node name="PerkMain" type="Sprite" parent="."]
+pause_mode = 2
+modulate = Color( 0, 0, 0, 1 )
+light_mask = 0
+position = Vector2( 756, 521 )
+scale = Vector2( 1.3525, 0.879518 )
+texture = ExtResource( 6 )
+
+[node name="Title" type="Label" parent="PerkMain"]
+pause_mode = 2
+modulate = Color( 0, 0, 0, 1 )
+light_mask = 0
+margin_left = -227.727
+margin_top = -349.055
+margin_right = -131.727
+margin_bottom = -319.055
+rect_scale = Vector2( 5, 5 )
+text = "PERKS"
+
+[node name="Title2" type="Label" parent="PerkMain"]
+pause_mode = 2
+modulate = Color( 0, 0, 0, 1 )
+light_mask = 0
+margin_left = -260.998
+margin_top = -189.877
+margin_right = -40.9983
+margin_bottom = -159.877
+rect_scale = Vector2( 2.5, 2.5 )
+text = "Select 1 Perk"
+
+[node name="Perks" type="GridContainer" parent="."]
+pause_mode = 2
+margin_left = 301.0
+margin_top = 434.0
+margin_right = 1201.0
+margin_bottom = 841.0
+columns = 3
+
+[node name="PerkNode" parent="Perks" instance=ExtResource( 2 )]
+pause_mode = 2
+margin_right = 298.0
+margin_bottom = 202.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PerkNode2" parent="Perks" instance=ExtResource( 2 )]
+pause_mode = 2
+margin_left = 302.0
+margin_right = 599.0
+margin_bottom = 202.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PerkNode3" parent="Perks" instance=ExtResource( 2 )]
+pause_mode = 2
+margin_left = 603.0
+margin_right = 900.0
+margin_bottom = 202.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PerkNode4" parent="Perks" instance=ExtResource( 2 )]
+pause_mode = 2
+margin_top = 206.0
+margin_right = 298.0
+margin_bottom = 407.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PerkNode5" parent="Perks" instance=ExtResource( 2 )]
+pause_mode = 2
+margin_left = 302.0
+margin_top = 206.0
+margin_right = 599.0
+margin_bottom = 407.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PerkNode6" parent="Perks" instance=ExtResource( 2 )]
+pause_mode = 2
+margin_left = 603.0
+margin_top = 206.0
+margin_right = 900.0
+margin_bottom = 407.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PerkSide" type="Sprite" parent="."]
+pause_mode = 2
+modulate = Color( 0, 0, 0, 1 )
+light_mask = 0
+position = Vector2( 1531, 512 )
+scale = Vector2( 0.54, 0.53253 )
+texture = ExtResource( 6 )
+
+[node name="PerkImage" type="Sprite" parent="PerkSide"]
+pause_mode = 2
+light_mask = 32
+position = Vector2( -7.40796, -212.195 )
+scale = Vector2( 2.65433, 2.40988 )
+texture = ExtResource( 5 )
+
+[node name="PerkName" type="Label" parent="PerkSide"]
+pause_mode = 2
+light_mask = 32
+margin_left = -369.0
+margin_top = -63.0
+margin_right = 369.0
+margin_bottom = -3.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+custom_fonts/font = SubResource( 43 )
+text = "Perk Name Here"
+align = 1
+valign = 1
+
+[node name="PerkDescription" type="Label" parent="PerkSide"]
+pause_mode = 2
+light_mask = 32
+margin_left = -352.0
+margin_top = 17.0
+margin_right = 352.0
+margin_bottom = 252.0
+size_flags_horizontal = 3
+text = "perk description will go here and say stuff idk it can be whatever we want it to say hello world do you like panda's they're pretty cool
+"
+valign = 1
+autowrap = true
+
+[node name="SelectButton" type="Button" parent="PerkSide"]
+pause_mode = 2
+margin_left = -365.0
+margin_top = 201.0
+margin_right = -121.0
+margin_bottom = 261.0
+rect_scale = Vector2( 3, 3 )
+custom_styles/hover = SubResource( 44 )
+custom_styles/normal = SubResource( 38 )
+text = "SELECT"
+
+[node name="Background" type="Polygon2D" parent="."]
+pause_mode = 2
+show_behind_parent = true
+position = Vector2( 204.777, 150.783 )
+scale = Vector2( 0.795078, 0.675608 )
+color = Color( 0.223529, 0.223529, 0.223529, 0.905882 )
+polygon = PoolVector2Array( -3.49255, -11.5199, 1953, -13, 1956.06, 1100.07, -1.79082, 1101.55 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tween" type="Tween" parent="."]
+pause_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Perk_Fade = SubResource( 45 )
+anims/RESET = SubResource( 46 )
+
+[connection signal="pressed" from="PerkSide/SelectButton" to="." method="_on_SelectButton_pressed"]

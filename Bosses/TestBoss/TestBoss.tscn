@@ -1,0 +1,245 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Bosses/TestBoss/TestBoss.gd" type="Script" id=1]
+[ext_resource path="res://Bosses/TestBoss/Level1_Boss_Spawn.png" type="Texture" id=3]
+[ext_resource path="res://Bosses/TestBoss/Level1_Boss_Angry.png" type="Texture" id=4]
+[ext_resource path="res://Bosses/TestBoss/Level1_Boss_Weak.png" type="Texture" id=5]
+[ext_resource path="res://Bosses/TestBoss/Boss1Bumper.gd" type="Script" id=7]
+
+[sub_resource type="PhysicsMaterial" id=4]
+friction = 0.0
+rough = true
+absorbent = true
+
+[sub_resource type="Animation" id=7]
+resource_name = "Awaken"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("States/Awaken/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("States/Awaken/Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.9, 2.3, 2.7, 3.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("States/Awaken/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("States/Awaken/Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="PhysicsMaterial" id=5]
+friction = 0.0
+rough = true
+absorbent = true
+
+[sub_resource type="Animation" id=9]
+resource_name = "Idle"
+length = 1.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("States/Angry/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("States/Angry/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="PhysicsMaterial" id=6]
+friction = 0.0
+rough = true
+absorbent = true
+
+[node name="Boss" type="Node2D"]
+light_mask = 2
+script = ExtResource( 1 )
+
+[node name="DetectionAreas" type="Node2D" parent="."]
+
+[node name="Idler" type="Timer" parent="."]
+process_mode = 0
+
+[node name="States" type="Node2D" parent="."]
+
+[node name="Sleep" type="RigidBody2D" parent="States" groups=["Scoring"]]
+collision_layer = 32
+mode = 3
+physics_material_override = SubResource( 4 )
+continuous_cd = 1
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 7 )
+State = 16
+trackHits = true
+strength = 3000
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="States/Sleep"]
+visible = false
+polygon = PoolVector2Array( -184, -191, -116, -225, -69, -238, -1, -240, 62, -240, 115, -226, 185, -193, 221, -166, 240, -132, 243, -112, 242, 234, 228, 239, 187, 225, 134, 194, 102, 183, 66, 183, 4, 214, -7, 214, -65, 186, -94, 185, -120, 190, -150, 205, -194, 232, -232, 242, -243, 236, -243, -119, -229, -153, -208, -176 )
+
+[node name="Sprite" type="Sprite" parent="States/Sleep"]
+texture = ExtResource( 3 )
+hframes = 7
+frame = 1
+
+[node name="Design" type="Polygon2D" parent="States/Sleep/Sprite"]
+
+[node name="Outline" type="Line2D" parent="States/Sleep/Sprite"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="States/Sleep"]
+root_node = NodePath("../../..")
+
+[node name="Awaken" type="RigidBody2D" parent="States" groups=["Scoring"]]
+collision_layer = 32
+mode = 3
+physics_material_override = SubResource( 4 )
+continuous_cd = 1
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 7 )
+State = 16
+trackHits = true
+strength = 3000
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="States/Awaken"]
+visible = false
+polygon = PoolVector2Array( -184, -191, -116, -225, -69, -238, -1, -240, 62, -240, 115, -226, 185, -193, 221, -166, 240, -132, 243, -112, 242, 234, 228, 239, 187, 225, 134, 194, 102, 183, 66, 183, 4, 214, -7, 214, -65, 186, -94, 185, -120, 190, -150, 205, -194, 232, -232, 242, -243, 236, -243, -119, -229, -153, -208, -176 )
+
+[node name="Sprite" type="Sprite" parent="States/Awaken"]
+texture = ExtResource( 3 )
+hframes = 7
+
+[node name="Design" type="Polygon2D" parent="States/Awaken/Sprite"]
+
+[node name="Outline" type="Line2D" parent="States/Awaken/Sprite"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="States/Awaken"]
+root_node = NodePath("../../..")
+anims/Awaken = SubResource( 7 )
+anims/RESET = SubResource( 8 )
+
+[node name="Angry" type="RigidBody2D" parent="States" groups=["Conquest", "Scoring"]]
+light_mask = 16
+collision_layer = 32
+mode = 3
+physics_material_override = SubResource( 5 )
+continuous_cd = 1
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 7 )
+State = 16
+Lethal = true
+trackHits = true
+strength = 3000
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="States/Angry"]
+visible = false
+polygon = PoolVector2Array( -183, -186, -116, -219, -69, -231, -1, -235, 60, -234, 113, -222, 182, -189, 217, -163, 238, -131, 243, -112, 244, 234, 250, 245, 249, 252, 229, 250, 189, 232, 136, 201, 104, 188, 68, 189, 6, 218, -6, 220, -62, 193, -88, 190, -115, 194, -143, 206, -185, 232, -211, 243, -242, 255, -250, 251, -244, 234, -242, -117, -226, -150, -207, -170 )
+
+[node name="Sprite" type="Sprite" parent="States/Angry"]
+modulate = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
+light_mask = 16
+texture = ExtResource( 4 )
+hframes = 7
+
+[node name="Design" type="Polygon2D" parent="States/Angry/Sprite"]
+
+[node name="Outline" type="Line2D" parent="States/Angry/Sprite"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="States/Angry"]
+root_node = NodePath("../../..")
+anims/Idle = SubResource( 9 )
+anims/RESET = SubResource( 10 )
+
+[node name="Weak" type="RigidBody2D" parent="States" groups=["Conquest", "Scoring"]]
+collision_layer = 32
+mode = 3
+physics_material_override = SubResource( 6 )
+continuous_cd = 1
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 7 )
+State = 16
+trackHits = true
+strength = 3000
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="States/Weak"]
+polygon = PoolVector2Array( -177, -196, -116, -224, -68, -237, 0, -240, 65, -239, 117, -225, 185, -192, 220, -165, 240, -132, 243, -112, 244, 234, 233, 238, 212, 235, 184, 223, 137, 196, 105, 184, 68, 184, 6, 213, -3, 215, -69, 185, -100, 185, -124, 192, -149, 205, -189, 228, -211, 237, -231, 241, -242, 236, -242, -117, -230, -154, -207, -177 )
+
+[node name="Sprite" type="Sprite" parent="States/Weak"]
+modulate = Color( 0.00784314, 0.192157, 0.027451, 1 )
+light_mask = 2
+texture = ExtResource( 5 )
+
+[node name="Design" type="Polygon2D" parent="States/Weak/Sprite"]
+light_mask = 16
+
+[node name="Outline" type="Line2D" parent="States/Weak/Sprite"]
+light_mask = 16
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="States/Weak"]
+root_node = NodePath("../../..")
+
+[connection signal="timeout" from="Idler" to="." method="_on_Idler_timeout"]
+[connection signal="body_entered" from="States/Sleep" to="States/Sleep" method="_on_Bumper_body_entered"]
+[connection signal="body_entered" from="States/Awaken" to="States/Awaken" method="_on_Bumper_body_entered"]
+[connection signal="body_entered" from="States/Angry" to="States/Angry" method="_on_Bumper_body_entered"]
+[connection signal="body_entered" from="States/Weak" to="States/Weak" method="_on_Bumper_body_entered"]

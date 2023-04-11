@@ -1,0 +1,407 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://InteractivePiece/_Master/InteractivePiece.tscn" type="PackedScene" id=1]
+[ext_resource path="res://InteractivePiece/Enemies/Resource/IsolatedTurret.gd" type="Script" id=2]
+[ext_resource path="res://Resources/Shaders/ProceduralLines.material" type="Material" id=3]
+[ext_resource path="res://InteractivePiece/Enemies/Resource/LaserProjectile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://InteractivePiece/Enemies/Resource/TurretAlert.wav" type="AudioStream" id=6]
+[ext_resource path="res://UI/HUD/DebugInfoOverlay.tscn" type="PackedScene" id=7]
+
+[sub_resource type="PhysicsMaterial" id=26]
+friction = 0.65
+bounce = 0.9
+
+[sub_resource type="Curve2D" id=25]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 17.9811, 44.5048, 0, 0, 0, 0, 33.3436, 34.5283, 0, 0, 0, 0, 43.8502, 19.5234, 0, 0, 0, 0, 47.9708, 1.67518, 0, 0, 0, 0, 45.1052, -16.417, 0, 0, 0, 0, 35.671, -32.1183, 0, 0, 0, 0, 21.0418, -43.1421, 0, 0, 0, 0, 3.34831, -47.8831, 0, 0, 0, 0, -14.8328, -45.6507, 0, 0, 0, 0, -30.8538, -36.7701, 0, 0, 0, 0, -42.3815, -22.5346, 0, 0, 0, 0, -47.737, -5.01737, 0, 0, 0, 0, -46.1406, 13.2306, 0, 0, 0, 0, -37.8245, 29.5518, 0, 0, 0, 0, -24, 41.5692, 0, 0, 0, 0, -6.68031, 47.5329, 0, 0, 0, 0, 0, 48 )
+}
+
+[sub_resource type="Gradient" id=17]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=18]
+gradient = SubResource( 17 )
+
+[sub_resource type="Animation" id=19]
+resource_name = "DimToNewState"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Design:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.133333, 0.133333, 0.133333, 1 ), Color( 0.133333, 0.133333, 0.133333, 1 ), Color( 0.0666667, 0.0666667, 0.0666667, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Design:light_mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Outline:default_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.333333, 0.333333, 0.333333, 1 ), Color( 0.333333, 0.333333, 0.333333, 1 ), Color( 0.0666667, 0.0666667, 0.0666667, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Outline:light_mask")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "FlashEnemy"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Design:light_mask")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 16 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Design:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.8, 0.8, 0.8, 1 ), Color( 0.133333, 0.133333, 0.133333, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Outline:light_mask")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 16 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Outline:default_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.933333, 0.933333, 0.933333, 1 ), Color( 0.333333, 0.333333, 0.333333, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/Design:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite/Outline:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "FlashOccupied"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Design:light_mask")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Design:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.8, 0.8, 0.8, 1 ), Color( 0.133333, 0.133333, 0.133333, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Outline:light_mask")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Outline:default_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.933333, 0.933333, 0.933333, 1 ), Color( 0.333333, 0.333333, 0.333333, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/Design:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite/Outline:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "FlashPlayer"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Design:light_mask")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Design:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.8, 0.8, 0.8, 1 ), Color( 0.133333, 0.133333, 0.133333, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Outline:light_mask")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Outline:default_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.933333, 0.933333, 0.933333, 1 ), Color( 0.333333, 0.333333, 0.333333, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/Design:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite/Outline:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "Idle"
+length = 15.0
+loop = true
+
+[sub_resource type="Animation" id=24]
+resource_name = "LaserBuild"
+length = 5.0
+loop = true
+
+[node name="IsolatedTurret" instance=ExtResource( 1 )]
+collision_layer = 0
+mode = 3
+mass = 6687.24
+physics_material_override = SubResource( 26 )
+script = ExtResource( 2 )
+FieldOfViewAngle = 270.0
+ScootAndShoot = true
+ShowData = true
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="0"]
+enabled = true
+cast_to = Vector2( 1000, 0 )
+collision_mask = 33
+
+[node name="Collision" parent="." index="1"]
+polygon = PoolVector2Array( 0, 48, 17.9811, 44.5048, 33.3436, 34.5283, 43.8502, 19.5234, 47.9708, 1.67518, 45.1052, -16.417, 35.671, -32.1183, 21.0418, -43.1421, 3.34831, -47.8831, -14.8328, -45.6507, -30.8538, -36.7701, -42.3815, -22.5346, -47.737, -5.01737, -46.1406, 13.2306, -37.8245, 29.5518, -24, 41.5692, -6.68031, 47.5329 )
+
+[node name="Bezier" parent="." index="2"]
+visible = false
+z_index = 1
+curve = SubResource( 25 )
+radius = 48
+sides = 16
+
+[node name="Shape" parent="Sprite" index="0"]
+polygon = PoolVector2Array( 0, 48, 33.9411, 33.9411, 48, 2.93906e-15, 33.9411, -33.9411, 5.87811e-15, -48, -33.9411, -33.9411, -48, -8.81717e-15, -33.9411, 33.9411 )
+
+[node name="Design" parent="Sprite" index="1"]
+polygon = PoolVector2Array(  )
+
+[node name="Outline" parent="Sprite" index="2"]
+material = ExtResource( 3 )
+points = PoolVector2Array( 0, 48, 33.9411, 33.9411, 48, 2.93906e-15, 33.9411, -33.9411, 5.87811e-15, -48, -33.9411, -33.9411, -48, -8.81717e-15, -33.9411, 33.9411, 0, 48 )
+texture = SubResource( 18 )
+texture_mode = 2
+
+[node name="AnimationPlayer" parent="." index="4"]
+anims/DimToNewState = SubResource( 19 )
+anims/FlashEnemy = SubResource( 20 )
+anims/FlashOccupied = SubResource( 21 )
+anims/FlashPlayer = SubResource( 22 )
+anims/Idle = SubResource( 23 )
+anims/LaserBuild = SubResource( 24 )
+
+[node name="Head" type="Node2D" parent="." index="5"]
+scale = Vector2( 1.1, 1.1 )
+
+[node name="Shape" type="Polygon2D" parent="Head" index="0"]
+rotation = 1.5708
+color = Color( 0.0352941, 0.156863, 0.235294, 1 )
+texture_scale = Vector2( 20, 20 )
+polygon = PoolVector2Array( 0, 38, 28, 28, 40, 0, 28, -28, 23.6363, -28, 12, -66, -12, -66, -23.6365, -28, -28, -28, -40, 0, -28, 28 )
+
+[node name="Design" type="Polygon2D" parent="Head" index="1"]
+light_mask = 8
+rotation = 1.5708
+color = Color( 0.333333, 0.333333, 0.333333, 1 )
+polygon = PoolVector2Array( -8, -8, -7, -8, -7, -9, -6.5, -9, -6.5, -16, -18.6979, -28.1693, -23.5928, -28.1055, -23.3377, -29.0621, -18.108, -29.1419, -5.5, -16.5, -5.5, -9, -5, -9, -5, -8, -3, -8, -3, -9, -2.5, -9, -2.5, -18.5, -12, -28, -12, -65, -12.1016, -65, -12, -66, -11, -66, -0.00537782, -66, -0.000235325, -65, -11, -65, -11, -56, -1.84013, -65.1626, -0.798118, -65.2158, -11, -55, -11, -28.5, -1.5, -19, -1.5, -9, -1, -9, -1, -8, 1, -8, 1, -9, 1.5, -9, 1.5, -19, 11, -28.5, 11, -55, 0.642315, -65.3545, 1.5869, -65.417, 11, -56, 11, -65, -0.0318124, -65, 0.00214328, -66, 11, -66, 12, -66, 12.1058, -65.0042, 12, -65, 12, -28, 2.5, -18.5, 2.5, -9, 3, -9, 3, -8, 5, -8, 5, -9, 5.5, -9, 5.5, -16.5, 17.784, -28.7785, 23.3551, -28.8216, 23.6109, -28.0259, 18.5, -28, 6.5, -16, 6.5, -9, 7, -9, 7, -8, 8, -8, 8, -7, 9.5, -7, 9.5, -6.5, 20, -6.5, 32.0508, -18.5508, 32.9453, -16.4531, 21, -4.5, 9.5, -4.5, 9.5, -4, 8, -4, 8, -1.5, 10, -1.5, 10, -0.5, 39.7813, -0.5, 40, 0, 39.7813, 0.5, 10, 0.5, 10, 1.5, 8, 1.5, 8, 4, 9.5, 4, 9.5, 4.5, 21, 4.5, 32.9579, 16.4495, 32.0507, 18.5506, 20, 6.5, 9.5, 6.5, 9.5, 7, 8, 7, 8, 8, 7, 8, 7, 9, 6.5, 9, 6.5, 16, 18.5, 28, 18.5, 31.395, 17, 31.9407, 17, 28, 5.5, 16.5, 5.5, 9, 5, 9, 5, 8, 3, 8, 3, 9, 2.5, 9, 2.5, 18.5, 12, 28, 12, 33.7079, 11, 34.0737, 11, 28.5, 1.5, 19, 1.5, 9, 1, 9, 1, 8, -1, 8, -1, 9, -1.5, 9, -1.5, 19, -11, 28.5, -11, 34.0746, -12, 33.7132, -12, 28, -2.5, 18.5, -2.5, 9, -3, 9, -3, 8, -5, 8, -5, 9, -5.5, 9, -5.5, 16.5, -19.8984, 30.8984, -21, 30.5, -6.5, 16, -6.5, 9, -7, 9, -7, 8, -8, 8, -8, 7, -9.5, 7, -9.5, 6.5, -20, 6.5, -32.0508, 18.5508, -32.957, 16.457, -21, 4.5, -9.5, 4.5, -9.5, 4, -8, 4, -8, 1.5, -10, 1.5, -10, 0.5, -39.7891, 0.5, -40, 0, -39.7852, -0.5, -10, -0.5, -10, -1.5, -8, -1.5, -8, -4, -9.5, -4, -9.5, -4.5, -21, -4.5, -32.9492, -16.4492, -32.0508, -18.5469, -20, -6.5, -9.5, -6.5, -9.5, -7, -8, -7 )
+
+[node name="VisionArea" type="Area2D" parent="Head" index="2"]
+rotation = 1.5708
+scale = Vector2( 0.909091, 0.909091 )
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Head/VisionArea" index="0"]
+polygon = PoolVector2Array( -496, -896, 496, -896, 32, 32, -32, 32 )
+
+[node name="Laser" parent="Head" index="3" instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 64, 0 )
+scale = Vector2( 0.909091, 0.914754 )
+
+[node name="Alert" type="AudioStreamPlayer2D" parent="." index="6"]
+stream = ExtResource( 6 )
+volume_db = 6.0
+attenuation = 2.07053
+
+[node name="Stall" type="Timer" parent="." index="7"]
+pause_mode = 1
+process_mode = 0
+one_shot = true
+
+[node name="Idle" type="Timer" parent="." index="8"]
+pause_mode = 1
+process_mode = 0
+one_shot = true
+
+[node name="DebugInfo" parent="." index="9" instance=ExtResource( 7 )]
+
+[connection signal="body_entered" from="Head/VisionArea" to="." method="updateDetection" binds= [ true ]]
+[connection signal="body_exited" from="Head/VisionArea" to="." method="updateDetection" binds= [ false ]]
+[connection signal="timeout" from="Stall" to="." method="_on_StallTime_timeout"]
+[connection signal="timeout" from="Idle" to="." method="_on_Idle_timeout"]

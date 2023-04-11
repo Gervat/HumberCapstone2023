@@ -1,0 +1,153 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://InteractivePiece/Bumper/SquareBump.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Bosses/PistonBoss/BatteryModule.gd" type="Script" id=2]
+
+[sub_resource type="PhysicsMaterial" id=26]
+friction = 0.58
+bounce = 0.04
+
+[sub_resource type="RectangleShape2D" id=25]
+extents = Vector2( 80, 40 )
+
+[sub_resource type="PhysicsMaterial" id=36]
+friction = 0.0
+rough = true
+absorbent = true
+
+[sub_resource type="Animation" id=28]
+resource_name = "Close"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Arm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.466517, 1 ),
+"update": 0,
+"values": [ Vector2( 176, 0 ), Vector2( 80, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Outline:default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0133552, 0.0133552, 0.015625, 1 ), Color( 1, 0.117647, 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Arm/Bumper:collision_mask")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "enemize"
+} ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "Open"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Arm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5, 1.5 ),
+"transitions": PoolRealArray( 0.297302, 1 ),
+"update": 0,
+"values": [ Vector2( 80, 0 ), Vector2( 176, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Outline:default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.117647, 0, 1 ), Color( 0.0133552, 0.0133552, 0.015625, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Arm/Bumper:collision_mask")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[node name="BatteryModule" type="StaticBody2D"]
+collision_layer = 0
+physics_material_override = SubResource( 26 )
+script = ExtResource( 2 )
+
+[node name="Outline" type="Line2D" parent="."]
+light_mask = 2
+z_index = 1
+points = PoolVector2Array( 64, 16, 48, 16, 24, 32, -88, 32, -88, -32, 24, -32, 48, -16, 64, -16 )
+width = 7.5
+default_color = Color( 0.0133552, 0.0133552, 0.015625, 1 )
+
+[node name="Body" type="Polygon2D" parent="."]
+light_mask = 0
+position = Vector2( -32, -64 )
+color = Color( 0.0862745, 0.0862745, 0.101961, 1 )
+polygon = PoolVector2Array( -64, 104, -64, 24, 96, 24, 96, 104 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -16, 0 )
+shape = SubResource( 25 )
+
+[node name="Arm" type="StaticBody2D" parent="."]
+position = Vector2( 80, 0 )
+z_index = -1
+collision_layer = 0
+physics_material_override = SubResource( 26 )
+
+[node name="Bumper" parent="Arm" instance=ExtResource( 1 )]
+position = Vector2( -64, 0 )
+scale = Vector2( 1, 0.6 )
+z_index = -2
+collision_mask = 0
+physics_material_override = SubResource( 36 )
+continuous_cd = 2
+strength = 7777
+sensitivity = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 28 )
+anims/Open = SubResource( 29 )

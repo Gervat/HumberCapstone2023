@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://InteractivePiece/_Master/InteractivePiece.tscn" type="PackedScene" id=1]
+[ext_resource path="res://InteractivePiece/OtherPieces/Resource/Popper.gd" type="Script" id=2]
+
+[sub_resource type="PhysicsMaterial" id=3]
+friction = 0.0
+rough = true
+absorbent = true
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -32, -32, 0, 0, 0, 0, -28, -24, 0, 0, -0.0556812, 8.01809, -28, -12, -23.9429, 0.111362, 23.9429, -0.111362, 0, 16, 0.0556812, 8.07377, 0, 0, 28, -12, 0, 0, 0, 0, 28, -24, 0, 0, 0, 0, 32, -32, 0, 0, 0, 0, 32, 32, 0, 0, 0, 0, -32, 32, 0, 0, 0, 0, -32, -32 )
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Launch"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "launch"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Blast:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 1.2 ),
+"transitions": PoolRealArray( 1e+06, 2.5, 0.176 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Design:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.6, 0.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 2.5, 1 ),
+"update": 0,
+"values": [ Color( 0.133333, 0.133333, 0.133333, 1 ), Color( 1, 1, 1, 1 ), Color( 0.105882, 0.105882, 0.105882, 0 ), Color( 0.105722, 0.105722, 0.105722, 0.142857 ), Color( 0.104762, 0.104762, 0.104762, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Outline:default_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.6, 0.8, 2 ),
+"transitions": PoolRealArray( 1, 2.5, 1 ),
+"update": 0,
+"values": [ Color( 0.219608, 0.219608, 0.219608, 0 ), Color( 0.219528, 0.219528, 0.219528, 0.142857 ), Color( 0.219047, 0.219047, 0.219047, 1 ) ]
+}
+
+[node name="Popper" groups=["Scoring"] instance=ExtResource( 1 )]
+mode = 1
+physics_material_override = SubResource( 3 )
+script = ExtResource( 2 )
+launchForce = 3000
+
+[node name="Blast" type="Polygon2D" parent="." index="0"]
+scale = Vector2( 1e-05, 1 )
+polygon = PoolVector2Array( 0, -24, -32, 16, 32, 16 )
+
+[node name="Collision" parent="." index="1"]
+polygon = PoolVector2Array( -27.0155, -4.22671, -22.9995, 5.04854, -19.3958, 9.30371, -14.4837, 12.7995, -8.07964, 15.1577, 0, 16, 8.07964, 15.0961, 14.4837, 12.7134, 19.3958, 9.22051, 22.9995, 4.9859, 27.0155, -4.23454, 32, -4, 32, 32, -32, 32, -32, -4 )
+one_way_collision = true
+
+[node name="Bezier" parent="." index="2"]
+visible = false
+curve = SubResource( 1 )
+accuracy = 10
+
+[node name="Shape" parent="Sprite" index="0"]
+polygon = PoolVector2Array( -27.0155, -4.22671, -26.8685, -3.65961, -26.7094, -3.08738, -26.5376, -2.51076, -26.353, -1.93049, -26.1551, -1.34731, -25.9436, -0.761957, -25.718, -0.17517, -25.4782, 0.412313, -25.2236, 0.999752, -24.9539, 1.58641, -24.6688, 2.17154, -24.368, 2.75442, -24.051, 3.3343, -23.7174, 3.91043, -23.3671, 4.4821, -22.9995, 5.04854, -22.6143, 5.60904, -22.2112, 6.16284, -21.7898, 6.70921, -21.3497, 7.2474, -20.8907, 7.77669, -20.4122, 8.29633, -19.9141, 8.80558, -19.3958, 9.30371, -18.8572, 9.78997, -18.2977, 10.2636, -17.717, 10.7239, -17.1148, 11.1702, -16.4908, 11.6016, -15.8445, 12.0174, -15.1756, 12.417, -14.4837, 12.7995, -13.7686, 13.1643, -13.0298, 13.5105, -12.2669, 13.8375, -11.4797, 14.1445, -10.6677, 14.4307, -9.83058, 14.6955, -8.96802, 14.9381, -8.07964, 15.1577, -7.16508, 15.3537, -6.22398, 15.5252, -5.25599, 15.6715, -4.26073, 15.792, -3.23787, 15.8858, -2.18703, 15.9522, -1.10786, 15.9905, 0, 16, 1.10786, 15.9805, 2.18703, 15.9328, 3.23787, 15.8577, 4.26073, 15.7559, 5.25599, 15.6281, 6.22398, 15.4751, 7.16508, 15.2975, 8.07964, 15.0961, 8.96802, 14.8715, 9.83058, 14.6246, 10.6677, 14.356, 11.4797, 14.0665, 12.2669, 13.7568, 13.0298, 13.4275, 13.7686, 13.0795, 14.4837, 12.7134, 15.1756, 12.3299, 15.8445, 11.9299, 16.4908, 11.5139, 17.1148, 11.0827, 17.717, 10.6371, 18.2977, 10.1777, 18.8572, 9.70524, 19.3958, 9.22051, 19.9141, 8.72419, 20.4122, 8.217, 20.8907, 7.69966, 21.3497, 7.17289, 21.7898, 6.63741, 22.2112, 6.09394, 22.6143, 5.5432, 22.9995, 4.9859, 23.3671, 4.42278, 23.7174, 3.85454, 24.051, 3.28191, 24.368, 2.7056, 24.6688, 2.12635, 24.9539, 1.54486, 25.2236, 0.961854, 25.4782, 0.378056, 25.718, -0.205816, 25.9436, -0.789042, 26.1551, -1.3709, 26.353, -1.95068, 26.5376, -2.52765, 26.7094, -3.1011, 26.8685, -3.6703, 27.0155, -4.23454, 32, -4, 32, 32, -32, 32, -32, -4 )
+
+[node name="Design" parent="Sprite" index="1"]
+polygon = PoolVector2Array( -27.5, 28, 27.5, 28, 27.5, 14, 25.5, 16, 25.5, 27, 23, 27, 23, 11.5, 26, 8.5, 26, -0.917969, 25.0099, 1.44652, 24, 3.37109, 24, 8, 21, 11, 21, 27, 18, 27, 18, 16, 19.5, 13, 19.5, 9.13174, 18.3582, 10.1446, 17, 11.1509, 17, 12, 15.5, 15, 15.5, 27, 14.5, 27, 14.5, 19.5, 12, 17, 12, 13.8723, 11, 14.2412, 11, 17.5, 13.5, 20, 13.5, 27, 12, 27, 12, 23, 9, 20, 9, 14.8676, 7, 15.3409, 7, 21, 10, 24, 10, 27, 8, 27, 8, 26.5, 5.5, 24, 5.5, 15.5915, 4.5, 15.7376, 4.5, 24.5, 7, 27, 3, 27, 3, 21.5, 4, 20.5, 4, 15.7933, 3, 15.8629, 3, 20, 2, 21, 2, 27, 1, 27, 1, 16, -1, 16, -1, 27, -2, 27, -2, 21, -3, 20, -3, 15.9018, -4, 15.8097, -4, 20.5, -3, 21.5, -3, 27, -7, 27, -4.5, 24.5, -4.5, 15.7615, -5.5, 15.6299, -5.5, 24, -8, 26.5, -8, 27, -10, 27, -10, 24, -7, 21, -7, 15.38, -9, 14.924, -9, 20, -12, 23, -12, 27, -13.5, 27, -13.5, 20, -11, 17.5, -11, 14.3189, -12, 13.9375, -12, 17, -14.5, 19.5, -14.5, 27, -15.5, 27, -15.5, 15, -17, 12, -17, 11.2497, -19.5, 9.21961, -19.5, 13, -18, 16, -18, 27, -21, 27, -21, 11, -24, 8, -24, 3.44402, -24.9219, 1.66406, -26, -0.918685, -26, 8.5, -23, 11.5, -23, 27, -25.5, 27, -25.5, 16, -27.5, 14 )
+
+[node name="Outline" parent="Sprite" index="2"]
+points = PoolVector2Array( -25.891, -0.815913, -28, 0, -28, 28, 28, 28, 27.9999, 0.00794458, 25.9046, -0.752915 )
+width = 3.0
+
+[node name="AnimationPlayer" parent="." index="4"]
+autoplay = ""
+anims/Launch = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="." index="5"]
+visible = false
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
+polygon = PoolVector2Array( -25.0463, 0.0348635, -14, 13, 0, 16, 14, 13, 25, 0, 24, 8, 16, 17, -16, 17, -24, 8 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

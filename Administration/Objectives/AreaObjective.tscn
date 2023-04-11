@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Administration/Objectives/Resource/AreaObjective.gd" type="Script" id=1]
+
+[node name="GoHere" type="Area2D"]
+collision_layer = 0
+script = ExtResource( 1 )
+
+[node name="Screen" type="CanvasLayer" parent="."]
+layer = 113
+
+[node name="Area" type="Control" parent="Screen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 608.0
+margin_top = 96.0
+margin_right = -672.0
+margin_bottom = -56.0
+
+[connection signal="body_entered" from="." to="." method="_on_GoHere_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_GoHere_body_exited"]

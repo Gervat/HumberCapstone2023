@@ -1,0 +1,129 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://InteractivePiece/_Master/InteractivePiece.tscn" type="PackedScene" id=1]
+[ext_resource path="res://InteractivePiece/Enemies/Resource/IsolatedTurret.gd" type="Script" id=2]
+[ext_resource path="res://Resources/PhysicsMaterials/RubberSolid.tres" type="PhysicsMaterial" id=3]
+[ext_resource path="res://InteractivePiece/Enemies/Resource/TurretAlert.wav" type="AudioStream" id=4]
+
+[sub_resource type="Curve2D" id=8]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 11.9874, 29.6699, 0, 0, 0, 0, 22.2291, 23.0189, 0, 0, 0, 0, 29.2335, 13.0156, 0, 0, 0, 0, 31.9805, 1.11678, 0, 0, 0, 0, 30.0702, -10.9446, 0, 0, 0, 0, 23.7806, -21.4122, 0, 0, 0, 0, 14.0279, -28.7614, 0, 0, 0, 0, 2.23221, -31.9221, 0, 0, 0, 0, -9.88854, -30.4338, 0, 0, 0, 0, -20.5692, -24.5134, 0, 0, 0, 0, -28.2543, -15.0231, 0, 0, 0, 0, -31.8247, -3.34491, 0, 0, 0, 0, -30.7604, 8.8204, 0, 0, 0, 0, -25.2163, 19.7012, 0, 0, 0, 0, -16, 27.7128, 0, 0, 0, 0, -4.45354, 31.6886, 0, 0, 0, 0, 0, 32 )
+}
+
+[sub_resource type="Shader" id=1]
+code = "/*
+	動的電子背景シェーダー by あるる（きのもと 結衣） @arlez80
+	Procedural Electric Background Shader by Yui Kinomoto @arlez80
+
+	MIT License
+*/
+shader_type canvas_item;
+
+uniform vec4 background_color : hint_color = vec4( 0.0, 0.0, 0.0, 1.0 );
+uniform vec4 line_color : hint_color = vec4( 0.0, 1.0, 1.0, 1.0 );
+uniform float line_freq = 9.56;
+uniform float height = 0.6;
+uniform float speed = 0.8;
+uniform vec2 scale = vec2( 2.0, 16.0 );
+
+void fragment( )
+{
+	vec2 uv = UV * scale;
+	float shift = cos( floor( uv.y ) );
+	uv.x += shift;
+
+	float freq = clamp( cos( uv.x * line_freq ) * 3.0, 0.0, 1.0 ) * height;
+	float line = 1.0 - clamp( abs( freq - mod( uv.y, 1.0 ) ) * 11.0, 0.0, 1.0 );
+
+	COLOR = mix( background_color, line_color, line * mod( uv.x - TIME * speed * abs( shift ), 1.0 ) /*  * mod( TIME + shift, 1.0 ) */ );
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 1 )
+shader_param/background_color = Color( 0, 0, 0, 1 )
+shader_param/line_color = Color( 1, 0.25098, 0, 1 )
+shader_param/line_freq = 9.56
+shader_param/height = 1.0
+shader_param/speed = 1.0
+shader_param/scale = Vector2( 0.02, 0.03 )
+
+[sub_resource type="Gradient" id=4]
+
+[sub_resource type="GradientTexture2D" id=5]
+gradient = SubResource( 4 )
+fill_from = Vector2( 1, 1 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "LaserBuild"
+length = 3.0
+loop = true
+
+[node name="WallTurret" instance=ExtResource( 1 )]
+pause_mode = 1
+rotation = -1.5708
+collision_layer = 0
+physics_material_override = ExtResource( 3 )
+script = ExtResource( 2 )
+FieldOfViewAngle = 180.0
+ScootAndShoot = false
+ShowData = false
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="0"]
+position = Vector2( 32, 1.39876e-06 )
+enabled = true
+cast_to = Vector2( 1216, 5.3153e-05 )
+collision_mask = 33
+
+[node name="VisionArea" type="Area2D" parent="." index="1"]
+rotation = -1.5708
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="VisionArea" index="0"]
+modulate = Color( 1, 1, 1, 0.278431 )
+polygon = PoolVector2Array( 0, 0, 1408, 1024, -1280, 1024 )
+
+[node name="Collision" parent="." index="2"]
+polygon = PoolVector2Array( 40, 22, 39, -23, 2.09815e-06, -48, -2.09815e-06, 48 )
+
+[node name="Bezier" parent="." index="3"]
+visible = false
+z_index = 1
+curve = SubResource( 8 )
+radius = 32
+sides = 16
+
+[node name="Shape" parent="Sprite" index="0"]
+polygon = PoolVector2Array( 0, 48, 41.5692, 24, 41.5692, -24, 5.87811e-15, -48 )
+
+[node name="Design" parent="Sprite" index="1"]
+light_mask = 1
+polygon = PoolVector2Array(  )
+
+[node name="Outline" parent="Sprite" index="2"]
+light_mask = 1
+material = SubResource( 7 )
+points = PoolVector2Array( 0, 48, 41.5692, 24, 41.5692, -24, 5.87811e-15, -48 )
+texture = SubResource( 5 )
+texture_mode = 2
+
+[node name="AnimationPlayer" parent="." index="5"]
+anims/LaserBuild = SubResource( 9 )
+
+[node name="Head" type="Node2D" parent="." index="6"]
+scale = Vector2( 1.1, 1.1 )
+
+[node name="Shape" type="Polygon2D" parent="Head" index="0"]
+rotation = 1.5708
+color = Color( 0.324219, 0.0813724, 0, 1 )
+texture_offset = Vector2( 32, 32 )
+polygon = PoolVector2Array( 0, 32, 11.9874, 29.6699, 22.2291, 23.0189, 29.2335, 13.0156, 31.9805, 1.11678, 30.0702, -10.9446, 23.7806, -21.4122, 14.5454, -27.7273, 14.5452, -69.091, 3.63612, -69.0909, 3.63626, -27.7273, -3.63646, -27.7273, -3.63661, -69.0909, -14.5457, -69.0909, -14.5456, -27.7272, -20.5692, -24.5134, -28.2543, -15.0231, -31.8247, -3.34491, -30.7604, 8.8204, -25.2163, 19.7012, -16, 27.7128, -4.45354, 31.6886 )
+
+[node name="Design" type="Polygon2D" parent="Head" index="1"]
+light_mask = 8
+rotation = 1.5708
+color = Color( 0.333333, 0.333333, 0.333333, 1 )
+polygon = PoolVector2Array( -8, -8, -7, -8, -7, -9, -6.5, -9, -6.5, -16, -16.9461, -26.4417, -15.9696, -26.9708, -5.5, -16.5, -5.5, -9, -5, -9, -5, -8, -3, -8, -3, -9, -2.5, -9, -2.5, -18.5, -12, -28, -11.8184, -65.909, -3.6366, -65.9091, -3.6366, -65, -10.9093, -65, -10.9093, -55.909, -3.63659, -63.1818, -3.63659, -62.2727, -10.9093, -55, -11, -28.5, -1.5, -19, -1.5, -9, -1, -9, -1, -8, 1, -8, 1, -9, 1.5, -9, 1.5, -19, 11, -28.5, 10.9089, -55, 3.63614, -62.2727, 3.63614, -63.1818, 10.9089, -55.9091, 10.9089, -65, 3.63613, -65, 3.63613, -65.9091, 11.8179, -65.9091, 12, -28, 2.5, -18.5, 2.5, -9, 3, -9, 3, -8, 5, -8, 5, -9, 5.5, -9, 5.5, -16.5, 15.8983, -26.8076, 16.7045, -26.2465, 6.5, -16, 6.5, -9, 7, -9, 7, -8, 8, -8, 8, -7, 9.5, -7, 9.5, -6.5, 20, -6.5, 27.957, -14.4636, 29.0868, -12.5854, 21, -4.5, 9.5, -4.5, 9.5, -4, 8, -4, 8, -1.5, 10, -1.5, 10, -0.5, 31.7294, -0.5, 31.8782, 0.5, 10, 0.5, 10, 1.5, 8, 1.5, 8, 4, 9.5, 4, 9.5, 4.5, 21, 4.5, 29.2898, 12.7627, 29.2294, 13.0113, 28.1108, 14.6164, 20, 6.5, 9.5, 6.5, 9.5, 7, 8, 7, 8, 8, 7, 8, 7, 9, 6.5, 9, 6.5, 16, 16.9568, 26.4524, 16.0335, 27.0383, 5.5, 16.5, 5.5, 9, 5, 9, 5, 8, 3, 8, 3, 9, 2.5, 9, 2.5, 18.5, 12, 28, 12, 29.6662, 11, 29.865, 11, 28.5, 1.5, 19, 1.5, 9, 1, 9, 1, 8, -1, 8, -1, 9, -1.5, 9, -1.5, 19, -11, 28.5, -11, 29.4319, -12, 29.0945, -12, 28, -2.5, 18.5, -2.5, 9, -3, 9, -3, 8, -5, 8, -5, 9, -5.5, 9, -5.5, 16.5, -16.3813, 27.3829, -17.1839, 26.6833, -6.5, 16, -6.5, 9, -7, 9, -7, 8, -8, 8, -8, 7, -9.5, 7, -9.5, 6.5, -20, 6.5, -27.9048, 14.4142, -28.9204, 12.422, -21, 4.5, -9.5, 4.5, -9.5, 4, -8, 4, -8, 1.5, -10, 1.5, -10, 0.5, -31.4891, 0.5, -31.5651, -0.5, -10, -0.5, -10, -1.5, -8, -1.5, -8, -4, -9.5, -4, -9.5, -4.5, -21, -4.5, -29.0164, -12.5212, -28.3097, -14.8046, -20, -6.5, -9.5, -6.5, -9.5, -7, -8, -7 )
+
+[node name="Alert" type="AudioStreamPlayer2D" parent="." index="7"]
+stream = ExtResource( 4 )

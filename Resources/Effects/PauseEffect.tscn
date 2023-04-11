@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Resources/Shaders/Scanlines.material" type="Material" id=1]
+
+[sub_resource type="Gradient" id=20]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=21]
+gradient = SubResource( 20 )
+
+[sub_resource type="Animation" id=22]
+resource_name = "Blink"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PauseBar:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PauseBar2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=23]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PauseBar:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PauseBar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[node name="PauseEffect" type="CanvasLayer"]
+layer = 101
+visible = false
+
+[node name="PauseBar2" type="Polygon2D" parent="."]
+visible = false
+color = Color( 0.533333, 0.533333, 0.533333, 1 )
+polygon = PoolVector2Array( 192, 64, 192, 256, 256, 256, 256, 64 )
+
+[node name="PauseBar" type="Polygon2D" parent="."]
+visible = false
+position = Vector2( 128, 0 )
+color = Color( 0.533333, 0.533333, 0.533333, 1 )
+polygon = PoolVector2Array( 192, 64, 192, 256, 256, 256, 256, 64 )
+
+[node name="PauseEffect" type="Sprite" parent="."]
+material = ExtResource( 1 )
+position = Vector2( 960, 536 )
+scale = Vector2( 30, -17 )
+texture = SubResource( 21 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Blink"
+anims/Blink = SubResource( 22 )
+anims/RESET = SubResource( 23 )
