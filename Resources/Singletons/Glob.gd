@@ -3,7 +3,7 @@ extends Node
 #STATES - for lighting
 enum {OFF=1, DEFAULT=2, PLAYER=4, OCCUPIED=8, ENEMY=16}
 #Top Global
-export(bool) var Cheater = true
+export(bool) var Cheater = false
 var DebugLog = File.new()
 
 var SaveFile = File.new()
