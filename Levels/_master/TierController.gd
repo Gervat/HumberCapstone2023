@@ -48,6 +48,7 @@ func resetConquest():
 func activate(v):
 	active = v
 	CQPanel.decaying = v
+	prints(name, "active:", active)
 ###===================================================================
 ###-------SIGNAL HANDLING
 ###===================================================================

@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=2]
+[gd_scene load_steps=81 format=2]
 
 [ext_resource path="res://Resources/Fonts/MovieTheatreFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://UI/Resource/PerkNode/Resource/Perk_Plus.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://UI/HUD/Resource/IMG/ControlsHTP.PNG" type="Texture" id=10]
 [ext_resource path="res://Resources/Shaders/InputOutput.material" type="Material" id=11]
 [ext_resource path="res://Resources/Music/MarchoftheAI.sample" type="AudioStream" id=12]
+[ext_resource path="res://Resources/Fonts/PaperClip-y15.ttf" type="DynamicFontData" id=13]
 
 [sub_resource type="DynamicFont" id=13]
 size = 256
@@ -19,6 +20,10 @@ outline_size = 4
 use_mipmaps = true
 extra_spacing_char = 4
 font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=85]
+size = 256
+font_data = ExtResource( 13 )
 
 [sub_resource type="DynamicFont" id=68]
 size = 60
@@ -1025,6 +1030,18 @@ light_mask = 64
 position = Vector2( -11.4286, -631.429 )
 scale = Vector2( 1.01184, 2.05882 )
 polygon = PoolVector2Array( 12.8237, 312.857, 12.7067, 297.673, 1814.35, 297.592, 1814.29, 312.857 )
+
+[node name="2D" type="Label" parent="Title"]
+modulate = Color( 1, 0.439216, 0.133333, 1 )
+light_mask = 64
+margin_left = 1537.0
+margin_top = -4.99999
+margin_right = 1911.0
+margin_bottom = 261.0
+rect_rotation = 13.3519
+rect_scale = Vector2( 0.75, 0.75 )
+custom_fonts/font = SubResource( 85 )
+text = "2d"
 
 [node name="RebelHead" type="Label" parent="Title"]
 light_mask = 0
