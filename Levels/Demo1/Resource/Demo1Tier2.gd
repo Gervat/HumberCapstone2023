@@ -12,10 +12,7 @@ func _ready():
 	objectiveStage = 0
 
 func checkStage():
-	if $"..".phase == 2:
-		objectiveStage = 4
-		exit.active = true
-		
+
 	match objectiveStage:
 		0:
 			$"../DefaultPieces/Button_1F_2".currState = 0
@@ -36,11 +33,6 @@ func checkStage():
 			score.active = false
 		5:
 			pass
-	
-	if exit.active == true:
-		$"../DefaultPieces/Button_1F_2".currState = 3
-		$"../DefaultPieces/Button_1F_1".currState = 3	
-
 
 func event():
 	#start tier 2 objectives when you enter tier 2
@@ -60,6 +52,11 @@ func event():
 
 #every time phase changes, check the stage function
 func phased(_cPhase:int):
+	if $"..".phase == 2:
+		objectiveStage = 4
+		exit.active = true
+		$"../DefaultPieces/Button_1F_2".currState = 3
+		$"../DefaultPieces/Button_1F_1".currState = 3
 	checkStage()
 
 # score objective
@@ -72,7 +69,7 @@ func ExitObjectiveComplete(_name, _obj):
 	# lock the buttons so exit ramp remains open
 	$"../DefaultPieces/Button_1F_2".currState = 0
 	$"../DefaultPieces/Button_1F_1".currState = 0
-	
+
 	#spawn in an object to block the 2 ramps to 2F
 	$"../IntPieces/LeftGate".collision_mask = 1
 	$"../IntPieces/LeftGate".modulate.a = 1

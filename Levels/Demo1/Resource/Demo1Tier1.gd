@@ -18,26 +18,14 @@ func checkStage():
 	match objectiveStage:
 		0:
 			hit.active = true
+			button1.currState = 0
+			button2.currState = 0
+			button3.currState = 0
+			button4.currState = 0
 		1:
 			hit.active = false
 		2:
 			exit.active = false
-	
-	if $"..".phase == 2:
-		hit.active = false
-		exit.active = true
-	
-	if hit.active == true:
-		button1.currState = 0
-		button2.currState = 0
-		button3.currState = 0
-		button4.currState = 0
-	
-	if exit.active == true:
-		button1.currState = 3
-		button2.currState = 3
-		button3.currState = 3
-		button4.currState = 3
 
 func event():
 	if EMan.TYPE == 'Area' and EMan.NAME == 'BallLaunched' and EMan.TIER == 1:
@@ -49,16 +37,23 @@ func event():
 
 #every time phase changes, check the stage function
 func phased(_cPhase:int):
+	if $"..".phase == 2:
+		hit.active = false
+		exit.active = true
+		button1.currState = 3
+		button2.currState = 3
+		button3.currState = 3
+		button4.currState = 3
 	checkStage()
 
 #when the button exit objective completes, trigger this function to lock buttons so exit gate perm open
 func buttonsobjectiveComplete(_name, _obj):
 	objectiveStage += 1
 	$"../DefaultPieces/ExitRampGateBolt".open = true
-	$"../DefaultPieces/ButtonL".currState = 0 
-	$"../DefaultPieces/ButtonL2".currState = 0 
-	$"../DefaultPieces/ButtonR".currState = 0 
-	$"../DefaultPieces/ButtonR2".currState = 0 
+	button1.currState = 0
+	button2.currState = 0
+	button3.currState = 0
+	button4.currState = 0
 	checkStage()
 
 # exit set complete, open the gate

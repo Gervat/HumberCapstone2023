@@ -14,10 +14,15 @@ var se_bus = AudioServer.get_bus_index("SFX")
 var dialogue_bus = AudioServer.get_bus_index("Dialogue")
 var music_bus = AudioServer.get_bus_index("Music")
 
-var base_master = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))
-var base_se = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX"))
-var base_dialogue = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Dialogue"))
-var base_music = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
+var base_master = AudioServer.get_bus_volume_db(master_bus)
+var base_se = AudioServer.get_bus_volume_db(se_bus)
+var base_dialogue = AudioServer.get_bus_volume_db(dialogue_bus)
+var base_music = AudioServer.get_bus_volume_db(music_bus)
+
+var prev_master:float
+var prev_se:float
+var prev_dialogue:float
+var prev_music:float
 
 #HOW-TO-PLAY PRELOAD PICTURES
 var currentSet = 0
@@ -46,6 +51,20 @@ func _ready():
 
 	#SET INITIAL HOW-TO-PLAY TITLE AND IMAGE
 	_HTPset(0)
+
+	prev_master = base_master
+	base_master = -14.1
+	prev_se = base_se
+	base_se = 0.0
+	prev_dialogue = base_dialogue
+	base_dialogue = 0.0
+	prev_music = base_music
+	base_music = 0.0
+
+	$"MainMenuManager/Audio/Volume Control/Master/Master Slider".value = prev_master - base_master
+	$"MainMenuManager/Audio/Volume Control/Sound Effects/SE Slider".value = prev_se - base_se
+	$"MainMenuManager/Audio/Volume Control/Dialogue/Dialogue Slider".value = prev_dialogue - base_dialogue
+	$"MainMenuManager/Audio/Volume Control/Music/Music Slider".value = prev_music - base_music
 
 func _process(_delta):
 	if hovered == true: _is_Button_Hovered()

@@ -540,6 +540,7 @@ Operation PROPHET" ]
 [node name="IntroCutscene" type="CanvasLayer" parent="."]
 pause_mode = 2
 layer = 128
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="IntroCutscene"]
 pause_mode = 2
