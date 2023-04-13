@@ -717,7 +717,7 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameManager/Tier1/AreaTriggers/LaunchTube"]
-polygon = PoolVector2Array( 443, 2770, 442, 1466, 414, 1326, 333, 1208, 393, 1144, 494, 1256, 547, 1587, 525, 2770 )
+polygon = PoolVector2Array( 443, 2770, 442, 1466, 427, 1356, 391, 1272, 333, 1208, 393, 1144, 494, 1256, 547, 1587, 525, 2770 )
 
 [node name="Solids" type="Node" parent="GameManager/Tier1"]
 
@@ -1073,14 +1073,12 @@ rotation = 1.57308
 [node name="SpeedBooster4" parent="GameManager/Tier1/DefaultPieces" instance=ExtResource( 38 )]
 position = Vector2( -655, 2549 )
 rotation = 0.584594
-z_index = 3
 collision_mask = 8
 power = 700
 
 [node name="SpeedBooster8" parent="GameManager/Tier1/DefaultPieces" instance=ExtResource( 38 )]
 position = Vector2( -540, 2438 )
 rotation = 0.630039
-z_index = 3
 collision_mask = 8
 power = 100
 
