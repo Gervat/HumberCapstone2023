@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://import/Total Rekt'em.mp3-683669b36878920dc255a7d722d92f36.mp3str"
+
+[deps]
+
+source_file="res://Total Rekt'em.mp3"
+dest_files=[ "res://import/Total Rekt'em.mp3-683669b36878920dc255a7d722d92f36.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
