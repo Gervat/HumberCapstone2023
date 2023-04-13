@@ -5,8 +5,8 @@ Development for the project initially started fall 2022 and this current playabl
 The developers behind this project will continue to work on this project, and hope to release a fully playable demo build in the near future.
 
 Please see the trailer here:
----Insert Trailer Here---
+https://www.youtube.com/watch?v=9y3-OLotZjQ
 
 Please find the playable link and further details of the game here:
----Insert link here---
+https://tienosca.itch.io/neon-impulse2d
 
