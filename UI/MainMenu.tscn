@@ -3,7 +3,7 @@
 [ext_resource path="res://Resources/Fonts/MovieTheatreFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://UI/Resource/PerkNode/Resource/Perk_Plus.png" type="Texture" id=2]
 [ext_resource path="res://InteractivePiece/_Master/Resource/BrickSmallDark0012_1_download600.jpg" type="Texture" id=3]
-[ext_resource path="res://Resources/Fonts/ClassicArcadeFont32.tres" type="DynamicFont" id=4]
+[ext_resource path="res://CGBannerLogo_White.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Fonts/test1.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Resources/Fonts/ClassicArcadeFont.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Resources/Fonts/MovieTheaterFont.ttf" type="DynamicFontData" id=7]
@@ -1043,18 +1043,6 @@ rect_scale = Vector2( 0.75, 0.75 )
 custom_fonts/font = SubResource( 85 )
 text = "2d"
 
-[node name="RebelHead" type="Label" parent="Title"]
-light_mask = 0
-margin_left = 1606.0
-margin_top = 1046.0
-margin_right = 1914.0
-margin_bottom = 1076.0
-size_flags_stretch_ratio = 0.0
-custom_fonts/font = ExtResource( 4 )
-text = "RebelHead Studios"
-align = 1
-valign = 1
-
 [node name="Showcase Demo" type="Label" parent="Title"]
 light_mask = 32
 margin_left = 500.0
@@ -1894,6 +1882,11 @@ anims/RESET = SubResource( 39 )
 stream = ExtResource( 12 )
 autoplay = true
 bus = "Music"
+
+[node name="CgBannerLogoWhite" type="Sprite" parent="."]
+position = Vector2( 1767, 1006 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 4 )
 
 [connection signal="pressed" from="MainMenuManager/Main_Buttons/Start Game" to="." method="_on_Start_Game_pressed"]
 [connection signal="pressed" from="MainMenuManager/Main_Buttons/HowToPlay" to="." method="_on_HowToPlay_pressed"]

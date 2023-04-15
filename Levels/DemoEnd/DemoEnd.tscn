@@ -193,7 +193,7 @@ Please expect a fully playable demo
 version in the near future.
 
 Thank you very much for playing!
--Much love from RebelHead Studios-"
+-Cretin Games-"
 align = 1
 valign = 1
 
@@ -253,6 +253,7 @@ __meta__ = {
 }
 
 [node name="StoryCutscene" parent="." instance=ExtResource( 6 )]
+visible = false
 script = ExtResource( 7 )
 StoryDialogue = [ "Athena: \"They're close!\"
 Geronimo: \"This was fun, Athena. I hope we made the right call on
