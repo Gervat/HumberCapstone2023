@@ -15,9 +15,10 @@ func checkStage():
 
 	match objectiveStage:
 		0:
+			pass
+		1: # hit the button to unlock 2F ramps
 			$"../DefaultPieces/Button_1F_2".currState = 0
 			$"../DefaultPieces/Button_1F_1".currState = 0
-		1: # hit the button to unlock 2F ramps
 			unlock2f.active = true
 		2: # hit 2 buttons for conquest damage
 			unlock2f.active = false
