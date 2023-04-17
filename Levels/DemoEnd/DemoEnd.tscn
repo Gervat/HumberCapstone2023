@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Resources/Fonts/MovieTheaterFont.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://InteractivePiece/_Master/Resource/BrickSmallDark0012_1_download600.jpg" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://UI/StoryCutscene.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Levels/DemoEnd/Resource/DemoEndStory.gd" type="Script" id=7]
 [ext_resource path="res://Levels/DemoEnd/Resource/DemoEnd.gd" type="Script" id=8]
+[ext_resource path="res://Resources/Fonts/PaperClip-y15.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="Gradient" id=69]
 offsets = PoolRealArray( 1 )
@@ -16,11 +17,21 @@ colors = PoolColorArray( 1, 1, 1, 1 )
 [sub_resource type="GradientTexture" id=70]
 gradient = SubResource( 69 )
 
-[sub_resource type="DynamicFont" id=71]
+[sub_resource type="DynamicFont" id=83]
 size = 256
 outline_size = 4
 use_mipmaps = true
 extra_spacing_char = 4
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=84]
+size = 256
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=85]
+size = 60
+outline_size = 2
+use_mipmaps = true
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=72]
@@ -154,30 +165,55 @@ texture = SubResource( 70 )
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Neon Impulse" type="Label" parent="DemoEnd/Words"]
+[node name="Title" type="Control" parent="DemoEnd/Words"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Neon Impulse" type="Label" parent="DemoEnd/Words/Title"]
 modulate = Color( 0, 1, 0.952941, 1 )
 light_mask = 64
-margin_left = 351.0
+margin_left = 330.0
 margin_top = 87.0
-margin_right = 2203.0
+margin_right = 2182.0
 margin_bottom = 353.0
 rect_scale = Vector2( 0.7, 0.7 )
-custom_fonts/font = SubResource( 71 )
+custom_fonts/font = SubResource( 83 )
 text = "Neon Impulse"
-align = 1
-valign = 1
 
-[node name="Polygon2D" type="Polygon2D" parent="DemoEnd/Words/Neon Impulse"]
+[node name="Polygon2D" type="Polygon2D" parent="DemoEnd/Words/Title/Neon Impulse"]
 light_mask = 64
 position = Vector2( -14.2857, -324.286 )
 scale = Vector2( 1.01184, 2.05882 )
 polygon = PoolVector2Array( 12.8237, 312.857, 12.7067, 297.673, 1814.35, 297.592, 1814.29, 312.857 )
 
-[node name="Polygon2D2" type="Polygon2D" parent="DemoEnd/Words/Neon Impulse"]
+[node name="Polygon2D2" type="Polygon2D" parent="DemoEnd/Words/Title/Neon Impulse"]
 light_mask = 64
 position = Vector2( -11.4286, -631.429 )
 scale = Vector2( 1.01184, 2.05882 )
 polygon = PoolVector2Array( 12.8237, 312.857, 12.7067, 297.673, 1814.35, 297.592, 1814.29, 312.857 )
+
+[node name="2D" type="Label" parent="DemoEnd/Words/Title"]
+modulate = Color( 1, 0.439216, 0.133333, 1 )
+light_mask = 64
+margin_left = 1537.0
+margin_top = -4.99999
+margin_right = 1911.0
+margin_bottom = 261.0
+rect_rotation = 13.3519
+rect_scale = Vector2( 0.75, 0.75 )
+custom_fonts/font = SubResource( 84 )
+text = "2d"
+
+[node name="Showcase Demo" type="Label" parent="DemoEnd/Words/Title"]
+light_mask = 32
+margin_left = 500.0
+margin_top = -10.0
+margin_right = 1435.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 85 )
+text = "CAPSTONE DEMO VERSION"
+align = 1
+valign = 1
 
 [node name="End Of Demo" type="Label" parent="DemoEnd/Words"]
 light_mask = 32
